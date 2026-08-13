@@ -1,0 +1,197 @@
+{
+  "cell": {
+    "cell_id": "CELL_11_11",
+    "row": 11,
+    "col": 11,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.22375,
+      28.634688,
+      77.225,
+      28.63575
+    ],
+    "center": [
+      77.224375,
+      28.635219
+    ],
+    "lst_current": 44.7,
+    "ta_current": 41.2,
+    "lst_after": 41.5,
+    "ta_after": 39.1,
+    "cooling_potential": 3.2,
+    "population": 3212,
+    "vulnerability_score": 0.68,
+    "canopy_pct": 10,
+    "drivers": {
+      "ndvi": 0.15,
+      "albedo": 0.15,
+      "building_density": 0.62,
+      "sky_view_factor": 0.4,
+      "imperviousness": 0.8,
+      "traffic_density": 0.8
+    },
+    "energy_balance": {
+      "H": 313,
+      "LE": 51,
+      "G": 117,
+      "QF": 60
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_1462284375",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 29.0,
+      "centroid": [
+        77.224882,
+        28.635021
+      ],
+      "coordinates": [
+        [
+          77.224861,
+          28.635119
+        ],
+        [
+          77.225019,
+          28.635027
+        ],
+        [
+          77.224909,
+          28.634877
+        ],
+        [
+          77.224759,
+          28.634964
+        ],
+        [
+          77.224861,
+          28.635119
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 0.81,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.52,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_1462284380",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 16.0,
+      "centroid": [
+        77.223864,
+        28.635432
+      ],
+      "coordinates": [
+        [
+          77.223765,
+          28.635631
+        ],
+        [
+          77.224134,
+          28.635206
+        ],
+        [
+          77.224012,
+          28.63515
+        ],
+        [
+          77.223646,
+          28.635543
+        ],
+        [
+          77.223765,
+          28.635631
+        ]
+      ],
+      "heat_contribution_offset": 1.0,
+      "heat_driver_value": 0.77,
+      "attribution": {
+        "low_albedo": 0.65,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_11_11_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.223912,
+        28.634996
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_11_11_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.224375,
+        28.635623
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_11_11_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.224837,
+        28.635187
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_11_11_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.22405,
+        28.634752
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_11_11_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.224512,
+        28.635378
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_11_11_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.224975,
+        28.634943
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

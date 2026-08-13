@@ -1,0 +1,309 @@
+{
+  "cell": {
+    "cell_id": "CELL_02_12",
+    "row": 2,
+    "col": 12,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.225,
+      28.625125,
+      77.22625,
+      28.626188
+    ],
+    "center": [
+      77.225625,
+      28.625656
+    ],
+    "lst_current": 43.5,
+    "ta_current": 40.2,
+    "lst_after": 40.8,
+    "ta_after": 38.4,
+    "cooling_potential": 2.7,
+    "population": 3030,
+    "vulnerability_score": 0.58,
+    "canopy_pct": 12,
+    "drivers": {
+      "ndvi": 0.18,
+      "albedo": 0.17,
+      "building_density": 0.57,
+      "sky_view_factor": 0.42,
+      "imperviousness": 0.78,
+      "traffic_density": 0.5
+    },
+    "energy_balance": {
+      "H": 297,
+      "LE": 55,
+      "G": 115,
+      "QF": 45
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_351583153",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 21.0,
+      "centroid": [
+        77.225405,
+        28.625892
+      ],
+      "coordinates": [
+        [
+          77.225494,
+          28.62604
+        ],
+        [
+          77.225567,
+          28.625932
+        ],
+        [
+          77.225453,
+          28.625872
+        ],
+        [
+          77.225481,
+          28.625832
+        ],
+        [
+          77.225317,
+          28.625746
+        ],
+        [
+          77.225269,
+          28.625817
+        ],
+        [
+          77.225309,
+          28.625837
+        ],
+        [
+          77.225256,
+          28.625916
+        ],
+        [
+          77.225494,
+          28.62604
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.67,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_351839051",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 31.0,
+      "centroid": [
+        77.225438,
+        28.625648
+      ],
+      "coordinates": [
+        [
+          77.225622,
+          28.625842
+        ],
+        [
+          77.225747,
+          28.625613
+        ],
+        [
+          77.225232,
+          28.625394
+        ],
+        [
+          77.225162,
+          28.625521
+        ],
+        [
+          77.22537,
+          28.625609
+        ],
+        [
+          77.225314,
+          28.625711
+        ],
+        [
+          77.225622,
+          28.625842
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 0.69,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.54,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_352306179",
+      "name": "Banga Bhawan",
+      "type": "yes",
+      "height": 23.0,
+      "centroid": [
+        77.22584,
+        28.625987
+      ],
+      "coordinates": [
+        [
+          77.225641,
+          28.626075
+        ],
+        [
+          77.225744,
+          28.62612
+        ],
+        [
+          77.225714,
+          28.626174
+        ],
+        [
+          77.225769,
+          28.626198
+        ],
+        [
+          77.225798,
+          28.626145
+        ],
+        [
+          77.225918,
+          28.626197
+        ],
+        [
+          77.226029,
+          28.626001
+        ],
+        [
+          77.225944,
+          28.625964
+        ],
+        [
+          77.225972,
+          28.625913
+        ],
+        [
+          77.226044,
+          28.625944
+        ],
+        [
+          77.226114,
+          28.625821
+        ],
+        [
+          77.225816,
+          28.625692
+        ],
+        [
+          77.225747,
+          28.625815
+        ],
+        [
+          77.225834,
+          28.625852
+        ],
+        [
+          77.225801,
+          28.625912
+        ],
+        [
+          77.225746,
+          28.625888
+        ],
+        [
+          77.225641,
+          28.626075
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.67,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.49,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.29
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_02_12_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.225162,
+        28.625433
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_02_12_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.225625,
+        28.62606
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_02_12_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.226087,
+        28.625625
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_02_12_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2253,
+        28.625189
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_02_12_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.225762,
+        28.625816
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_02_12_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.226225,
+        28.62538
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

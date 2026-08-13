@@ -1,0 +1,145 @@
+{
+  "cell": {
+    "cell_id": "CELL_08_02",
+    "row": 8,
+    "col": 2,
+    "ward_name": "Parliament Street Commercial Zone",
+    "bounds": [
+      77.2125,
+      28.6315,
+      77.21375,
+      28.632563
+    ],
+    "center": [
+      77.213125,
+      28.632031
+    ],
+    "lst_current": 45.3,
+    "ta_current": 41.6,
+    "lst_after": 41.8,
+    "ta_after": 39.3,
+    "cooling_potential": 3.5,
+    "population": 3346,
+    "vulnerability_score": 0.72,
+    "canopy_pct": 9,
+    "drivers": {
+      "ndvi": 0.13,
+      "albedo": 0.15,
+      "building_density": 0.64,
+      "sky_view_factor": 0.39,
+      "imperviousness": 0.81,
+      "traffic_density": 0.7
+    },
+    "energy_balance": {
+      "H": 322,
+      "LE": 48,
+      "G": 118,
+      "QF": 55
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_391534133",
+      "name": "Building Block",
+      "type": "temple",
+      "height": 7.0,
+      "centroid": [
+        77.212659,
+        28.632271
+      ],
+      "coordinates": [
+        [
+          77.212732,
+          28.632352
+        ],
+        [
+          77.212706,
+          28.632134
+        ],
+        [
+          77.212551,
+          28.632148
+        ],
+        [
+          77.212576,
+          28.632366
+        ],
+        [
+          77.212732,
+          28.632352
+        ]
+      ],
+      "heat_contribution_offset": 0.8,
+      "heat_driver_value": 0.81,
+      "attribution": {
+        "low_albedo": 0.61,
+        "building_height_trap": 0.39,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_08_02_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.212663,
+        28.631808
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_08_02_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.213125,
+        28.632435
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_08_02_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.213588,
+        28.632
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_08_02_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2128,
+        28.631564
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_08_02_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.213262,
+        28.632191
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

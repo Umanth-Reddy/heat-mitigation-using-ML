@@ -1,0 +1,261 @@
+{
+  "cell": {
+    "cell_id": "CELL_05_05",
+    "row": 5,
+    "col": 5,
+    "ward_name": "Janpath & Tolstoy Marg Precinct",
+    "bounds": [
+      77.21625,
+      28.628312,
+      77.2175,
+      28.629375
+    ],
+    "center": [
+      77.216875,
+      28.628844
+    ],
+    "lst_current": 45.0,
+    "ta_current": 41.4,
+    "lst_after": 41.7,
+    "ta_after": 39.3,
+    "cooling_potential": 3.3,
+    "population": 3256,
+    "vulnerability_score": 0.7,
+    "canopy_pct": 9,
+    "drivers": {
+      "ndvi": 0.14,
+      "albedo": 0.15,
+      "building_density": 0.63,
+      "sky_view_factor": 0.4,
+      "imperviousness": 0.8,
+      "traffic_density": 0.6
+    },
+    "energy_balance": {
+      "H": 318,
+      "LE": 49,
+      "G": 118,
+      "QF": 50
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_103176781",
+      "name": "DLF Centre",
+      "type": "office",
+      "height": 45.5,
+      "centroid": [
+        77.217144,
+        28.628337
+      ],
+      "coordinates": [
+        [
+          77.217157,
+          28.628598
+        ],
+        [
+          77.217147,
+          28.628533
+        ],
+        [
+          77.217128,
+          28.628478
+        ],
+        [
+          77.217106,
+          28.628425
+        ],
+        [
+          77.217069,
+          28.628365
+        ],
+        [
+          77.217031,
+          28.628314
+        ],
+        [
+          77.216984,
+          28.628273
+        ],
+        [
+          77.21693,
+          28.628235
+        ],
+        [
+          77.216873,
+          28.628203
+        ],
+        [
+          77.216953,
+          28.628041
+        ],
+        [
+          77.217016,
+          28.628072
+        ],
+        [
+          77.217074,
+          28.628101
+        ],
+        [
+          77.217125,
+          28.628138
+        ],
+        [
+          77.217172,
+          28.628176
+        ],
+        [
+          77.21721,
+          28.628222
+        ],
+        [
+          77.217246,
+          28.62827
+        ],
+        [
+          77.217278,
+          28.628321
+        ],
+        [
+          77.217301,
+          28.628369
+        ],
+        [
+          77.217318,
+          28.628417
+        ],
+        [
+          77.217337,
+          28.628477
+        ],
+        [
+          77.217345,
+          28.628537
+        ],
+        [
+          77.217345,
+          28.628594
+        ],
+        [
+          77.217157,
+          28.628598
+        ]
+      ],
+      "heat_contribution_offset": 1.8,
+      "heat_driver_value": 0.88,
+      "attribution": {
+        "low_albedo": 0.81,
+        "building_height_trap": 0.62,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_352447788",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 26.0,
+      "centroid": [
+        77.217483,
+        28.628925
+      ],
+      "coordinates": [
+        [
+          77.217428,
+          28.629143
+        ],
+        [
+          77.217674,
+          28.628995
+        ],
+        [
+          77.217668,
+          28.62874
+        ],
+        [
+          77.217533,
+          28.628753
+        ],
+        [
+          77.217169,
+          28.628777
+        ],
+        [
+          77.217428,
+          28.629143
+        ]
+      ],
+      "heat_contribution_offset": 1.3,
+      "heat_driver_value": 0.83,
+      "attribution": {
+        "low_albedo": 0.71,
+        "building_height_trap": 0.51,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_05_05_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.216413,
+        28.62862
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_05_05_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.216875,
+        28.629247
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_05_05_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.217337,
+        28.628812
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_05_05_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.21655,
+        28.628376
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_05_05_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.217012,
+        28.629003
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

@@ -1,0 +1,329 @@
+{
+  "cell": {
+    "cell_id": "CELL_10_01",
+    "row": 10,
+    "col": 1,
+    "ward_name": "Gole Market & Baba Kharak Singh Marg",
+    "bounds": [
+      77.21125,
+      28.633625,
+      77.2125,
+      28.634688
+    ],
+    "center": [
+      77.211875,
+      28.634156
+    ],
+    "lst_current": 42.7,
+    "ta_current": 39.5,
+    "lst_after": 40.3,
+    "ta_after": 37.9,
+    "cooling_potential": 2.4,
+    "population": 2929,
+    "vulnerability_score": 0.52,
+    "canopy_pct": 14,
+    "drivers": {
+      "ndvi": 0.21,
+      "albedo": 0.17,
+      "building_density": 0.54,
+      "sky_view_factor": 0.43,
+      "imperviousness": 0.77,
+      "traffic_density": 0.5
+    },
+    "energy_balance": {
+      "H": 285,
+      "LE": 59,
+      "G": 114,
+      "QF": 45
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_125439757",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 21.0,
+      "centroid": [
+        77.212402,
+        28.634505
+      ],
+      "coordinates": [
+        [
+          77.212341,
+          28.634432
+        ],
+        [
+          77.212094,
+          28.63445
+        ],
+        [
+          77.212119,
+          28.634722
+        ],
+        [
+          77.211987,
+          28.634731
+        ],
+        [
+          77.211952,
+          28.63435
+        ],
+        [
+          77.21281,
+          28.634289
+        ],
+        [
+          77.212846,
+          28.63467
+        ],
+        [
+          77.212717,
+          28.634679
+        ],
+        [
+          77.212692,
+          28.634407
+        ],
+        [
+          77.212488,
+          28.634422
+        ],
+        [
+          77.212494,
+          28.634487
+        ],
+        [
+          77.212347,
+          28.634497
+        ],
+        [
+          77.212341,
+          28.634432
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.59,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.28
+      }
+    },
+    {
+      "id": "bldg_349777504",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 24.0,
+      "centroid": [
+        77.211358,
+        28.634609
+      ],
+      "coordinates": [
+        [
+          77.211198,
+          28.634448
+        ],
+        [
+          77.211212,
+          28.634634
+        ],
+        [
+          77.211296,
+          28.634629
+        ],
+        [
+          77.211311,
+          28.634835
+        ],
+        [
+          77.211466,
+          28.634826
+        ],
+        [
+          77.211451,
+          28.63462
+        ],
+        [
+          77.211551,
+          28.634614
+        ],
+        [
+          77.211537,
+          28.634428
+        ],
+        [
+          77.211198,
+          28.634448
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.59,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.49,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.28
+      }
+    },
+    {
+      "id": "bldg_354571863",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 29.0,
+      "centroid": [
+        77.212126,
+        28.633755
+      ],
+      "coordinates": [
+        [
+          77.211778,
+          28.633951
+        ],
+        [
+          77.212265,
+          28.633911
+        ],
+        [
+          77.212232,
+          28.633605
+        ],
+        [
+          77.212364,
+          28.633594
+        ],
+        [
+          77.212396,
+          28.633893
+        ],
+        [
+          77.212565,
+          28.633879
+        ],
+        [
+          77.212528,
+          28.633536
+        ],
+        [
+          77.212048,
+          28.633575
+        ],
+        [
+          77.21208,
+          28.633865
+        ],
+        [
+          77.211949,
+          28.633875
+        ],
+        [
+          77.211917,
+          28.633585
+        ],
+        [
+          77.21174,
+          28.633599
+        ],
+        [
+          77.211778,
+          28.633951
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 0.61,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.52,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.28
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_10_01_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.211413,
+        28.633933
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_10_01_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.211875,
+        28.63456
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_10_01_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.212338,
+        28.634125
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_10_01_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.21155,
+        28.633689
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_10_01_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.212013,
+        28.634316
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_10_01_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.212475,
+        28.63388
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_10_01_6",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.211688,
+        28.634507
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.81
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

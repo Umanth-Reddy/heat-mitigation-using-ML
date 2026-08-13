@@ -1,0 +1,201 @@
+{
+  "cell": {
+    "cell_id": "CELL_07_12",
+    "row": 7,
+    "col": 12,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.225,
+      28.630437,
+      77.22625,
+      28.6315
+    ],
+    "center": [
+      77.225625,
+      28.630969
+    ],
+    "lst_current": 47.7,
+    "ta_current": 43.6,
+    "lst_after": 43.3,
+    "ta_after": 40.7,
+    "cooling_potential": 4.4,
+    "population": 3659,
+    "vulnerability_score": 0.92,
+    "canopy_pct": 4,
+    "drivers": {
+      "ndvi": 0.06,
+      "albedo": 0.12,
+      "building_density": 0.74,
+      "sky_view_factor": 0.35,
+      "imperviousness": 0.85,
+      "traffic_density": 0.4
+    },
+    "energy_balance": {
+      "H": 355,
+      "LE": 38,
+      "G": 123,
+      "QF": 40
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_351418785",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 29.0,
+      "centroid": [
+        77.225814,
+        28.630797
+      ],
+      "coordinates": [
+        [
+          77.225851,
+          28.630909
+        ],
+        [
+          77.22594,
+          28.630854
+        ],
+        [
+          77.22576,
+          28.63063
+        ],
+        [
+          77.225671,
+          28.630685
+        ],
+        [
+          77.225851,
+          28.630909
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 1.0,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.52,
+        "impervious_ground": 0.34,
+        "lack_of_canopy": 0.33
+      }
+    },
+    {
+      "id": "bldg_351418801",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 27.0,
+      "centroid": [
+        77.226229,
+        28.630575
+      ],
+      "coordinates": [
+        [
+          77.226173,
+          28.630758
+        ],
+        [
+          77.226507,
+          28.630581
+        ],
+        [
+          77.226314,
+          28.630301
+        ],
+        [
+          77.22598,
+          28.630479
+        ],
+        [
+          77.226173,
+          28.630758
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 1.0,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.51,
+        "impervious_ground": 0.34,
+        "lack_of_canopy": 0.33
+      }
+    },
+    {
+      "id": "bldg_351418852",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 24.0,
+      "centroid": [
+        77.225463,
+        28.63099
+      ],
+      "coordinates": [
+        [
+          77.225628,
+          28.631004
+        ],
+        [
+          77.225469,
+          28.630809
+        ],
+        [
+          77.225216,
+          28.630968
+        ],
+        [
+          77.225375,
+          28.631163
+        ],
+        [
+          77.225628,
+          28.631004
+        ]
+      ],
+      "heat_contribution_offset": 1.3,
+      "heat_driver_value": 1.0,
+      "attribution": {
+        "low_albedo": 0.71,
+        "building_height_trap": 0.49,
+        "impervious_ground": 0.34,
+        "lack_of_canopy": 0.33
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_07_12_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.225162,
+        28.630745
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_07_12_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.225625,
+        28.631372
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_07_12_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.226087,
+        28.630937
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

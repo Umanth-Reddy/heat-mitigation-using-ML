@@ -1,0 +1,405 @@
+{
+  "cell": {
+    "cell_id": "CELL_10_04",
+    "row": 10,
+    "col": 4,
+    "ward_name": "Gole Market & Baba Kharak Singh Marg",
+    "bounds": [
+      77.215,
+      28.633625,
+      77.21625,
+      28.634688
+    ],
+    "center": [
+      77.215625,
+      28.634156
+    ],
+    "lst_current": 45.7,
+    "ta_current": 42.0,
+    "lst_after": 42.1,
+    "ta_after": 39.7,
+    "cooling_potential": 3.6,
+    "population": 3406,
+    "vulnerability_score": 0.76,
+    "canopy_pct": 8,
+    "drivers": {
+      "ndvi": 0.12,
+      "albedo": 0.14,
+      "building_density": 0.66,
+      "sky_view_factor": 0.39,
+      "imperviousness": 0.81,
+      "traffic_density": 0.4
+    },
+    "energy_balance": {
+      "H": 327,
+      "LE": 46,
+      "G": 119,
+      "QF": 40
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_351876802",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 18.0,
+      "centroid": [
+        77.215674,
+        28.634269
+      ],
+      "coordinates": [
+        [
+          77.215791,
+          28.634644
+        ],
+        [
+          77.21577,
+          28.63436
+        ],
+        [
+          77.215856,
+          28.634355
+        ],
+        [
+          77.215838,
+          28.634102
+        ],
+        [
+          77.215737,
+          28.634107
+        ],
+        [
+          77.215718,
+          28.633851
+        ],
+        [
+          77.215619,
+          28.633857
+        ],
+        [
+          77.215639,
+          28.634132
+        ],
+        [
+          77.215508,
+          28.634139
+        ],
+        [
+          77.215512,
+          28.634195
+        ],
+        [
+          77.215639,
+          28.634188
+        ],
+        [
+          77.215647,
+          28.634297
+        ],
+        [
+          77.215518,
+          28.634304
+        ],
+        [
+          77.215523,
+          28.634379
+        ],
+        [
+          77.215662,
+          28.634372
+        ],
+        [
+          77.215683,
+          28.63465
+        ],
+        [
+          77.215791,
+          28.634644
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.88,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.46,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    },
+    {
+      "id": "bldg_351876805",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 21.0,
+      "centroid": [
+        77.215506,
+        28.634681
+      ],
+      "coordinates": [
+        [
+          77.215346,
+          28.634743
+        ],
+        [
+          77.215627,
+          28.634727
+        ],
+        [
+          77.215625,
+          28.634694
+        ],
+        [
+          77.215704,
+          28.63469
+        ],
+        [
+          77.215701,
+          28.63465
+        ],
+        [
+          77.215648,
+          28.634653
+        ],
+        [
+          77.215645,
+          28.634611
+        ],
+        [
+          77.215373,
+          28.634627
+        ],
+        [
+          77.215272,
+          28.634632
+        ],
+        [
+          77.215279,
+          28.634724
+        ],
+        [
+          77.215346,
+          28.634743
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.89,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    },
+    {
+      "id": "bldg_835059509",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 31.0,
+      "centroid": [
+        77.21539,
+        28.634285
+      ],
+      "coordinates": [
+        [
+          77.215324,
+          28.63443
+        ],
+        [
+          77.215512,
+          28.63442
+        ],
+        [
+          77.215488,
+          28.634069
+        ],
+        [
+          77.215301,
+          28.634079
+        ],
+        [
+          77.215324,
+          28.63443
+        ]
+      ],
+      "heat_contribution_offset": 1.5,
+      "heat_driver_value": 0.92,
+      "attribution": {
+        "low_albedo": 0.75,
+        "building_height_trap": 0.54,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    },
+    {
+      "id": "bldg_1466774184",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 26.0,
+      "centroid": [
+        77.215044,
+        28.634326
+      ],
+      "coordinates": [
+        [
+          77.215157,
+          28.634724
+        ],
+        [
+          77.215108,
+          28.634728
+        ],
+        [
+          77.21497,
+          28.634736
+        ],
+        [
+          77.214917,
+          28.634041
+        ],
+        [
+          77.214956,
+          28.634009
+        ],
+        [
+          77.215042,
+          28.634003
+        ],
+        [
+          77.215465,
+          28.633979
+        ],
+        [
+          77.21546,
+          28.633904
+        ],
+        [
+          77.215196,
+          28.633919
+        ],
+        [
+          77.215123,
+          28.633923
+        ],
+        [
+          77.21512,
+          28.633882
+        ],
+        [
+          77.214846,
+          28.633897
+        ],
+        [
+          77.214842,
+          28.633937
+        ],
+        [
+          77.214812,
+          28.633971
+        ],
+        [
+          77.214777,
+          28.633973
+        ],
+        [
+          77.214843,
+          28.634789
+        ],
+        [
+          77.214888,
+          28.634786
+        ],
+        [
+          77.214933,
+          28.634824
+        ],
+        [
+          77.214935,
+          28.634857
+        ],
+        [
+          77.215218,
+          28.634843
+        ],
+        [
+          77.21521,
+          28.634722
+        ],
+        [
+          77.215157,
+          28.634724
+        ]
+      ],
+      "heat_contribution_offset": 1.3,
+      "heat_driver_value": 0.9,
+      "attribution": {
+        "low_albedo": 0.71,
+        "building_height_trap": 0.51,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_10_04_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.215163,
+        28.633933
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_10_04_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.215625,
+        28.63456
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_10_04_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.216088,
+        28.634125
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_10_04_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2153,
+        28.633689
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_10_04_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.215762,
+        28.634316
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

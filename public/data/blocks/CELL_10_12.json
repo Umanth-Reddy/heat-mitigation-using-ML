@@ -1,0 +1,369 @@
+{
+  "cell": {
+    "cell_id": "CELL_10_12",
+    "row": 10,
+    "col": 12,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.225,
+      28.633625,
+      77.22625,
+      28.634688
+    ],
+    "center": [
+      77.225625,
+      28.634156
+    ],
+    "lst_current": 45.2,
+    "ta_current": 41.6,
+    "lst_after": 41.8,
+    "ta_after": 39.4,
+    "cooling_potential": 3.4,
+    "population": 3290,
+    "vulnerability_score": 0.72,
+    "canopy_pct": 9,
+    "drivers": {
+      "ndvi": 0.13,
+      "albedo": 0.15,
+      "building_density": 0.64,
+      "sky_view_factor": 0.39,
+      "imperviousness": 0.81,
+      "traffic_density": 0.4
+    },
+    "energy_balance": {
+      "H": 320,
+      "LE": 48,
+      "G": 118,
+      "QF": 40
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_1292570520",
+      "name": "Building Block",
+      "type": "apartments",
+      "height": 70.0,
+      "centroid": [
+        77.226195,
+        28.634522
+      ],
+      "coordinates": [
+        [
+          77.226308,
+          28.634576
+        ],
+        [
+          77.226389,
+          28.634589
+        ],
+        [
+          77.226364,
+          28.634712
+        ],
+        [
+          77.226204,
+          28.634687
+        ],
+        [
+          77.226217,
+          28.634624
+        ],
+        [
+          77.226137,
+          28.634612
+        ],
+        [
+          77.226124,
+          28.634675
+        ],
+        [
+          77.225943,
+          28.634646
+        ],
+        [
+          77.225969,
+          28.634517
+        ],
+        [
+          77.226053,
+          28.63453
+        ],
+        [
+          77.226068,
+          28.634457
+        ],
+        [
+          77.22599,
+          28.634444
+        ],
+        [
+          77.226012,
+          28.634335
+        ],
+        [
+          77.226191,
+          28.634363
+        ],
+        [
+          77.22618,
+          28.63442
+        ],
+        [
+          77.226235,
+          28.634428
+        ],
+        [
+          77.226246,
+          28.634375
+        ],
+        [
+          77.226423,
+          28.634403
+        ],
+        [
+          77.226402,
+          28.634507
+        ],
+        [
+          77.226325,
+          28.634494
+        ],
+        [
+          77.226308,
+          28.634576
+        ]
+      ],
+      "heat_contribution_offset": 2.5,
+      "heat_driver_value": 0.97,
+      "attribution": {
+        "low_albedo": 0.95,
+        "building_height_trap": 0.77,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_1462284431",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 31.0,
+      "centroid": [
+        77.225712,
+        28.634197
+      ],
+      "coordinates": [
+        [
+          77.225673,
+          28.634242
+        ],
+        [
+          77.225802,
+          28.634186
+        ],
+        [
+          77.225771,
+          28.634129
+        ],
+        [
+          77.225641,
+          28.634187
+        ],
+        [
+          77.225673,
+          28.634242
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 0.86,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.54,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_1462284432",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 14.0,
+      "centroid": [
+        77.225844,
+        28.634141
+      ],
+      "coordinates": [
+        [
+          77.225809,
+          28.634185
+        ],
+        [
+          77.225928,
+          28.634133
+        ],
+        [
+          77.225897,
+          28.634075
+        ],
+        [
+          77.225779,
+          28.634127
+        ],
+        [
+          77.225809,
+          28.634185
+        ]
+      ],
+      "heat_contribution_offset": 1.0,
+      "heat_driver_value": 0.82,
+      "attribution": {
+        "low_albedo": 0.65,
+        "building_height_trap": 0.43,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_1462284433",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 15.0,
+      "centroid": [
+        77.226067,
+        28.63404
+      ],
+      "coordinates": [
+        [
+          77.226026,
+          28.634089
+        ],
+        [
+          77.226158,
+          28.634027
+        ],
+        [
+          77.226133,
+          28.633967
+        ],
+        [
+          77.225991,
+          28.63403
+        ],
+        [
+          77.226026,
+          28.634089
+        ]
+      ],
+      "heat_contribution_offset": 1.0,
+      "heat_driver_value": 0.82,
+      "attribution": {
+        "low_albedo": 0.65,
+        "building_height_trap": 0.44,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_1462284434",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 16.0,
+      "centroid": [
+        77.226196,
+        28.633974
+      ],
+      "coordinates": [
+        [
+          77.226164,
+          28.634023
+        ],
+        [
+          77.226278,
+          28.633968
+        ],
+        [
+          77.226238,
+          28.6339
+        ],
+        [
+          77.226135,
+          28.633957
+        ],
+        [
+          77.226164,
+          28.634023
+        ]
+      ],
+      "heat_contribution_offset": 1.0,
+      "heat_driver_value": 0.82,
+      "attribution": {
+        "low_albedo": 0.65,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_10_12_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.225162,
+        28.633933
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_10_12_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.225625,
+        28.63456
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_10_12_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.226087,
+        28.634125
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_10_12_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2253,
+        28.633689
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_10_12_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.225762,
+        28.634316
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

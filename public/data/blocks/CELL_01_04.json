@@ -1,0 +1,197 @@
+{
+  "cell": {
+    "cell_id": "CELL_01_04",
+    "row": 1,
+    "col": 4,
+    "ward_name": "Janpath & Tolstoy Marg Precinct",
+    "bounds": [
+      77.215,
+      28.624063,
+      77.21625,
+      28.625125
+    ],
+    "center": [
+      77.215625,
+      28.624594
+    ],
+    "lst_current": 43.6,
+    "ta_current": 40.3,
+    "lst_after": 40.8,
+    "ta_after": 38.5,
+    "cooling_potential": 2.8,
+    "population": 3065,
+    "vulnerability_score": 0.59,
+    "canopy_pct": 12,
+    "drivers": {
+      "ndvi": 0.18,
+      "albedo": 0.16,
+      "building_density": 0.57,
+      "sky_view_factor": 0.42,
+      "imperviousness": 0.78,
+      "traffic_density": 0.4
+    },
+    "energy_balance": {
+      "H": 298,
+      "LE": 55,
+      "G": 115,
+      "QF": 40
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_351418804",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 30.0,
+      "centroid": [
+        77.215446,
+        28.624228
+      ],
+      "coordinates": [
+        [
+          77.215407,
+          28.624206
+        ],
+        [
+          77.215406,
+          28.62426
+        ],
+        [
+          77.215505,
+          28.624261
+        ],
+        [
+          77.215506,
+          28.624208
+        ],
+        [
+          77.215407,
+          28.624206
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 0.7,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.53,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_351418850",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 22.0,
+      "centroid": [
+        77.215582,
+        28.624314
+      ],
+      "coordinates": [
+        [
+          77.215519,
+          28.624479
+        ],
+        [
+          77.215652,
+          28.624485
+        ],
+        [
+          77.215677,
+          28.624067
+        ],
+        [
+          77.215543,
+          28.624061
+        ],
+        [
+          77.215519,
+          28.624479
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.68,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.29
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_01_04_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.215163,
+        28.624371
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_01_04_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.215625,
+        28.624998
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_01_04_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.216088,
+        28.624562
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_01_04_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2153,
+        28.624127
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_01_04_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.215762,
+        28.624753
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_01_04_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.216225,
+        28.624318
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

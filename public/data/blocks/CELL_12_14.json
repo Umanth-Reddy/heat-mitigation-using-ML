@@ -1,0 +1,325 @@
+{
+  "cell": {
+    "cell_id": "CELL_12_14",
+    "row": 12,
+    "col": 14,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.2275,
+      28.63575,
+      77.22875,
+      28.636813
+    ],
+    "center": [
+      77.228125,
+      28.636281
+    ],
+    "lst_current": 43.8,
+    "ta_current": 40.4,
+    "lst_after": 41.0,
+    "ta_after": 38.6,
+    "cooling_potential": 2.8,
+    "population": 3094,
+    "vulnerability_score": 0.6,
+    "canopy_pct": 12,
+    "drivers": {
+      "ndvi": 0.18,
+      "albedo": 0.16,
+      "building_density": 0.58,
+      "sky_view_factor": 0.42,
+      "imperviousness": 0.78,
+      "traffic_density": 0.5
+    },
+    "energy_balance": {
+      "H": 301,
+      "LE": 55,
+      "G": 116,
+      "QF": 45
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_1294946819",
+      "name": "Building Block",
+      "type": "apartments",
+      "height": 35.0,
+      "centroid": [
+        77.227571,
+        28.636184
+      ],
+      "coordinates": [
+        [
+          77.227732,
+          28.635962
+        ],
+        [
+          77.227589,
+          28.636047
+        ],
+        [
+          77.227622,
+          28.63609
+        ],
+        [
+          77.227535,
+          28.636142
+        ],
+        [
+          77.227512,
+          28.636112
+        ],
+        [
+          77.22748,
+          28.636132
+        ],
+        [
+          77.22751,
+          28.636171
+        ],
+        [
+          77.22747,
+          28.636195
+        ],
+        [
+          77.227443,
+          28.63616
+        ],
+        [
+          77.227403,
+          28.636184
+        ],
+        [
+          77.227418,
+          28.636203
+        ],
+        [
+          77.227399,
+          28.636214
+        ],
+        [
+          77.227373,
+          28.63618
+        ],
+        [
+          77.227326,
+          28.636208
+        ],
+        [
+          77.227341,
+          28.636226
+        ],
+        [
+          77.227247,
+          28.636282
+        ],
+        [
+          77.227286,
+          28.636332
+        ],
+        [
+          77.22738,
+          28.636275
+        ],
+        [
+          77.227401,
+          28.636301
+        ],
+        [
+          77.227443,
+          28.636276
+        ],
+        [
+          77.227465,
+          28.636303
+        ],
+        [
+          77.227394,
+          28.636346
+        ],
+        [
+          77.227431,
+          28.636392
+        ],
+        [
+          77.227516,
+          28.636341
+        ],
+        [
+          77.227488,
+          28.636304
+        ],
+        [
+          77.22759,
+          28.636242
+        ],
+        [
+          77.227612,
+          28.636269
+        ],
+        [
+          77.227614,
+          28.636268
+        ],
+        [
+          77.227585,
+          28.636234
+        ],
+        [
+          77.227645,
+          28.636196
+        ],
+        [
+          77.227675,
+          28.636232
+        ],
+        [
+          77.227696,
+          28.636219
+        ],
+        [
+          77.227676,
+          28.636194
+        ],
+        [
+          77.227726,
+          28.636163
+        ],
+        [
+          77.227753,
+          28.636196
+        ],
+        [
+          77.227862,
+          28.636128
+        ],
+        [
+          77.227834,
+          28.636094
+        ],
+        [
+          77.227798,
+          28.636116
+        ],
+        [
+          77.227772,
+          28.636084
+        ],
+        [
+          77.22773,
+          28.63611
+        ],
+        [
+          77.22775,
+          28.636134
+        ],
+        [
+          77.227711,
+          28.636159
+        ],
+        [
+          77.227679,
+          28.63612
+        ],
+        [
+          77.227722,
+          28.636093
+        ],
+        [
+          77.227689,
+          28.636052
+        ],
+        [
+          77.227766,
+          28.636004
+        ],
+        [
+          77.227732,
+          28.635962
+        ]
+      ],
+      "heat_contribution_offset": 1.5,
+      "heat_driver_value": 0.73,
+      "attribution": {
+        "low_albedo": 0.75,
+        "building_height_trap": 0.56,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.29
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_12_14_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.227663,
+        28.636058
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_12_14_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.228125,
+        28.636685
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_12_14_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.228588,
+        28.63625
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_12_14_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2278,
+        28.635814
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_12_14_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.228262,
+        28.636441
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_12_14_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.228725,
+        28.636005
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

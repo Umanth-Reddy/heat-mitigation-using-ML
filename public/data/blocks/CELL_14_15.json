@@ -1,0 +1,140 @@
+{
+  "cell": {
+    "cell_id": "CELL_14_15",
+    "row": 14,
+    "col": 15,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.22875,
+      28.637875,
+      77.23,
+      28.638938
+    ],
+    "center": [
+      77.229375,
+      28.638406
+    ],
+    "lst_current": 42.2,
+    "ta_current": 39.1,
+    "lst_after": 40.0,
+    "ta_after": 37.7,
+    "cooling_potential": 2.2,
+    "population": 2867,
+    "vulnerability_score": 0.48,
+    "canopy_pct": 15,
+    "drivers": {
+      "ndvi": 0.22,
+      "albedo": 0.18,
+      "building_density": 0.52,
+      "sky_view_factor": 0.44,
+      "imperviousness": 0.76,
+      "traffic_density": 0.8
+    },
+    "energy_balance": {
+      "H": 278,
+      "LE": 60,
+      "G": 113,
+      "QF": 60
+    }
+  },
+  "buildings": [],
+  "trees": [
+    {
+      "id": "tree_CELL_14_15_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.228913,
+        28.638183
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_14_15_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.229375,
+        28.63881
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_14_15_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.229838,
+        28.638375
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_14_15_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.22905,
+        28.637939
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_14_15_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.229512,
+        28.638566
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_14_15_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.229975,
+        28.63813
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_14_15_6",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.229188,
+        28.638757
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_14_15_7",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.22965,
+        28.638321
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.89
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

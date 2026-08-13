@@ -1,0 +1,128 @@
+{
+  "cell": {
+    "cell_id": "CELL_15_00",
+    "row": 15,
+    "col": 0,
+    "ward_name": "Gole Market & Baba Kharak Singh Marg",
+    "bounds": [
+      77.21,
+      28.638938,
+      77.21125,
+      28.64
+    ],
+    "center": [
+      77.210625,
+      28.639469
+    ],
+    "lst_current": 42.6,
+    "ta_current": 39.4,
+    "lst_after": 40.2,
+    "ta_after": 37.8,
+    "cooling_potential": 2.4,
+    "population": 2951,
+    "vulnerability_score": 0.51,
+    "canopy_pct": 14,
+    "drivers": {
+      "ndvi": 0.21,
+      "albedo": 0.17,
+      "building_density": 0.53,
+      "sky_view_factor": 0.44,
+      "imperviousness": 0.76,
+      "traffic_density": 0.3
+    },
+    "energy_balance": {
+      "H": 284,
+      "LE": 59,
+      "G": 113,
+      "QF": 35
+    }
+  },
+  "buildings": [],
+  "trees": [
+    {
+      "id": "tree_CELL_15_00_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.210162,
+        28.639246
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_15_00_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.210625,
+        28.639873
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_15_00_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.211088,
+        28.639437
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_15_00_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2103,
+        28.639002
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_15_00_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.210763,
+        28.639628
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_15_00_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.211225,
+        28.639193
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_15_00_6",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.210437,
+        28.639819
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.81
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

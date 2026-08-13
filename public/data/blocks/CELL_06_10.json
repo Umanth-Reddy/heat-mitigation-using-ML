@@ -1,0 +1,197 @@
+{
+  "cell": {
+    "cell_id": "CELL_06_10",
+    "row": 6,
+    "col": 10,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.2225,
+      28.629375,
+      77.22375,
+      28.630437
+    ],
+    "center": [
+      77.223125,
+      28.629906
+    ],
+    "lst_current": 45.8,
+    "ta_current": 42.1,
+    "lst_after": 42.1,
+    "ta_after": 39.7,
+    "cooling_potential": 3.7,
+    "population": 3324,
+    "vulnerability_score": 0.76,
+    "canopy_pct": 8,
+    "drivers": {
+      "ndvi": 0.12,
+      "albedo": 0.14,
+      "building_density": 0.66,
+      "sky_view_factor": 0.39,
+      "imperviousness": 0.81,
+      "traffic_density": 0.5
+    },
+    "energy_balance": {
+      "H": 329,
+      "LE": 46,
+      "G": 119,
+      "QF": 45
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_164676024",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 38.5,
+      "centroid": [
+        77.223624,
+        28.629823
+      ],
+      "coordinates": [
+        [
+          77.223814,
+          28.629878
+        ],
+        [
+          77.223732,
+          28.629773
+        ],
+        [
+          77.223668,
+          28.62969
+        ],
+        [
+          77.22359,
+          28.629588
+        ],
+        [
+          77.223322,
+          28.629747
+        ],
+        [
+          77.223511,
+          28.629993
+        ],
+        [
+          77.223545,
+          28.630037
+        ],
+        [
+          77.223814,
+          28.629878
+        ]
+      ],
+      "heat_contribution_offset": 1.7,
+      "heat_driver_value": 0.95,
+      "attribution": {
+        "low_albedo": 0.79,
+        "building_height_trap": 0.58,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    },
+    {
+      "id": "bldg_1228213540",
+      "name": "New Delhi House",
+      "type": "commercial",
+      "height": 52.5,
+      "centroid": [
+        77.223211,
+        28.630142
+      ],
+      "coordinates": [
+        [
+          77.223182,
+          28.630322
+        ],
+        [
+          77.223471,
+          28.63015
+        ],
+        [
+          77.223256,
+          28.629871
+        ],
+        [
+          77.222966,
+          28.630043
+        ],
+        [
+          77.223182,
+          28.630322
+        ]
+      ],
+      "heat_contribution_offset": 2.0,
+      "heat_driver_value": 0.98,
+      "attribution": {
+        "low_albedo": 0.85,
+        "building_height_trap": 0.67,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_06_10_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.222662,
+        28.629683
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_06_10_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.223125,
+        28.63031
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_06_10_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.223587,
+        28.629874
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_06_10_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2228,
+        28.629439
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_06_10_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.223262,
+        28.630065
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

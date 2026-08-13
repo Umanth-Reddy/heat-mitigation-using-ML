@@ -1,0 +1,429 @@
+{
+  "cell": {
+    "cell_id": "CELL_11_08",
+    "row": 11,
+    "col": 8,
+    "ward_name": "Kasturba Gandhi Marg District",
+    "bounds": [
+      77.22,
+      28.634688,
+      77.22125,
+      28.63575
+    ],
+    "center": [
+      77.220625,
+      28.635219
+    ],
+    "lst_current": 45.0,
+    "ta_current": 41.4,
+    "lst_after": 41.7,
+    "ta_after": 39.3,
+    "cooling_potential": 3.3,
+    "population": 3251,
+    "vulnerability_score": 0.7,
+    "canopy_pct": 9,
+    "drivers": {
+      "ndvi": 0.14,
+      "albedo": 0.15,
+      "building_density": 0.63,
+      "sky_view_factor": 0.4,
+      "imperviousness": 0.8,
+      "traffic_density": 0.5
+    },
+    "energy_balance": {
+      "H": 318,
+      "LE": 49,
+      "G": 118,
+      "QF": 45
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_125442296",
+      "name": "Building Block",
+      "type": "commercial",
+      "height": 10.5,
+      "centroid": [
+        77.220502,
+        28.635119
+      ],
+      "coordinates": [
+        [
+          77.220241,
+          28.635037
+        ],
+        [
+          77.220206,
+          28.635043
+        ],
+        [
+          77.220252,
+          28.635209
+        ],
+        [
+          77.220541,
+          28.635144
+        ],
+        [
+          77.220535,
+          28.63512
+        ],
+        [
+          77.220598,
+          28.635102
+        ],
+        [
+          77.220588,
+          28.635069
+        ],
+        [
+          77.220621,
+          28.635057
+        ],
+        [
+          77.220618,
+          28.635046
+        ],
+        [
+          77.22078,
+          28.63498
+        ],
+        [
+          77.220851,
+          28.635073
+        ],
+        [
+          77.220891,
+          28.635054
+        ],
+        [
+          77.220788,
+          28.634914
+        ],
+        [
+          77.220746,
+          28.634934
+        ],
+        [
+          77.220687,
+          28.634829
+        ],
+        [
+          77.22081,
+          28.634768
+        ],
+        [
+          77.220856,
+          28.634757
+        ],
+        [
+          77.221055,
+          28.635026
+        ],
+        [
+          77.221023,
+          28.635049
+        ],
+        [
+          77.221094,
+          28.635144
+        ],
+        [
+          77.221144,
+          28.63521
+        ],
+        [
+          77.221043,
+          28.635272
+        ],
+        [
+          77.221013,
+          28.635232
+        ],
+        [
+          77.220921,
+          28.635272
+        ],
+        [
+          77.220798,
+          28.635328
+        ],
+        [
+          77.220649,
+          28.635373
+        ],
+        [
+          77.220502,
+          28.635413
+        ],
+        [
+          77.220359,
+          28.635441
+        ],
+        [
+          77.220286,
+          28.635451
+        ],
+        [
+          77.220287,
+          28.635504
+        ],
+        [
+          77.220033,
+          28.635518
+        ],
+        [
+          77.220026,
+          28.635447
+        ],
+        [
+          77.22001,
+          28.635293
+        ],
+        [
+          77.220061,
+          28.635292
+        ],
+        [
+          77.22005,
+          28.635027
+        ],
+        [
+          77.220037,
+          28.635027
+        ],
+        [
+          77.220034,
+          28.634964
+        ],
+        [
+          77.220062,
+          28.634965
+        ],
+        [
+          77.220094,
+          28.634966
+        ],
+        [
+          77.220092,
+          28.634947
+        ],
+        [
+          77.220178,
+          28.634948
+        ],
+        [
+          77.220178,
+          28.63497
+        ],
+        [
+          77.220222,
+          28.634965
+        ],
+        [
+          77.220241,
+          28.635037
+        ]
+      ],
+      "heat_contribution_offset": 0.9,
+      "heat_driver_value": 0.79,
+      "attribution": {
+        "low_albedo": 0.63,
+        "building_height_trap": 0.41,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_657956580",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 20.0,
+      "centroid": [
+        77.22124,
+        28.635174
+      ],
+      "coordinates": [
+        [
+          77.221193,
+          28.635124
+        ],
+        [
+          77.221281,
+          28.635101
+        ],
+        [
+          77.221354,
+          28.63525
+        ],
+        [
+          77.221179,
+          28.635271
+        ],
+        [
+          77.221193,
+          28.635124
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.82,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.47,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_1175626047",
+      "name": "Choudhary Building",
+      "type": "yes",
+      "height": 14.0,
+      "centroid": [
+        77.220329,
+        28.635023
+      ],
+      "coordinates": [
+        [
+          77.220222,
+          28.634965
+        ],
+        [
+          77.220468,
+          28.634907
+        ],
+        [
+          77.220536,
+          28.635106
+        ],
+        [
+          77.220284,
+          28.635157
+        ],
+        [
+          77.220241,
+          28.635037
+        ],
+        [
+          77.220222,
+          28.634965
+        ]
+      ],
+      "heat_contribution_offset": 1.0,
+      "heat_driver_value": 0.8,
+      "attribution": {
+        "low_albedo": 0.65,
+        "building_height_trap": 0.43,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_1465278681",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 17.0,
+      "centroid": [
+        77.220655,
+        28.635665
+      ],
+      "coordinates": [
+        [
+          77.219956,
+          28.635904
+        ],
+        [
+          77.221397,
+          28.635488
+        ],
+        [
+          77.221377,
+          28.635434
+        ],
+        [
+          77.221313,
+          28.635428
+        ],
+        [
+          77.21993,
+          28.635832
+        ],
+        [
+          77.219956,
+          28.635904
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.81,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_11_08_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.220163,
+        28.634996
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_11_08_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.220625,
+        28.635623
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_11_08_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.221087,
+        28.635187
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_11_08_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2203,
+        28.634752
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_11_08_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.220762,
+        28.635378
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

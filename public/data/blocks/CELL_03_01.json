@@ -1,0 +1,577 @@
+{
+  "cell": {
+    "cell_id": "CELL_03_01",
+    "row": 3,
+    "col": 1,
+    "ward_name": "Janpath & Tolstoy Marg Precinct",
+    "bounds": [
+      77.21125,
+      28.626188,
+      77.2125,
+      28.62725
+    ],
+    "center": [
+      77.211875,
+      28.626719
+    ],
+    "lst_current": 44.2,
+    "ta_current": 40.7,
+    "lst_after": 41.2,
+    "ta_after": 38.8,
+    "cooling_potential": 3.0,
+    "population": 3202,
+    "vulnerability_score": 0.64,
+    "canopy_pct": 11,
+    "drivers": {
+      "ndvi": 0.16,
+      "albedo": 0.16,
+      "building_density": 0.6,
+      "sky_view_factor": 0.41,
+      "imperviousness": 0.79,
+      "traffic_density": 0.4
+    },
+    "energy_balance": {
+      "H": 306,
+      "LE": 52,
+      "G": 117,
+      "QF": 40
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_351418855",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 27.0,
+      "centroid": [
+        77.212221,
+        28.627097
+      ],
+      "coordinates": [
+        [
+          77.21218,
+          28.627186
+        ],
+        [
+          77.212368,
+          28.627064
+        ],
+        [
+          77.212282,
+          28.626963
+        ],
+        [
+          77.212095,
+          28.627086
+        ],
+        [
+          77.21218,
+          28.627186
+        ]
+      ],
+      "heat_contribution_offset": 1.3,
+      "heat_driver_value": 0.75,
+      "attribution": {
+        "low_albedo": 0.71,
+        "building_height_trap": 0.51,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_351870488",
+      "name": "YMCA Education Center",
+      "type": "college",
+      "height": 17.5,
+      "centroid": [
+        77.212214,
+        28.626594
+      ],
+      "coordinates": [
+        [
+          77.212056,
+          28.626599
+        ],
+        [
+          77.212131,
+          28.626633
+        ],
+        [
+          77.212175,
+          28.626653
+        ],
+        [
+          77.212155,
+          28.626687
+        ],
+        [
+          77.212239,
+          28.626725
+        ],
+        [
+          77.212286,
+          28.626646
+        ],
+        [
+          77.212251,
+          28.62663
+        ],
+        [
+          77.212271,
+          28.626597
+        ],
+        [
+          77.212345,
+          28.626631
+        ],
+        [
+          77.212388,
+          28.626559
+        ],
+        [
+          77.212302,
+          28.62652
+        ],
+        [
+          77.212315,
+          28.626499
+        ],
+        [
+          77.212208,
+          28.62645
+        ],
+        [
+          77.212151,
+          28.626547
+        ],
+        [
+          77.2121,
+          28.626524
+        ],
+        [
+          77.212056,
+          28.626599
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.73,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_354735474",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 20.0,
+      "centroid": [
+        77.212032,
+        28.626867
+      ],
+      "coordinates": [
+        [
+          77.212174,
+          28.626889
+        ],
+        [
+          77.211932,
+          28.626726
+        ],
+        [
+          77.211876,
+          28.62679
+        ],
+        [
+          77.212006,
+          28.626878
+        ],
+        [
+          77.211976,
+          28.626912
+        ],
+        [
+          77.212088,
+          28.626988
+        ],
+        [
+          77.212174,
+          28.626889
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.73,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.47,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_488544843",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 17.0,
+      "centroid": [
+        77.211592,
+        28.627041
+      ],
+      "coordinates": [
+        [
+          77.211496,
+          28.627008
+        ],
+        [
+          77.211581,
+          28.627143
+        ],
+        [
+          77.211617,
+          28.627126
+        ],
+        [
+          77.211598,
+          28.627095
+        ],
+        [
+          77.21166,
+          28.627065
+        ],
+        [
+          77.211679,
+          28.627096
+        ],
+        [
+          77.211709,
+          28.627082
+        ],
+        [
+          77.211625,
+          28.626946
+        ],
+        [
+          77.211584,
+          28.626966
+        ],
+        [
+          77.211596,
+          28.626985
+        ],
+        [
+          77.211536,
+          28.627014
+        ],
+        [
+          77.211524,
+          28.626995
+        ],
+        [
+          77.211496,
+          28.627008
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.73,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_488544847",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 21.0,
+      "centroid": [
+        77.211443,
+        28.626901
+      ],
+      "coordinates": [
+        [
+          77.211332,
+          28.626961
+        ],
+        [
+          77.211413,
+          28.626962
+        ],
+        [
+          77.211482,
+          28.626927
+        ],
+        [
+          77.211523,
+          28.626898
+        ],
+        [
+          77.211557,
+          28.626871
+        ],
+        [
+          77.211537,
+          28.626857
+        ],
+        [
+          77.211476,
+          28.626834
+        ],
+        [
+          77.211332,
+          28.626836
+        ],
+        [
+          77.211332,
+          28.626961
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.74,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_488544848",
+      "name": "YMCA National Headquarters",
+      "type": "office",
+      "height": 21.0,
+      "centroid": [
+        77.211532,
+        28.626488
+      ],
+      "coordinates": [
+        [
+          77.211352,
+          28.626537
+        ],
+        [
+          77.21132,
+          28.62659
+        ],
+        [
+          77.211388,
+          28.626621
+        ],
+        [
+          77.211407,
+          28.62659
+        ],
+        [
+          77.21143,
+          28.6266
+        ],
+        [
+          77.21151,
+          28.626465
+        ],
+        [
+          77.21159,
+          28.626502
+        ],
+        [
+          77.211567,
+          28.626541
+        ],
+        [
+          77.211645,
+          28.626577
+        ],
+        [
+          77.21167,
+          28.626534
+        ],
+        [
+          77.21188,
+          28.626629
+        ],
+        [
+          77.211931,
+          28.626544
+        ],
+        [
+          77.211896,
+          28.626528
+        ],
+        [
+          77.211984,
+          28.626379
+        ],
+        [
+          77.211648,
+          28.626226
+        ],
+        [
+          77.21161,
+          28.62629
+        ],
+        [
+          77.211574,
+          28.626273
+        ],
+        [
+          77.211479,
+          28.626432
+        ],
+        [
+          77.211376,
+          28.626386
+        ],
+        [
+          77.211342,
+          28.626443
+        ],
+        [
+          77.211356,
+          28.626449
+        ],
+        [
+          77.211325,
+          28.626501
+        ],
+        [
+          77.211339,
+          28.626507
+        ],
+        [
+          77.211328,
+          28.626526
+        ],
+        [
+          77.211352,
+          28.626537
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.74,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_488544849",
+      "name": "YMCA Conference Hall",
+      "type": "office",
+      "height": 17.5,
+      "centroid": [
+        77.211338,
+        28.626215
+      ],
+      "coordinates": [
+        [
+          77.211418,
+          28.626336
+        ],
+        [
+          77.211517,
+          28.626179
+        ],
+        [
+          77.211217,
+          28.626033
+        ],
+        [
+          77.211118,
+          28.626191
+        ],
+        [
+          77.211418,
+          28.626336
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.73,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.29
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_03_01_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.211413,
+        28.626496
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_03_01_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.211875,
+        28.627123
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_03_01_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.212338,
+        28.626687
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_03_01_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.21155,
+        28.626252
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_03_01_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.212013,
+        28.626878
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_03_01_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.212475,
+        28.626443
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

@@ -1,0 +1,509 @@
+{
+  "cell": {
+    "cell_id": "CELL_07_07",
+    "row": 7,
+    "col": 7,
+    "ward_name": "Connaught Place Inner Circle & Central Park",
+    "bounds": [
+      77.21875,
+      28.630437,
+      77.22,
+      28.6315
+    ],
+    "center": [
+      77.219375,
+      28.630969
+    ],
+    "lst_current": 39.4,
+    "ta_current": 35.8,
+    "lst_after": 37.8,
+    "ta_after": 34.8,
+    "cooling_potential": 1.6,
+    "population": 1492,
+    "vulnerability_score": 0.25,
+    "canopy_pct": 48,
+    "drivers": {
+      "ndvi": 0.54,
+      "albedo": 0.24,
+      "building_density": 0.08,
+      "sky_view_factor": 0.78,
+      "imperviousness": 0.22,
+      "traffic_density": 0.25
+    },
+    "energy_balance": {
+      "H": 239,
+      "LE": 105,
+      "G": 93,
+      "QF": 32
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_1306311527",
+      "name": "2",
+      "type": "retail",
+      "height": 25.0,
+      "centroid": [
+        77.219279,
+        28.631342
+      ],
+      "coordinates": [
+        [
+          77.219269,
+          28.631354
+        ],
+        [
+          77.219302,
+          28.631346
+        ],
+        [
+          77.219295,
+          28.631324
+        ],
+        [
+          77.219262,
+          28.631332
+        ],
+        [
+          77.219269,
+          28.631354
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.26,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.5,
+        "impervious_ground": 0.09,
+        "lack_of_canopy": 0.16
+      }
+    },
+    {
+      "id": "bldg_1306311529",
+      "name": "2",
+      "type": "retail",
+      "height": 27.0,
+      "centroid": [
+        77.219022,
+        28.63141
+      ],
+      "coordinates": [
+        [
+          77.219012,
+          28.631424
+        ],
+        [
+          77.219045,
+          28.631416
+        ],
+        [
+          77.219038,
+          28.63139
+        ],
+        [
+          77.219004,
+          28.631398
+        ],
+        [
+          77.219012,
+          28.631424
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.26,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.51,
+        "impervious_ground": 0.09,
+        "lack_of_canopy": 0.16
+      }
+    },
+    {
+      "id": "bldg_1412259613",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 21.0,
+      "centroid": [
+        77.219859,
+        28.630712
+      ],
+      "coordinates": [
+        [
+          77.219826,
+          28.630717
+        ],
+        [
+          77.219828,
+          28.630699
+        ],
+        [
+          77.219908,
+          28.630705
+        ],
+        [
+          77.219907,
+          28.630722
+        ],
+        [
+          77.219826,
+          28.630717
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.25,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.09,
+        "lack_of_canopy": 0.16
+      }
+    },
+    {
+      "id": "bldg_1412503962",
+      "name": "Building Block",
+      "type": "commercial",
+      "height": 10.5,
+      "centroid": [
+        77.219867,
+        28.630995
+      ],
+      "coordinates": [
+        [
+          77.22001,
+          28.631087
+        ],
+        [
+          77.219904,
+          28.631066
+        ],
+        [
+          77.219912,
+          28.631007
+        ],
+        [
+          77.220001,
+          28.631023
+        ],
+        [
+          77.220044,
+          28.63076
+        ],
+        [
+          77.219884,
+          28.630745
+        ],
+        [
+          77.219881,
+          28.630731
+        ],
+        [
+          77.219736,
+          28.63073
+        ],
+        [
+          77.219716,
+          28.63073
+        ],
+        [
+          77.219719,
+          28.630786
+        ],
+        [
+          77.219806,
+          28.630784
+        ],
+        [
+          77.219832,
+          28.631053
+        ],
+        [
+          77.219748,
+          28.631057
+        ],
+        [
+          77.219763,
+          28.631306
+        ],
+        [
+          77.219763,
+          28.631317
+        ],
+        [
+          77.219897,
+          28.631321
+        ],
+        [
+          77.219978,
+          28.631329
+        ],
+        [
+          77.22001,
+          28.631087
+        ]
+      ],
+      "heat_contribution_offset": 0.8,
+      "heat_driver_value": 0.22,
+      "attribution": {
+        "low_albedo": 0.61,
+        "building_height_trap": 0.41,
+        "impervious_ground": 0.09,
+        "lack_of_canopy": 0.16
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_07_07_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.218913,
+        28.630745
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_07_07_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.219375,
+        28.631372
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_07_07_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.219837,
+        28.630937
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_07_07_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.21905,
+        28.630501
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_07_07_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.219512,
+        28.631128
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_07_07_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.219975,
+        28.630692
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_07_07_6",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.219188,
+        28.631319
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_07_07_7",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.21965,
+        28.630883
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_07_07_8",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.218863,
+        28.630448
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_07_07_9",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.219325,
+        28.631075
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_07_07_10",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.219787,
+        28.630639
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_07_07_11",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.219,
+        28.631266
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_07_07_12",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.219463,
+        28.63083
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_07_07_13",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.219925,
+        28.631457
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_07_07_14",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.219138,
+        28.631022
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_07_07_15",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.2196,
+        28.630586
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_07_07_16",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.218812,
+        28.631213
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_07_07_17",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.219275,
+        28.630777
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_07_07_18",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.219737,
+        28.631404
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_07_07_19",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.21895,
+        28.630969
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_07_07_20",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.219413,
+        28.630533
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

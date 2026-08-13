@@ -1,0 +1,145 @@
+{
+  "cell": {
+    "cell_id": "CELL_12_09",
+    "row": 12,
+    "col": 9,
+    "ward_name": "Kasturba Gandhi Marg District",
+    "bounds": [
+      77.22125,
+      28.63575,
+      77.2225,
+      28.636813
+    ],
+    "center": [
+      77.221875,
+      28.636281
+    ],
+    "lst_current": 45.7,
+    "ta_current": 42.0,
+    "lst_after": 42.1,
+    "ta_after": 39.7,
+    "cooling_potential": 3.6,
+    "population": 3395,
+    "vulnerability_score": 0.76,
+    "canopy_pct": 8,
+    "drivers": {
+      "ndvi": 0.12,
+      "albedo": 0.14,
+      "building_density": 0.66,
+      "sky_view_factor": 0.39,
+      "imperviousness": 0.81,
+      "traffic_density": 0.4
+    },
+    "energy_balance": {
+      "H": 327,
+      "LE": 46,
+      "G": 119,
+      "QF": 40
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_1173817552",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 18.0,
+      "centroid": [
+        77.221343,
+        28.636343
+      ],
+      "coordinates": [
+        [
+          77.2214,
+          28.636091
+        ],
+        [
+          77.221504,
+          28.636125
+        ],
+        [
+          77.221257,
+          28.636721
+        ],
+        [
+          77.221152,
+          28.636687
+        ],
+        [
+          77.2214,
+          28.636091
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.88,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.46,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_12_09_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.221412,
+        28.636058
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_12_09_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.221875,
+        28.636685
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_12_09_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.222337,
+        28.63625
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_12_09_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.22155,
+        28.635814
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_12_09_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.222012,
+        28.636441
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

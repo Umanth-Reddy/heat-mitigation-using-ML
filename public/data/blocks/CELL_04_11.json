@@ -1,0 +1,301 @@
+{
+  "cell": {
+    "cell_id": "CELL_04_11",
+    "row": 4,
+    "col": 11,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.22375,
+      28.62725,
+      77.225,
+      28.628312
+    ],
+    "center": [
+      77.224375,
+      28.627781
+    ],
+    "lst_current": 44.8,
+    "ta_current": 41.2,
+    "lst_after": 41.5,
+    "ta_after": 39.1,
+    "cooling_potential": 3.3,
+    "population": 3193,
+    "vulnerability_score": 0.68,
+    "canopy_pct": 10,
+    "drivers": {
+      "ndvi": 0.15,
+      "albedo": 0.15,
+      "building_density": 0.62,
+      "sky_view_factor": 0.4,
+      "imperviousness": 0.8,
+      "traffic_density": 0.7
+    },
+    "energy_balance": {
+      "H": 315,
+      "LE": 51,
+      "G": 117,
+      "QF": 55
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_344737251",
+      "name": "Building Block",
+      "type": "office",
+      "height": 23.0,
+      "centroid": [
+        77.224415,
+        28.627834
+      ],
+      "coordinates": [
+        [
+          77.224239,
+          28.627856
+        ],
+        [
+          77.224447,
+          28.628024
+        ],
+        [
+          77.22468,
+          28.627802
+        ],
+        [
+          77.224471,
+          28.627634
+        ],
+        [
+          77.224239,
+          28.627856
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.8,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.49,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_351847100",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 16.0,
+      "centroid": [
+        77.224264,
+        28.627438
+      ],
+      "coordinates": [
+        [
+          77.224257,
+          28.627285
+        ],
+        [
+          77.224113,
+          28.627454
+        ],
+        [
+          77.224163,
+          28.627486
+        ],
+        [
+          77.224227,
+          28.62741
+        ],
+        [
+          77.224328,
+          28.627477
+        ],
+        [
+          77.224264,
+          28.627553
+        ],
+        [
+          77.22431,
+          28.627583
+        ],
+        [
+          77.224453,
+          28.627414
+        ],
+        [
+          77.224257,
+          28.627285
+        ]
+      ],
+      "heat_contribution_offset": 1.0,
+      "heat_driver_value": 0.78,
+      "attribution": {
+        "low_albedo": 0.65,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_351860633",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 31.0,
+      "centroid": [
+        77.224998,
+        28.628207
+      ],
+      "coordinates": [
+        [
+          77.22488,
+          28.628325
+        ],
+        [
+          77.224937,
+          28.628281
+        ],
+        [
+          77.224946,
+          28.628288
+        ],
+        [
+          77.225286,
+          28.628004
+        ],
+        [
+          77.225222,
+          28.627944
+        ],
+        [
+          77.224832,
+          28.628283
+        ],
+        [
+          77.22488,
+          28.628325
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 0.82,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.54,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_1290371758",
+      "name": "Building Block",
+      "type": "house",
+      "height": 7.0,
+      "centroid": [
+        77.224933,
+        28.627908
+      ],
+      "coordinates": [
+        [
+          77.224921,
+          28.628004
+        ],
+        [
+          77.22507,
+          28.627857
+        ],
+        [
+          77.224952,
+          28.627764
+        ],
+        [
+          77.224803,
+          28.627911
+        ],
+        [
+          77.224921,
+          28.628004
+        ]
+      ],
+      "heat_contribution_offset": 0.8,
+      "heat_driver_value": 0.76,
+      "attribution": {
+        "low_albedo": 0.61,
+        "building_height_trap": 0.39,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_04_11_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.223912,
+        28.627558
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_04_11_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.224375,
+        28.628185
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_04_11_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.224837,
+        28.627749
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_04_11_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.22405,
+        28.627314
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_04_11_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.224512,
+        28.62794
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_04_11_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.224975,
+        28.627505
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

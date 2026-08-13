@@ -1,0 +1,213 @@
+{
+  "cell": {
+    "cell_id": "CELL_11_10",
+    "row": 11,
+    "col": 10,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.2225,
+      28.634688,
+      77.22375,
+      28.63575
+    ],
+    "center": [
+      77.223125,
+      28.635219
+    ],
+    "lst_current": 46.4,
+    "ta_current": 42.5,
+    "lst_after": 42.5,
+    "ta_after": 40.0,
+    "cooling_potential": 3.9,
+    "population": 3505,
+    "vulnerability_score": 0.81,
+    "canopy_pct": 7,
+    "drivers": {
+      "ndvi": 0.1,
+      "albedo": 0.14,
+      "building_density": 0.69,
+      "sky_view_factor": 0.37,
+      "imperviousness": 0.83,
+      "traffic_density": 0.7
+    },
+    "energy_balance": {
+      "H": 337,
+      "LE": 44,
+      "G": 121,
+      "QF": 55
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_351872987",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 19.0,
+      "centroid": [
+        77.223251,
+        28.634814
+      ],
+      "coordinates": [
+        [
+          77.223136,
+          28.634854
+        ],
+        [
+          77.223265,
+          28.634939
+        ],
+        [
+          77.223422,
+          28.634754
+        ],
+        [
+          77.223294,
+          28.63467
+        ],
+        [
+          77.223136,
+          28.634854
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.95,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.46,
+        "impervious_ground": 0.33,
+        "lack_of_canopy": 0.32
+      }
+    },
+    {
+      "id": "bldg_1462284376",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 30.0,
+      "centroid": [
+        77.222797,
+        28.635015
+      ],
+      "coordinates": [
+        [
+          77.222736,
+          28.635159
+        ],
+        [
+          77.223007,
+          28.634907
+        ],
+        [
+          77.222892,
+          28.634792
+        ],
+        [
+          77.22261,
+          28.635055
+        ],
+        [
+          77.222736,
+          28.635159
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 0.98,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.53,
+        "impervious_ground": 0.33,
+        "lack_of_canopy": 0.32
+      }
+    },
+    {
+      "id": "bldg_1462284379",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 15.0,
+      "centroid": [
+        77.223336,
+        28.635689
+      ],
+      "coordinates": [
+        [
+          77.223231,
+          28.635858
+        ],
+        [
+          77.223575,
+          28.635476
+        ],
+        [
+          77.223482,
+          28.63543
+        ],
+        [
+          77.223162,
+          28.635823
+        ],
+        [
+          77.223231,
+          28.635858
+        ]
+      ],
+      "heat_contribution_offset": 1.0,
+      "heat_driver_value": 0.94,
+      "attribution": {
+        "low_albedo": 0.65,
+        "building_height_trap": 0.44,
+        "impervious_ground": 0.33,
+        "lack_of_canopy": 0.32
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_11_10_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.222662,
+        28.634996
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_11_10_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.223125,
+        28.635623
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_11_10_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.223587,
+        28.635187
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_11_10_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2228,
+        28.634752
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

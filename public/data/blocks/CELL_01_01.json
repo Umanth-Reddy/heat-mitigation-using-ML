@@ -1,0 +1,169 @@
+{
+  "cell": {
+    "cell_id": "CELL_01_01",
+    "row": 1,
+    "col": 1,
+    "ward_name": "Janpath & Tolstoy Marg Precinct",
+    "bounds": [
+      77.21125,
+      28.624063,
+      77.2125,
+      28.625125
+    ],
+    "center": [
+      77.211875,
+      28.624594
+    ],
+    "lst_current": 43.0,
+    "ta_current": 39.8,
+    "lst_after": 40.5,
+    "ta_after": 38.2,
+    "cooling_potential": 2.5,
+    "population": 3008,
+    "vulnerability_score": 0.54,
+    "canopy_pct": 14,
+    "drivers": {
+      "ndvi": 0.2,
+      "albedo": 0.17,
+      "building_density": 0.55,
+      "sky_view_factor": 0.43,
+      "imperviousness": 0.77,
+      "traffic_density": 0.5
+    },
+    "energy_balance": {
+      "H": 290,
+      "LE": 58,
+      "G": 114,
+      "QF": 45
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_488544850",
+      "name": "Pragati Bhawan",
+      "type": "yes",
+      "height": 24.0,
+      "centroid": [
+        77.211324,
+        28.625089
+      ],
+      "coordinates": [
+        [
+          77.21128,
+          28.625168
+        ],
+        [
+          77.211461,
+          28.625066
+        ],
+        [
+          77.211391,
+          28.624971
+        ],
+        [
+          77.21121,
+          28.625072
+        ],
+        [
+          77.21128,
+          28.625168
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.62,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.49,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.28
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_01_01_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.211413,
+        28.624371
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_01_01_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.211875,
+        28.624998
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_01_01_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.212338,
+        28.624562
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_01_01_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.21155,
+        28.624127
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_01_01_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.212013,
+        28.624753
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_01_01_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.212475,
+        28.624318
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_01_01_6",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.211688,
+        28.624944
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.81
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

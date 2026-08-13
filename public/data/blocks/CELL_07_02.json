@@ -1,0 +1,201 @@
+{
+  "cell": {
+    "cell_id": "CELL_07_02",
+    "row": 7,
+    "col": 2,
+    "ward_name": "Parliament Street Commercial Zone",
+    "bounds": [
+      77.2125,
+      28.630437,
+      77.21375,
+      28.6315
+    ],
+    "center": [
+      77.213125,
+      28.630969
+    ],
+    "lst_current": 45.0,
+    "ta_current": 41.4,
+    "lst_after": 41.7,
+    "ta_after": 39.3,
+    "cooling_potential": 3.3,
+    "population": 3297,
+    "vulnerability_score": 0.7,
+    "canopy_pct": 9,
+    "drivers": {
+      "ndvi": 0.14,
+      "albedo": 0.15,
+      "building_density": 0.63,
+      "sky_view_factor": 0.4,
+      "imperviousness": 0.8,
+      "traffic_density": 0.6
+    },
+    "energy_balance": {
+      "H": 318,
+      "LE": 49,
+      "G": 118,
+      "QF": 50
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_352247198",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 28.0,
+      "centroid": [
+        77.212973,
+        28.631076
+      ],
+      "coordinates": [
+        [
+          77.212932,
+          28.631238
+        ],
+        [
+          77.213181,
+          28.631149
+        ],
+        [
+          77.213035,
+          28.630835
+        ],
+        [
+          77.212786,
+          28.630923
+        ],
+        [
+          77.212932,
+          28.631238
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 0.84,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.52,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_488537301",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 17.0,
+      "centroid": [
+        77.212766,
+        28.631389
+      ],
+      "coordinates": [
+        [
+          77.212738,
+          28.631495
+        ],
+        [
+          77.212885,
+          28.631437
+        ],
+        [
+          77.212859,
+          28.631387
+        ],
+        [
+          77.212836,
+          28.631396
+        ],
+        [
+          77.212762,
+          28.631252
+        ],
+        [
+          77.212677,
+          28.631285
+        ],
+        [
+          77.212719,
+          28.631367
+        ],
+        [
+          77.21268,
+          28.631383
+        ],
+        [
+          77.212738,
+          28.631495
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.81,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_07_02_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.212663,
+        28.630745
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_07_02_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.213125,
+        28.631372
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_07_02_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.213588,
+        28.630937
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_07_02_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2128,
+        28.630501
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_07_02_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.213262,
+        28.631128
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

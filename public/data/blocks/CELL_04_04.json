@@ -1,0 +1,104 @@
+{
+  "cell": {
+    "cell_id": "CELL_04_04",
+    "row": 4,
+    "col": 4,
+    "ward_name": "Janpath & Tolstoy Marg Precinct",
+    "bounds": [
+      77.215,
+      28.62725,
+      77.21625,
+      28.628312
+    ],
+    "center": [
+      77.215625,
+      28.627781
+    ],
+    "lst_current": 45.5,
+    "ta_current": 41.8,
+    "lst_after": 42.0,
+    "ta_after": 39.5,
+    "cooling_potential": 3.5,
+    "population": 3372,
+    "vulnerability_score": 0.74,
+    "canopy_pct": 8,
+    "drivers": {
+      "ndvi": 0.12,
+      "albedo": 0.15,
+      "building_density": 0.65,
+      "sky_view_factor": 0.39,
+      "imperviousness": 0.81,
+      "traffic_density": 0.4
+    },
+    "energy_balance": {
+      "H": 325,
+      "LE": 46,
+      "G": 119,
+      "QF": 40
+    }
+  },
+  "buildings": [],
+  "trees": [
+    {
+      "id": "tree_CELL_04_04_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.215163,
+        28.627558
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_04_04_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.215625,
+        28.628185
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_04_04_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.216088,
+        28.627749
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_04_04_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2153,
+        28.627314
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_04_04_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.215762,
+        28.62794
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

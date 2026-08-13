@@ -1,0 +1,277 @@
+{
+  "cell": {
+    "cell_id": "CELL_02_01",
+    "row": 2,
+    "col": 1,
+    "ward_name": "Janpath & Tolstoy Marg Precinct",
+    "bounds": [
+      77.21125,
+      28.625125,
+      77.2125,
+      28.626188
+    ],
+    "center": [
+      77.211875,
+      28.625656
+    ],
+    "lst_current": 43.6,
+    "ta_current": 40.3,
+    "lst_after": 40.8,
+    "ta_after": 38.5,
+    "cooling_potential": 2.8,
+    "population": 3089,
+    "vulnerability_score": 0.59,
+    "canopy_pct": 12,
+    "drivers": {
+      "ndvi": 0.18,
+      "albedo": 0.16,
+      "building_density": 0.57,
+      "sky_view_factor": 0.42,
+      "imperviousness": 0.78,
+      "traffic_density": 0.6
+    },
+    "energy_balance": {
+      "H": 298,
+      "LE": 55,
+      "G": 115,
+      "QF": 50
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_1316627348",
+      "name": "Building Block",
+      "type": "toilets",
+      "height": 7.0,
+      "centroid": [
+        77.211261,
+        28.625661
+      ],
+      "coordinates": [
+        [
+          77.211243,
+          28.625651
+        ],
+        [
+          77.211264,
+          28.62564
+        ],
+        [
+          77.211288,
+          28.625677
+        ],
+        [
+          77.211267,
+          28.625688
+        ],
+        [
+          77.211243,
+          28.625651
+        ]
+      ],
+      "heat_contribution_offset": 0.8,
+      "heat_driver_value": 0.64,
+      "attribution": {
+        "low_albedo": 0.61,
+        "building_height_trap": 0.39,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_1316627353",
+      "name": "Building Block",
+      "type": "office",
+      "height": 7.0,
+      "centroid": [
+        77.211863,
+        28.626096
+      ],
+      "coordinates": [
+        [
+          77.211788,
+          28.626086
+        ],
+        [
+          77.211815,
+          28.626039
+        ],
+        [
+          77.211976,
+          28.62611
+        ],
+        [
+          77.211949,
+          28.626157
+        ],
+        [
+          77.211788,
+          28.626086
+        ]
+      ],
+      "heat_contribution_offset": 0.8,
+      "heat_driver_value": 0.64,
+      "attribution": {
+        "low_albedo": 0.61,
+        "building_height_trap": 0.39,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.29
+      }
+    },
+    {
+      "id": "bldg_1359806265",
+      "name": "Delhi Police Headquarters",
+      "type": "office",
+      "height": 59.5,
+      "centroid": [
+        77.212377,
+        28.625273
+      ],
+      "coordinates": [
+        [
+          77.212737,
+          28.625487
+        ],
+        [
+          77.212811,
+          28.625578
+        ],
+        [
+          77.212782,
+          28.6257
+        ],
+        [
+          77.212668,
+          28.625766
+        ],
+        [
+          77.21198,
+          28.625594
+        ],
+        [
+          77.211839,
+          28.625405
+        ],
+        [
+          77.211945,
+          28.624804
+        ],
+        [
+          77.212079,
+          28.624721
+        ],
+        [
+          77.212198,
+          28.624755
+        ],
+        [
+          77.212269,
+          28.624861
+        ],
+        [
+          77.212221,
+          28.625117
+        ],
+        [
+          77.21243,
+          28.625147
+        ],
+        [
+          77.212506,
+          28.62525
+        ],
+        [
+          77.212452,
+          28.625416
+        ],
+        [
+          77.212737,
+          28.625487
+        ]
+      ],
+      "heat_contribution_offset": 2.2,
+      "heat_driver_value": 0.78,
+      "attribution": {
+        "low_albedo": 0.89,
+        "building_height_trap": 0.71,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.29
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_02_01_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.211413,
+        28.625433
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_02_01_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.211875,
+        28.62606
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_02_01_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.212338,
+        28.625625
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_02_01_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.21155,
+        28.625189
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_02_01_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.212013,
+        28.625816
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_02_01_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.212475,
+        28.62538
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

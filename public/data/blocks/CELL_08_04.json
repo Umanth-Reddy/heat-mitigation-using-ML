@@ -1,0 +1,333 @@
+{
+  "cell": {
+    "cell_id": "CELL_08_04",
+    "row": 8,
+    "col": 4,
+    "ward_name": "Parliament Street Commercial Zone",
+    "bounds": [
+      77.215,
+      28.6315,
+      77.21625,
+      28.632563
+    ],
+    "center": [
+      77.215625,
+      28.632031
+    ],
+    "lst_current": 45.3,
+    "ta_current": 41.6,
+    "lst_after": 41.8,
+    "ta_after": 39.3,
+    "cooling_potential": 3.5,
+    "population": 3308,
+    "vulnerability_score": 0.72,
+    "canopy_pct": 9,
+    "drivers": {
+      "ndvi": 0.13,
+      "albedo": 0.15,
+      "building_density": 0.64,
+      "sky_view_factor": 0.39,
+      "imperviousness": 0.81,
+      "traffic_density": 0.5
+    },
+    "energy_balance": {
+      "H": 322,
+      "LE": 48,
+      "G": 118,
+      "QF": 45
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_1466151117",
+      "name": "Shivaji Stadium Time Keeper Booth",
+      "type": "office",
+      "height": 7.0,
+      "centroid": [
+        77.215461,
+        28.632131
+      ],
+      "coordinates": [
+        [
+          77.215478,
+          28.632141
+        ],
+        [
+          77.215476,
+          28.632114
+        ],
+        [
+          77.215435,
+          28.632116
+        ],
+        [
+          77.215437,
+          28.632143
+        ],
+        [
+          77.215478,
+          28.632141
+        ]
+      ],
+      "heat_contribution_offset": 0.8,
+      "heat_driver_value": 0.81,
+      "attribution": {
+        "low_albedo": 0.61,
+        "building_height_trap": 0.39,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    },
+    {
+      "id": "bldg_1484217570",
+      "name": "Building Block",
+      "type": "retail",
+      "height": 10.5,
+      "centroid": [
+        77.216038,
+        28.632181
+      ],
+      "coordinates": [
+        [
+          77.216102,
+          28.631442
+        ],
+        [
+          77.216076,
+          28.631488
+        ],
+        [
+          77.215985,
+          28.631643
+        ],
+        [
+          77.216038,
+          28.631666
+        ],
+        [
+          77.216,
+          28.631749
+        ],
+        [
+          77.215948,
+          28.631733
+        ],
+        [
+          77.21591,
+          28.631826
+        ],
+        [
+          77.216051,
+          28.631871
+        ],
+        [
+          77.21609,
+          28.631777
+        ],
+        [
+          77.216055,
+          28.631766
+        ],
+        [
+          77.21609,
+          28.631691
+        ],
+        [
+          77.216166,
+          28.631727
+        ],
+        [
+          77.216149,
+          28.631794
+        ],
+        [
+          77.216131,
+          28.631865
+        ],
+        [
+          77.21611,
+          28.631959
+        ],
+        [
+          77.21609,
+          28.632051
+        ],
+        [
+          77.215806,
+          28.63199
+        ],
+        [
+          77.215791,
+          28.632049
+        ],
+        [
+          77.216076,
+          28.632112
+        ],
+        [
+          77.216025,
+          28.632349
+        ],
+        [
+          77.215825,
+          28.632311
+        ],
+        [
+          77.215829,
+          28.632497
+        ],
+        [
+          77.21599,
+          28.632512
+        ],
+        [
+          77.215975,
+          28.632581
+        ],
+        [
+          77.215961,
+          28.632642
+        ],
+        [
+          77.215947,
+          28.632713
+        ],
+        [
+          77.216018,
+          28.632727
+        ],
+        [
+          77.216015,
+          28.632761
+        ],
+        [
+          77.215949,
+          28.632729
+        ],
+        [
+          77.215918,
+          28.632731
+        ],
+        [
+          77.21591,
+          28.632689
+        ],
+        [
+          77.215828,
+          28.632699
+        ],
+        [
+          77.215851,
+          28.6329
+        ],
+        [
+          77.215855,
+          28.632938
+        ],
+        [
+          77.216125,
+          28.632916
+        ],
+        [
+          77.216163,
+          28.632887
+        ],
+        [
+          77.216197,
+          28.632681
+        ],
+        [
+          77.216211,
+          28.63262
+        ],
+        [
+          77.21639,
+          28.631833
+        ],
+        [
+          77.216434,
+          28.631641
+        ],
+        [
+          77.216413,
+          28.631593
+        ],
+        [
+          77.216102,
+          28.631442
+        ]
+      ],
+      "heat_contribution_offset": 0.9,
+      "heat_driver_value": 0.82,
+      "attribution": {
+        "low_albedo": 0.63,
+        "building_height_trap": 0.41,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_08_04_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.215163,
+        28.631808
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_08_04_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.215625,
+        28.632435
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_08_04_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.216088,
+        28.632
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_08_04_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2153,
+        28.631564
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_08_04_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.215762,
+        28.632191
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

@@ -1,0 +1,185 @@
+{
+  "city_name": "Connaught Place & Central Ward, New Delhi",
+  "aoi_bounds": [
+    77.21,
+    28.623,
+    77.23,
+    28.64
+  ],
+  "total_cells": 256,
+  "avg_lst_current": 44.1,
+  "avg_lst_after": 41.1,
+  "avg_ta_current": 40.6,
+  "avg_ta_after": 38.7,
+  "max_lst": 47.7,
+  "min_lst": 39.4,
+  "top_5_hottest": [
+    {
+      "cell_id": "CELL_07_12",
+      "ward_name": "Barakhamba Road High-Rise Corridor",
+      "lst": 47.7,
+      "ta": 43.6,
+      "cooling_potential": 4.4,
+      "bounds": [
+        77.225,
+        28.630437,
+        77.22625,
+        28.6315
+      ],
+      "center": [
+        77.225625,
+        28.630969
+      ]
+    },
+    {
+      "cell_id": "CELL_07_11",
+      "ward_name": "Barakhamba Road High-Rise Corridor",
+      "lst": 47.3,
+      "ta": 43.3,
+      "cooling_potential": 4.3,
+      "bounds": [
+        77.22375,
+        28.630437,
+        77.225,
+        28.6315
+      ],
+      "center": [
+        77.224375,
+        28.630969
+      ]
+    },
+    {
+      "cell_id": "CELL_05_10",
+      "ward_name": "Barakhamba Road High-Rise Corridor",
+      "lst": 47.2,
+      "ta": 43.2,
+      "cooling_potential": 4.2,
+      "bounds": [
+        77.2225,
+        28.628312,
+        77.22375,
+        28.629375
+      ],
+      "center": [
+        77.223125,
+        28.628844
+      ]
+    },
+    {
+      "cell_id": "CELL_08_11",
+      "ward_name": "Barakhamba Road High-Rise Corridor",
+      "lst": 47.2,
+      "ta": 43.2,
+      "cooling_potential": 4.2,
+      "bounds": [
+        77.22375,
+        28.6315,
+        77.225,
+        28.632563
+      ],
+      "center": [
+        77.224375,
+        28.632031
+      ]
+    },
+    {
+      "cell_id": "CELL_06_12",
+      "ward_name": "Barakhamba Road High-Rise Corridor",
+      "lst": 47.1,
+      "ta": 43.1,
+      "cooling_potential": 4.2,
+      "bounds": [
+        77.225,
+        28.629375,
+        77.22625,
+        28.630437
+      ],
+      "center": [
+        77.225625,
+        28.629906
+      ]
+    }
+  ],
+  "histogram": [
+    {
+      "bin": "38-39\u00b0C",
+      "range": [
+        38,
+        39
+      ],
+      "count": 0
+    },
+    {
+      "bin": "39-40\u00b0C",
+      "range": [
+        39,
+        40
+      ],
+      "count": 16
+    },
+    {
+      "bin": "40-41\u00b0C",
+      "range": [
+        40,
+        41
+      ],
+      "count": 0
+    },
+    {
+      "bin": "41-42\u00b0C",
+      "range": [
+        41,
+        42
+      ],
+      "count": 1
+    },
+    {
+      "bin": "42-43\u00b0C",
+      "range": [
+        42,
+        43
+      ],
+      "count": 20
+    },
+    {
+      "bin": "43-44\u00b0C",
+      "range": [
+        43,
+        44
+      ],
+      "count": 70
+    },
+    {
+      "bin": "44-45\u00b0C",
+      "range": [
+        44,
+        45
+      ],
+      "count": 74
+    },
+    {
+      "bin": "45-46\u00b0C",
+      "range": [
+        45,
+        46
+      ],
+      "count": 52
+    },
+    {
+      "bin": "46-47\u00b0C",
+      "range": [
+        46,
+        47
+      ],
+      "count": 17
+    },
+    {
+      "bin": "47-48\u00b0C",
+      "range": [
+        47,
+        48
+      ],
+      "count": 6
+    }
+  ]
+}

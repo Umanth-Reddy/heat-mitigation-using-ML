@@ -1,0 +1,261 @@
+{
+  "cell": {
+    "cell_id": "CELL_13_00",
+    "row": 13,
+    "col": 0,
+    "ward_name": "Gole Market & Baba Kharak Singh Marg",
+    "bounds": [
+      77.21,
+      28.636813,
+      77.21125,
+      28.637875
+    ],
+    "center": [
+      77.210625,
+      28.637344
+    ],
+    "lst_current": 42.3,
+    "ta_current": 39.2,
+    "lst_after": 40.1,
+    "ta_after": 37.8,
+    "cooling_potential": 2.2,
+    "population": 2885,
+    "vulnerability_score": 0.48,
+    "canopy_pct": 15,
+    "drivers": {
+      "ndvi": 0.22,
+      "albedo": 0.18,
+      "building_density": 0.52,
+      "sky_view_factor": 0.44,
+      "imperviousness": 0.76,
+      "traffic_density": 0.4
+    },
+    "energy_balance": {
+      "H": 280,
+      "LE": 60,
+      "G": 113,
+      "QF": 40
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_349777209",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 17.0,
+      "centroid": [
+        77.210411,
+        28.637521
+      ],
+      "coordinates": [
+        [
+          77.210509,
+          28.637738
+        ],
+        [
+          77.210616,
+          28.637679
+        ],
+        [
+          77.210263,
+          28.637194
+        ],
+        [
+          77.210157,
+          28.637254
+        ],
+        [
+          77.210509,
+          28.637738
+        ]
+      ],
+      "heat_contribution_offset": 1.0,
+      "heat_driver_value": 0.53,
+      "attribution": {
+        "low_albedo": 0.65,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.3,
+        "lack_of_canopy": 0.27
+      }
+    },
+    {
+      "id": "bldg_349777275",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 29.0,
+      "centroid": [
+        77.210791,
+        28.636966
+      ],
+      "coordinates": [
+        [
+          77.210655,
+          28.636961
+        ],
+        [
+          77.210762,
+          28.637106
+        ],
+        [
+          77.210995,
+          28.636975
+        ],
+        [
+          77.210888,
+          28.636829
+        ],
+        [
+          77.210655,
+          28.636961
+        ]
+      ],
+      "heat_contribution_offset": 1.4,
+      "heat_driver_value": 0.57,
+      "attribution": {
+        "low_albedo": 0.73,
+        "building_height_trap": 0.52,
+        "impervious_ground": 0.3,
+        "lack_of_canopy": 0.27
+      }
+    },
+    {
+      "id": "bldg_349777321",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 21.0,
+      "centroid": [
+        77.210119,
+        28.637812
+      ],
+      "coordinates": [
+        [
+          77.210152,
+          28.63791
+        ],
+        [
+          77.210214,
+          28.637877
+        ],
+        [
+          77.210071,
+          28.637667
+        ],
+        [
+          77.210008,
+          28.6377
+        ],
+        [
+          77.210152,
+          28.63791
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.54,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.3,
+        "lack_of_canopy": 0.27
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_13_00_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.210162,
+        28.637121
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_13_00_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.210625,
+        28.637748
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_13_00_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.211088,
+        28.637312
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_13_00_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2103,
+        28.636877
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_13_00_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.210763,
+        28.637503
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_13_00_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.211225,
+        28.637068
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_13_00_6",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.210437,
+        28.637694
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_13_00_7",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.2109,
+        28.637259
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.89
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

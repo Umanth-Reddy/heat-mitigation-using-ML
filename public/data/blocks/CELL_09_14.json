@@ -1,0 +1,305 @@
+{
+  "cell": {
+    "cell_id": "CELL_09_14",
+    "row": 9,
+    "col": 14,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.2275,
+      28.632563,
+      77.22875,
+      28.633625
+    ],
+    "center": [
+      77.228125,
+      28.633094
+    ],
+    "lst_current": 45.8,
+    "ta_current": 42.1,
+    "lst_after": 42.1,
+    "ta_after": 39.7,
+    "cooling_potential": 3.7,
+    "population": 3399,
+    "vulnerability_score": 0.76,
+    "canopy_pct": 8,
+    "drivers": {
+      "ndvi": 0.12,
+      "albedo": 0.14,
+      "building_density": 0.66,
+      "sky_view_factor": 0.39,
+      "imperviousness": 0.81,
+      "traffic_density": 0.5
+    },
+    "energy_balance": {
+      "H": 329,
+      "LE": 46,
+      "G": 119,
+      "QF": 45
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_351872988",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 20.0,
+      "centroid": [
+        77.228109,
+        28.6333
+      ],
+      "coordinates": [
+        [
+          77.227963,
+          28.633339
+        ],
+        [
+          77.228001,
+          28.633399
+        ],
+        [
+          77.228328,
+          28.63324
+        ],
+        [
+          77.22829,
+          28.633181
+        ],
+        [
+          77.227963,
+          28.633339
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.9,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.47,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    },
+    {
+      "id": "bldg_351872990",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 22.0,
+      "centroid": [
+        77.227671,
+        28.633435
+      ],
+      "coordinates": [
+        [
+          77.227551,
+          28.63345
+        ],
+        [
+          77.227584,
+          28.633517
+        ],
+        [
+          77.227852,
+          28.633413
+        ],
+        [
+          77.227818,
+          28.633346
+        ],
+        [
+          77.227551,
+          28.63345
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.9,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    },
+    {
+      "id": "bldg_1462284451",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 15.0,
+      "centroid": [
+        77.227857,
+        28.633105
+      ],
+      "coordinates": [
+        [
+          77.227806,
+          28.63316
+        ],
+        [
+          77.227965,
+          28.63309
+        ],
+        [
+          77.227928,
+          28.633016
+        ],
+        [
+          77.227779,
+          28.633097
+        ],
+        [
+          77.227806,
+          28.63316
+        ]
+      ],
+      "heat_contribution_offset": 1.0,
+      "heat_driver_value": 0.88,
+      "attribution": {
+        "low_albedo": 0.65,
+        "building_height_trap": 0.44,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    },
+    {
+      "id": "bldg_1462284452",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 16.0,
+      "centroid": [
+        77.228031,
+        28.633026
+      ],
+      "coordinates": [
+        [
+          77.227974,
+          28.633081
+        ],
+        [
+          77.22814,
+          28.632996
+        ],
+        [
+          77.228116,
+          28.632949
+        ],
+        [
+          77.227953,
+          28.633025
+        ],
+        [
+          77.227974,
+          28.633081
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.89,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    },
+    {
+      "id": "bldg_1462284453",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 17.0,
+      "centroid": [
+        77.228361,
+        28.63292
+      ],
+      "coordinates": [
+        [
+          77.228339,
+          28.633017
+        ],
+        [
+          77.228505,
+          28.632902
+        ],
+        [
+          77.228404,
+          28.632779
+        ],
+        [
+          77.228215,
+          28.632884
+        ],
+        [
+          77.228339,
+          28.633017
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.89,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.31
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_09_14_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.227663,
+        28.632871
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_09_14_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.228125,
+        28.633498
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_09_14_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.228588,
+        28.633062
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_09_14_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2278,
+        28.632627
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_09_14_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.228262,
+        28.633253
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

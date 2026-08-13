@@ -1,0 +1,253 @@
+{
+  "cell": {
+    "cell_id": "CELL_08_05",
+    "row": 8,
+    "col": 5,
+    "ward_name": "Parliament Street Commercial Zone",
+    "bounds": [
+      77.21625,
+      28.6315,
+      77.2175,
+      28.632563
+    ],
+    "center": [
+      77.216875,
+      28.632031
+    ],
+    "lst_current": 46.4,
+    "ta_current": 42.5,
+    "lst_after": 42.5,
+    "ta_after": 40.0,
+    "cooling_potential": 3.9,
+    "population": 3499,
+    "vulnerability_score": 0.81,
+    "canopy_pct": 7,
+    "drivers": {
+      "ndvi": 0.1,
+      "albedo": 0.14,
+      "building_density": 0.69,
+      "sky_view_factor": 0.37,
+      "imperviousness": 0.83,
+      "traffic_density": 0.6
+    },
+    "energy_balance": {
+      "H": 337,
+      "LE": 44,
+      "G": 121,
+      "QF": 50
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_1393736853",
+      "name": "Ganga Ben Kutir",
+      "type": "public",
+      "height": 7.0,
+      "centroid": [
+        77.217478,
+        28.63161
+      ],
+      "coordinates": [
+        [
+          77.217428,
+          28.631583
+        ],
+        [
+          77.217452,
+          28.631562
+        ],
+        [
+          77.217554,
+          28.631652
+        ],
+        [
+          77.21753,
+          28.631673
+        ],
+        [
+          77.217428,
+          28.631583
+        ]
+      ],
+      "heat_contribution_offset": 0.8,
+      "heat_driver_value": 0.92,
+      "attribution": {
+        "low_albedo": 0.61,
+        "building_height_trap": 0.39,
+        "impervious_ground": 0.33,
+        "lack_of_canopy": 0.32
+      }
+    },
+    {
+      "id": "bldg_1466173460",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 21.0,
+      "centroid": [
+        77.217179,
+        28.632322
+      ],
+      "coordinates": [
+        [
+          77.217117,
+          28.63234
+        ],
+        [
+          77.217135,
+          28.632269
+        ],
+        [
+          77.217269,
+          28.632297
+        ],
+        [
+          77.217256,
+          28.632366
+        ],
+        [
+          77.217117,
+          28.63234
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.96,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.33,
+        "lack_of_canopy": 0.32
+      }
+    },
+    {
+      "id": "bldg_1466173465",
+      "name": "Phelps Building",
+      "type": "commercial",
+      "height": 17.5,
+      "centroid": [
+        77.217479,
+        28.632493
+      ],
+      "coordinates": [
+        [
+          77.217398,
+          28.632416
+        ],
+        [
+          77.217371,
+          28.632586
+        ],
+        [
+          77.217599,
+          28.632604
+        ],
+        [
+          77.217629,
+          28.632445
+        ],
+        [
+          77.217398,
+          28.632416
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.95,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.33,
+        "lack_of_canopy": 0.32
+      }
+    },
+    {
+      "id": "bldg_1466173469",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 21.0,
+      "centroid": [
+        77.217195,
+        28.632383
+      ],
+      "coordinates": [
+        [
+          77.217256,
+          28.632366
+        ],
+        [
+          77.217246,
+          28.632431
+        ],
+        [
+          77.2171,
+          28.632413
+        ],
+        [
+          77.217117,
+          28.63234
+        ],
+        [
+          77.217256,
+          28.632366
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.96,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.33,
+        "lack_of_canopy": 0.32
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_08_05_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.216413,
+        28.631808
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_08_05_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.216875,
+        28.632435
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_08_05_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.217337,
+        28.632
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_08_05_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.21655,
+        28.631564
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

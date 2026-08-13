@@ -1,0 +1,197 @@
+{
+  "cell": {
+    "cell_id": "CELL_00_13",
+    "row": 0,
+    "col": 13,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.22625,
+      28.623,
+      77.2275,
+      28.624063
+    ],
+    "center": [
+      77.226875,
+      28.623531
+    ],
+    "lst_current": 42.5,
+    "ta_current": 39.4,
+    "lst_after": 40.2,
+    "ta_after": 37.9,
+    "cooling_potential": 2.3,
+    "population": 2899,
+    "vulnerability_score": 0.5,
+    "canopy_pct": 14,
+    "drivers": {
+      "ndvi": 0.21,
+      "albedo": 0.17,
+      "building_density": 0.53,
+      "sky_view_factor": 0.44,
+      "imperviousness": 0.76,
+      "traffic_density": 0.4
+    },
+    "energy_balance": {
+      "H": 283,
+      "LE": 59,
+      "G": 113,
+      "QF": 40
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_870948275",
+      "name": "Building Block",
+      "type": "house",
+      "height": 19.0,
+      "centroid": [
+        77.226563,
+        28.622776
+      ],
+      "coordinates": [
+        [
+          77.226233,
+          28.622829
+        ],
+        [
+          77.226335,
+          28.622735
+        ],
+        [
+          77.226325,
+          28.622622
+        ],
+        [
+          77.22641,
+          28.622575
+        ],
+        [
+          77.226593,
+          28.622655
+        ],
+        [
+          77.226545,
+          28.622773
+        ],
+        [
+          77.226673,
+          28.622829
+        ],
+        [
+          77.22677,
+          28.622773
+        ],
+        [
+          77.226893,
+          28.62274
+        ],
+        [
+          77.226952,
+          28.622843
+        ],
+        [
+          77.226797,
+          28.623112
+        ],
+        [
+          77.226233,
+          28.622829
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.56,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.46,
+        "impervious_ground": 0.3,
+        "lack_of_canopy": 0.28
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_00_13_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.226412,
+        28.623308
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_00_13_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.226875,
+        28.623935
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_00_13_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.227338,
+        28.6235
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_00_13_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.22655,
+        28.623064
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_00_13_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.227013,
+        28.623691
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_00_13_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.227475,
+        28.623255
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_00_13_6",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.226687,
+        28.623882
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.81
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

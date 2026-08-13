@@ -1,0 +1,309 @@
+{
+  "cell": {
+    "cell_id": "CELL_07_00",
+    "row": 7,
+    "col": 0,
+    "ward_name": "Parliament Street Commercial Zone",
+    "bounds": [
+      77.21,
+      28.630437,
+      77.21125,
+      28.6315
+    ],
+    "center": [
+      77.210625,
+      28.630969
+    ],
+    "lst_current": 42.9,
+    "ta_current": 39.7,
+    "lst_after": 40.4,
+    "ta_after": 38.1,
+    "cooling_potential": 2.5,
+    "population": 2979,
+    "vulnerability_score": 0.53,
+    "canopy_pct": 14,
+    "drivers": {
+      "ndvi": 0.2,
+      "albedo": 0.17,
+      "building_density": 0.55,
+      "sky_view_factor": 0.43,
+      "imperviousness": 0.77,
+      "traffic_density": 0.4
+    },
+    "energy_balance": {
+      "H": 288,
+      "LE": 58,
+      "G": 114,
+      "QF": 40
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_349717040",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 22.0,
+      "centroid": [
+        77.210624,
+        28.631309
+      ],
+      "coordinates": [
+        [
+          77.210365,
+          28.631122
+        ],
+        [
+          77.210379,
+          28.631361
+        ],
+        [
+          77.210482,
+          28.631356
+        ],
+        [
+          77.210475,
+          28.631243
+        ],
+        [
+          77.210674,
+          28.631234
+        ],
+        [
+          77.210681,
+          28.631347
+        ],
+        [
+          77.210807,
+          28.631341
+        ],
+        [
+          77.210822,
+          28.631587
+        ],
+        [
+          77.210921,
+          28.631583
+        ],
+        [
+          77.210893,
+          28.631098
+        ],
+        [
+          77.210365,
+          28.631122
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.61,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.28
+      }
+    },
+    {
+      "id": "bldg_349717072",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 18.0,
+      "centroid": [
+        77.210445,
+        28.630638
+      ],
+      "coordinates": [
+        [
+          77.210439,
+          28.630747
+        ],
+        [
+          77.21069,
+          28.630739
+        ],
+        [
+          77.210688,
+          28.630686
+        ],
+        [
+          77.21092,
+          28.630679
+        ],
+        [
+          77.21091,
+          28.630413
+        ],
+        [
+          77.210426,
+          28.630427
+        ],
+        [
+          77.210433,
+          28.630611
+        ],
+        [
+          77.21043,
+          28.630611
+        ],
+        [
+          77.210417,
+          28.630589
+        ],
+        [
+          77.21039,
+          28.630573
+        ],
+        [
+          77.210359,
+          28.630568
+        ],
+        [
+          77.210327,
+          28.630573
+        ],
+        [
+          77.210301,
+          28.630589
+        ],
+        [
+          77.210283,
+          28.630612
+        ],
+        [
+          77.210277,
+          28.63064
+        ],
+        [
+          77.210283,
+          28.630668
+        ],
+        [
+          77.210301,
+          28.630691
+        ],
+        [
+          77.210327,
+          28.630707
+        ],
+        [
+          77.210359,
+          28.630712
+        ],
+        [
+          77.21039,
+          28.630707
+        ],
+        [
+          77.210417,
+          28.630691
+        ],
+        [
+          77.210432,
+          28.630664
+        ],
+        [
+          77.210436,
+          28.630664
+        ],
+        [
+          77.210439,
+          28.630747
+        ]
+      ],
+      "heat_contribution_offset": 1.1,
+      "heat_driver_value": 0.6,
+      "attribution": {
+        "low_albedo": 0.67,
+        "building_height_trap": 0.46,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.28
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_07_00_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.210162,
+        28.630745
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_07_00_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.210625,
+        28.631372
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_07_00_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.211088,
+        28.630937
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_07_00_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2103,
+        28.630501
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_07_00_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.210763,
+        28.631128
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_07_00_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.211225,
+        28.630692
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_07_00_6",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.210437,
+        28.631319
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.81
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

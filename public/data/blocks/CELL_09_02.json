@@ -1,0 +1,441 @@
+{
+  "cell": {
+    "cell_id": "CELL_09_02",
+    "row": 9,
+    "col": 2,
+    "ward_name": "Parliament Street Commercial Zone",
+    "bounds": [
+      77.2125,
+      28.632563,
+      77.21375,
+      28.633625
+    ],
+    "center": [
+      77.213125,
+      28.633094
+    ],
+    "lst_current": 43.4,
+    "ta_current": 40.1,
+    "lst_after": 40.7,
+    "ta_after": 38.3,
+    "cooling_potential": 2.7,
+    "population": 3039,
+    "vulnerability_score": 0.57,
+    "canopy_pct": 13,
+    "drivers": {
+      "ndvi": 0.19,
+      "albedo": 0.17,
+      "building_density": 0.57,
+      "sky_view_factor": 0.42,
+      "imperviousness": 0.78,
+      "traffic_density": 0.5
+    },
+    "energy_balance": {
+      "H": 295,
+      "LE": 56,
+      "G": 115,
+      "QF": 45
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_125439753",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 17.0,
+      "centroid": [
+        77.2131,
+        28.63357
+      ],
+      "coordinates": [
+        [
+          77.212836,
+          28.633378
+        ],
+        [
+          77.213299,
+          28.633345
+        ],
+        [
+          77.213309,
+          28.633448
+        ],
+        [
+          77.213192,
+          28.633457
+        ],
+        [
+          77.213215,
+          28.633704
+        ],
+        [
+          77.213331,
+          28.633696
+        ],
+        [
+          77.21334,
+          28.633787
+        ],
+        [
+          77.212975,
+          28.633813
+        ],
+        [
+          77.212967,
+          28.633722
+        ],
+        [
+          77.213087,
+          28.633713
+        ],
+        [
+          77.213065,
+          28.633479
+        ],
+        [
+          77.212846,
+          28.633495
+        ],
+        [
+          77.212836,
+          28.633378
+        ]
+      ],
+      "heat_contribution_offset": 1.0,
+      "heat_driver_value": 0.64,
+      "attribution": {
+        "low_albedo": 0.65,
+        "building_height_trap": 0.45,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.28
+      }
+    },
+    {
+      "id": "bldg_352432523",
+      "name": "Building Block",
+      "type": "yes",
+      "height": 25.0,
+      "centroid": [
+        77.212522,
+        28.632869
+      ],
+      "coordinates": [
+        [
+          77.212462,
+          28.633009
+        ],
+        [
+          77.212463,
+          28.633038
+        ],
+        [
+          77.212597,
+          28.633033
+        ],
+        [
+          77.212595,
+          28.632993
+        ],
+        [
+          77.21263,
+          28.632992
+        ],
+        [
+          77.212628,
+          28.632949
+        ],
+        [
+          77.21257,
+          28.632951
+        ],
+        [
+          77.212569,
+          28.632936
+        ],
+        [
+          77.212629,
+          28.632934
+        ],
+        [
+          77.212626,
+          28.632879
+        ],
+        [
+          77.212563,
+          28.632881
+        ],
+        [
+          77.212562,
+          28.632849
+        ],
+        [
+          77.212624,
+          28.632847
+        ],
+        [
+          77.212622,
+          28.632788
+        ],
+        [
+          77.212559,
+          28.63279
+        ],
+        [
+          77.212558,
+          28.632769
+        ],
+        [
+          77.212609,
+          28.632767
+        ],
+        [
+          77.212608,
+          28.63272
+        ],
+        [
+          77.212583,
+          28.632721
+        ],
+        [
+          77.212582,
+          28.632702
+        ],
+        [
+          77.212456,
+          28.632706
+        ],
+        [
+          77.212458,
+          28.632741
+        ],
+        [
+          77.212424,
+          28.632742
+        ],
+        [
+          77.212426,
+          28.632773
+        ],
+        [
+          77.212492,
+          28.632771
+        ],
+        [
+          77.212492,
+          28.632788
+        ],
+        [
+          77.212425,
+          28.63279
+        ],
+        [
+          77.212428,
+          28.632855
+        ],
+        [
+          77.212487,
+          28.632853
+        ],
+        [
+          77.212488,
+          28.632879
+        ],
+        [
+          77.212424,
+          28.632881
+        ],
+        [
+          77.212427,
+          28.632942
+        ],
+        [
+          77.212459,
+          28.632942
+        ],
+        [
+          77.21246,
+          28.632956
+        ],
+        [
+          77.212426,
+          28.632957
+        ],
+        [
+          77.212428,
+          28.63301
+        ],
+        [
+          77.212462,
+          28.633009
+        ]
+      ],
+      "heat_contribution_offset": 1.3,
+      "heat_driver_value": 0.67,
+      "attribution": {
+        "low_albedo": 0.71,
+        "building_height_trap": 0.5,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.28
+      }
+    },
+    {
+      "id": "bldg_1237416218",
+      "name": "The Connaught",
+      "type": "yes",
+      "height": 22.0,
+      "centroid": [
+        77.213134,
+        28.632674
+      ],
+      "coordinates": [
+        [
+          77.21304,
+          28.633056
+        ],
+        [
+          77.213302,
+          28.633039
+        ],
+        [
+          77.213232,
+          28.632353
+        ],
+        [
+          77.213182,
+          28.632356
+        ],
+        [
+          77.213152,
+          28.632428
+        ],
+        [
+          77.213197,
+          28.632424
+        ],
+        [
+          77.213204,
+          28.632504
+        ],
+        [
+          77.213124,
+          28.632508
+        ],
+        [
+          77.213135,
+          28.632651
+        ],
+        [
+          77.213043,
+          28.632656
+        ],
+        [
+          77.213067,
+          28.63286
+        ],
+        [
+          77.213022,
+          28.632863
+        ],
+        [
+          77.21304,
+          28.633056
+        ]
+      ],
+      "heat_contribution_offset": 1.2,
+      "heat_driver_value": 0.66,
+      "attribution": {
+        "low_albedo": 0.69,
+        "building_height_trap": 0.48,
+        "impervious_ground": 0.31,
+        "lack_of_canopy": 0.28
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_09_02_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.212663,
+        28.632871
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_09_02_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.213125,
+        28.633498
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_09_02_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.213588,
+        28.633062
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_09_02_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.2128,
+        28.632627
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_09_02_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.213262,
+        28.633253
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_09_02_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.213725,
+        28.632818
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_09_02_6",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.212938,
+        28.633444
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.81
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}

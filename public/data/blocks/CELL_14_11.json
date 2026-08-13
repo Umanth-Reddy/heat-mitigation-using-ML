@@ -1,0 +1,317 @@
+{
+  "cell": {
+    "cell_id": "CELL_14_11",
+    "row": 14,
+    "col": 11,
+    "ward_name": "Barakhamba Road High-Rise Corridor",
+    "bounds": [
+      77.22375,
+      28.637875,
+      77.225,
+      28.638938
+    ],
+    "center": [
+      77.224375,
+      28.638406
+    ],
+    "lst_current": 44.6,
+    "ta_current": 41.1,
+    "lst_after": 41.4,
+    "ta_after": 39.0,
+    "cooling_potential": 3.2,
+    "population": 3231,
+    "vulnerability_score": 0.67,
+    "canopy_pct": 10,
+    "drivers": {
+      "ndvi": 0.15,
+      "albedo": 0.15,
+      "building_density": 0.61,
+      "sky_view_factor": 0.41,
+      "imperviousness": 0.79,
+      "traffic_density": 0.8
+    },
+    "energy_balance": {
+      "H": 312,
+      "LE": 51,
+      "G": 117,
+      "QF": 60
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_1119638719",
+      "name": "Building Block",
+      "type": "apartments",
+      "height": 63.0,
+      "centroid": [
+        77.224429,
+        28.638413
+      ],
+      "coordinates": [
+        [
+          77.224346,
+          28.638416
+        ],
+        [
+          77.22443,
+          28.638368
+        ],
+        [
+          77.224477,
+          28.638432
+        ],
+        [
+          77.224392,
+          28.638481
+        ],
+        [
+          77.224418,
+          28.638516
+        ],
+        [
+          77.224433,
+          28.638508
+        ],
+        [
+          77.224467,
+          28.638555
+        ],
+        [
+          77.224449,
+          28.638565
+        ],
+        [
+          77.22449,
+          28.638619
+        ],
+        [
+          77.224498,
+          28.638614
+        ],
+        [
+          77.224504,
+          28.638622
+        ],
+        [
+          77.224499,
+          28.638625
+        ],
+        [
+          77.224508,
+          28.638637
+        ],
+        [
+          77.22451,
+          28.638635
+        ],
+        [
+          77.224526,
+          28.638657
+        ],
+        [
+          77.224596,
+          28.638617
+        ],
+        [
+          77.224588,
+          28.638607
+        ],
+        [
+          77.224622,
+          28.638587
+        ],
+        [
+          77.22463,
+          28.638598
+        ],
+        [
+          77.224677,
+          28.638571
+        ],
+        [
+          77.224683,
+          28.638578
+        ],
+        [
+          77.224703,
+          28.638566
+        ],
+        [
+          77.224584,
+          28.638407
+        ],
+        [
+          77.224644,
+          28.638373
+        ],
+        [
+          77.224559,
+          28.638258
+        ],
+        [
+          77.224501,
+          28.638291
+        ],
+        [
+          77.224383,
+          28.638132
+        ],
+        [
+          77.224363,
+          28.638143
+        ],
+        [
+          77.224368,
+          28.63815
+        ],
+        [
+          77.224321,
+          28.638177
+        ],
+        [
+          77.224329,
+          28.638188
+        ],
+        [
+          77.224295,
+          28.638207
+        ],
+        [
+          77.224287,
+          28.638197
+        ],
+        [
+          77.224217,
+          28.638237
+        ],
+        [
+          77.224234,
+          28.638258
+        ],
+        [
+          77.224231,
+          28.63826
+        ],
+        [
+          77.22424,
+          28.638272
+        ],
+        [
+          77.224245,
+          28.638269
+        ],
+        [
+          77.224251,
+          28.638277
+        ],
+        [
+          77.224242,
+          28.638282
+        ],
+        [
+          77.224282,
+          28.638336
+        ],
+        [
+          77.2243,
+          28.638326
+        ],
+        [
+          77.224334,
+          28.638372
+        ],
+        [
+          77.22432,
+          28.63838
+        ],
+        [
+          77.224346,
+          28.638416
+        ]
+      ],
+      "heat_contribution_offset": 2.3,
+      "heat_driver_value": 0.89,
+      "attribution": {
+        "low_albedo": 0.91,
+        "building_height_trap": 0.73,
+        "impervious_ground": 0.32,
+        "lack_of_canopy": 0.3
+      }
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_CELL_14_11_0",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.223912,
+        28.638183
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_14_11_1",
+      "type": "tree",
+      "species": "Pipal Canopy",
+      "position": [
+        77.224375,
+        28.63881
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.73
+    },
+    {
+      "id": "tree_CELL_14_11_2",
+      "type": "tree",
+      "species": "Amaltas (Golden Shower)",
+      "position": [
+        77.224837,
+        28.638375
+      ],
+      "radius": 7.0,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.81
+    },
+    {
+      "id": "tree_CELL_14_11_3",
+      "type": "tree",
+      "species": "Banyan Shield",
+      "position": [
+        77.22405,
+        28.637939
+      ],
+      "radius": 8.5,
+      "cooling_contribution": -0.8,
+      "canopy_density": 0.89
+    },
+    {
+      "id": "tree_CELL_14_11_4",
+      "type": "tree",
+      "species": "Jamun Tree",
+      "position": [
+        77.224512,
+        28.638566
+      ],
+      "radius": 4.0,
+      "cooling_contribution": -1.2,
+      "canopy_density": 0.65
+    },
+    {
+      "id": "tree_CELL_14_11_5",
+      "type": "tree",
+      "species": "Neem (Azadirachta indica)",
+      "position": [
+        77.224975,
+        28.63813
+      ],
+      "radius": 5.5,
+      "cooling_contribution": -1.6,
+      "canopy_density": 0.73
+    }
+  ],
+  "note": "Tree positions are scattered proportional to canopy cover percentage (illustrative)."
+}
