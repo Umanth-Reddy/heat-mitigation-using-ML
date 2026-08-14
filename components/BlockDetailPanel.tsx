@@ -29,6 +29,7 @@ export default function BlockDetailPanel({
   const cell = blockData.cell;
   const drivers = cell.drivers;
   const energy = cell.energy_balance;
+  const selectedObjectName = selectedObject?.name || selectedObject?.species;
 
   const driverChartData = [
     { name: "Bldg Density", value: Math.round(drivers.building_density * 100), color: "#e11d48" },
@@ -84,6 +85,12 @@ export default function BlockDetailPanel({
             -{cell.cooling_potential}°C
           </span>
         </div>
+
+        {selectedObjectName && (
+          <div className="mt-2 p-2 rounded bg-sky-950/30 border border-sky-500/20 text-[10px] text-sky-200">
+            Inspecting: <span className="font-mono text-slate-100">{selectedObjectName}</span>
+          </div>
+        )}
       </div>
 
       {/* Drivers Breakdown */}
