@@ -5,6 +5,10 @@ import React from "react";
 interface HeaderProps {
   showHeatmapOverlay: boolean;
   onToggleHeatmapOverlay: (show: boolean) => void;
+  heatmapMode: "dynamic" | "raster";
+  onSetHeatmapMode: (mode: "dynamic" | "raster") => void;
+  rasterOpacity: number;
+  onSetRasterOpacity: (opacity: number) => void;
   afterInterventions: boolean;
   onToggleAfterInterventions: (after: boolean) => void;
   onOpenInterventions: () => void;
@@ -15,6 +19,10 @@ interface HeaderProps {
 export default function Header({
   showHeatmapOverlay,
   onToggleHeatmapOverlay,
+  heatmapMode,
+  onSetHeatmapMode,
+  rasterOpacity,
+  onSetRasterOpacity,
   afterInterventions,
   onToggleAfterInterventions,
   onOpenInterventions,
@@ -41,6 +49,44 @@ export default function Header({
 
       {/* Control Buttons */}
       <div className="flex items-center gap-2 text-xs">
+        <div className="flex items-center gap-2 bg-zinc-950 border border-zinc-800 rounded px-2 py-1.5">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500">View</span>
+          <div className="flex bg-zinc-900 p-0.5 rounded border border-zinc-800">
+            <button
+              onClick={() => onSetHeatmapMode("dynamic")}
+              className={`px-2.5 py-1 rounded text-[10px] font-medium transition-colors ${
+                heatmapMode === "dynamic"
+                  ? "bg-zinc-100 text-zinc-950"
+                  : "text-zinc-400 hover:text-zinc-200"
+              }`}
+            >
+              Dynamic
+            </button>
+            <button
+              onClick={() => onSetHeatmapMode("raster")}
+              className={`px-2.5 py-1 rounded text-[10px] font-medium transition-colors ${
+                heatmapMode === "raster"
+                  ? "bg-zinc-100 text-zinc-950"
+                  : "text-zinc-400 hover:text-zinc-200"
+              }`}
+            >
+              Rasterized
+            </button>
+          </div>
+          <label className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-zinc-400">
+            <span>Opacity</span>
+            <input
+              type="range"
+              min={0.1}
+              max={0.9}
+              step={0.05}
+              value={rasterOpacity}
+              onChange={(e) => onSetRasterOpacity(Number(e.target.value))}
+              className="accent-zinc-100 w-20"
+            />
+          </label>
+        </div>
+
         {/* Heatmap Overlay Toggle */}
         <button
           onClick={() => onToggleHeatmapOverlay(!showHeatmapOverlay)}

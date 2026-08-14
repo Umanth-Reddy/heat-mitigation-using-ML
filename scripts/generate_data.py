@@ -388,33 +388,33 @@ with open("public/data/grid.geojson", "w") as f:
 print("Generating raster PNG overlay images for Current & After LST...")
 
 def get_lst_color(lst):
-    # Color scale: 
-    # 38°C -> Blue/Teal (30, 144, 255)
-    # 40°C -> Green/Yellow (76, 175, 80)
-    # 42°C -> Yellow (255, 235, 59)
-    # 44°C -> Orange (255, 152, 0)
-    # >=46°C -> Crimson Red (211, 47, 47)
-    norm = min(1.0, max(0.0, (lst - 38.0) / 10.0))
-    if norm < 0.25:
-        t = norm / 0.25
-        r = int(30 + t * (76 - 30))
-        g = int(144 + t * (175 - 144))
-        b = int(255 + t * (80 - 255))
-    elif norm < 0.5:
-        t = (norm - 0.25) / 0.25
-        r = int(76 + t * (255 - 76))
-        g = int(175 + t * (235 - 175))
-        b = int(80 + t * (59 - 80))
-    elif norm < 0.75:
-        t = (norm - 0.5) / 0.25
+    # 40°C starts at yellow, then moves through amber, orange, red, and deep red.
+    norm = min(1.0, max(0.0, (lst - 40.0) / 8.0))
+    if norm < 0.2:
+        t = norm / 0.2
+        r = int(255 + t * (255 - 255))
+        g = int(247 + t * (235 - 247))
+        b = int(176 + t * (59 - 176))
+    elif norm < 0.45:
+        t = (norm - 0.2) / 0.25
         r = int(255)
-        g = int(235 + t * (152 - 235))
-        b = int(59 + t * (0 - 59))
+        g = int(235 + t * (193 - 235))
+        b = int(59 + t * (7 - 59))
+    elif norm < 0.7:
+        t = (norm - 0.45) / 0.25
+        r = int(255)
+        g = int(193 + t * (152 - 193))
+        b = int(7 + t * (0 - 7))
+    elif norm < 0.9:
+        t = (norm - 0.7) / 0.2
+        r = int(255 + t * (244 - 255))
+        g = int(152 + t * (67 - 152))
+        b = int(0 + t * (54 - 0))
     else:
-        t = (norm - 0.75) / 0.25
-        r = int(255 + t * (211 - 255))
-        g = int(152 + t * (47 - 152))
-        b = int(0 + t * (47 - 0))
+        t = (norm - 0.9) / 0.1
+        r = int(244 + t * (183 - 244))
+        g = int(67 + t * (28 - 67))
+        b = int(54 + t * (28 - 54))
     return (r, g, b, 200) # RGBA with 200 alpha for transparency
 
 # Image resolution: 512x512 matched to grid

@@ -38,6 +38,8 @@ export default function Home() {
 
   // State management
   const [showHeatmapOverlay, setShowHeatmapOverlay] = useState<boolean>(true);
+  const [heatmapMode, setHeatmapMode] = useState<"dynamic" | "raster">("raster");
+  const [rasterOpacity, setRasterOpacity] = useState<number>(0.32);
   const [afterInterventions, setAfterInterventions] = useState<boolean>(false);
   const [activeCell, setActiveCell] = useState<any>(null);
   const [blockData, setBlockData] = useState<any>(null);
@@ -82,8 +84,6 @@ export default function Home() {
         .then((res) => res.json())
         .then((data) => setBlockData(data))
         .catch((err) => console.error(`Error loading block ${cellId}:`, err));
-    } else {
-      setBlockData(null);
     }
   }, [activeCell]);
 
@@ -174,6 +174,10 @@ export default function Home() {
       <Header
         showHeatmapOverlay={showHeatmapOverlay}
         onToggleHeatmapOverlay={setShowHeatmapOverlay}
+        heatmapMode={heatmapMode}
+        onSetHeatmapMode={setHeatmapMode}
+        rasterOpacity={rasterOpacity}
+        onSetRasterOpacity={setRasterOpacity}
         afterInterventions={afterInterventions}
         onToggleAfterInterventions={setAfterInterventions}
         onOpenInterventions={() => setShowInterventions(true)}
@@ -185,6 +189,8 @@ export default function Home() {
       <main className="relative flex-1 w-full h-full pt-16">
         <MapView
           showHeatmapOverlay={showHeatmapOverlay}
+          heatmapMode={heatmapMode}
+          rasterOpacity={rasterOpacity}
           afterInterventions={afterInterventions}
           gridGeoJson={gridGeoJson}
           allBuildings={allBuildings}
