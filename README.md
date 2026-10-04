@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UshnaRaksha — Heat-Health Early Warning (frontend prototype)
 
-## Getting Started
+SIH 2026 · Problem Statement SIH26083 · Team "Good Team".
 
-First, run the development server:
+UshnaRaksha turns weather and vulnerability data into ward-level **human thermal stress** (WBGT / UTCI) risk, a
+3–5 day forecast, predicted heat admissions and deaths, and human-approved alerts. This repo is a **frontend-only
+prototype** for the demo video: everything is static JSON and **all data is simulated**.
+
+## The four tabs
+
+| Tab | Shortcut | What it shows |
+|---|---|---|
+| **Early Warning** | `1` | Ward risk map (IMD tiers or vulnerability), 6-day forecast timeline, city outlook, ward detail with forecast charts, SHAP "why flagged", who is at risk and actions. |
+| **Alerts** | `2` | Alert queue, SMS / WhatsApp (English and Hindi) / CAP XML previews, and a human "Approve & dispatch" flow. |
+| **Model Insights** | `3` | Pipeline, DLNM exposure–response, TFT backtest and comparison with baseline systems. |
+| **Urban Planning** | `4` | The original 3D heat-attribution tool (cool roofs and green cover interventions). |
+
+Other shortcuts on the Early Warning tab: `←` / `→` change the forecast day, `Space` plays or pauses, `Esc` closes the ward panel.
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`dev` and `build` use `--webpack` on purpose (MapLibre's worker setup does not work with Turbopack).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Regenerate the risk data
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+python3 scripts/generate_risk_data.py
+```
 
-## Learn More
+It reads only `public/data/grid.geojson`, uses the standard library, is seeded (same output every time), needs no
+network, and writes `public/data/risk/*.json`. **Do not re-run `scripts/generate_data.py`** — it downloads from OpenStreetMap and
+would change the Urban Planning data.
 
-To learn more about Next.js, take a look at the following resources:
+## More
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `docs/USHNARAKSHA_SPEC.md` — the full design spec (the prototype was built to a reduced scope of it).
+- Stack: Next.js 16 (App Router), React 19, Tailwind 4, deck.gl + MapLibre, Recharts, zustand.
+- Everything shown is simulated; nothing here is a real forecast or real health data.
