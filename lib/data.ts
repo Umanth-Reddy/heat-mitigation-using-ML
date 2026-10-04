@@ -76,3 +76,25 @@ export function useRiskData(): RiskDataState {
 
   return state;
 }
+
+let gridCache: GeoJSON.FeatureCollection | null = null;
+
+/** The 256-zone grid (shared with the Planning tab). Null until loaded. */
+export function useGridGeoJson(): GeoJSON.FeatureCollection | null {
+  const [grid, setGrid] = useState<GeoJSON.FeatureCollection | null>(gridCache);
+  useEffect(() => {
+    if (gridCache) return;
+    let live = true;
+    fetch("/data/grid.geojson")
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`grid.geojson: HTTP ${r.status}`))))
+      .then((g: GeoJSON.FeatureCollection) => {
+        gridCache = g;
+        if (live) setGrid(g);
+      })
+      .catch((e) => console.error(e));
+    return () => {
+      live = false;
+    };
+  }, []);
+  return grid;
+}

@@ -20,3 +20,31 @@ export function worstTier(byTier: number[]): TierId {
   for (let t = 3; t >= 0; t--) if (byTier[t] > 0) return t as TierId;
   return 0;
 }
+
+const VULN_STOPS: [number, [number, number, number]][] = [
+  [0.2, hexToRgb("#2e1065")],
+  [0.55, hexToRgb("#a78bfa")],
+  [0.9, hexToRgb("#f5f3ff")],
+];
+export const VULN_MIN = VULN_STOPS[0][0];
+export const VULN_MAX = VULN_STOPS[2][0];
+export const VULN_GRADIENT_CSS = `linear-gradient(90deg, ${VULN_STOPS.map(([, c]) => `rgb(${c.join(",")})`).join(", ")})`;
+
+/** Sequential violet ramp across 0.2–0.9. */
+export function vulnerabilityColor(v: number): [number, number, number] {
+  const x = Math.max(VULN_MIN, Math.min(VULN_MAX, v));
+  for (let i = 0; i < VULN_STOPS.length - 1; i++) {
+    const [a, ca] = VULN_STOPS[i];
+    const [b, cb] = VULN_STOPS[i + 1];
+    if (x <= b) {
+      const t = (x - a) / (b - a);
+      return [0, 1, 2].map((k) => Math.round(ca[k] + (cb[k] - ca[k]) * t)) as [number, number, number];
+    }
+  }
+  return VULN_STOPS[2][1];
+}
+
+/** "Today" for day 0, otherwise "Tue 19". */
+export function dayTitle(d: { index: number; weekday: string; short: string }): string {
+  return d.index === 0 ? "Today" : `${d.weekday} ${d.short.split(" ")[0]}`;
+}

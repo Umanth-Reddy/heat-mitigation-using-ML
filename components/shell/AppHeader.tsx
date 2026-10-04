@@ -2,6 +2,7 @@
 
 import { Sun } from "lucide-react";
 import { selectPendingCount, useStore, type TabId } from "@/lib/store";
+import { formatIssued } from "@/lib/format";
 import type { RiskMeta } from "@/lib/types";
 
 const TABS: { id: TabId; label: string }[] = [
@@ -10,13 +11,6 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "models", label: "Model Insights" },
   { id: "planning", label: "Urban Planning" },
 ];
-
-function formatIssued(iso: string): string {
-  const d = new Date(iso);
-  const date = d.toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "Asia/Kolkata" });
-  const time = d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Asia/Kolkata" });
-  return `Issued ${date}, ${time} IST`;
-}
 
 export default function AppHeader({ meta }: { meta: RiskMeta }) {
   const activeTab = useStore((s) => s.activeTab);
@@ -65,7 +59,7 @@ export default function AppHeader({ meta }: { meta: RiskMeta }) {
 
       <div className="flex items-center justify-end gap-4 min-w-[300px]">
         <span className="text-sm text-text">New Delhi · Pilot</span>
-        <span className="text-xs font-mono text-muted">{formatIssued(meta.issued_at)}</span>
+        <span className="text-xs font-mono text-muted">Issued {formatIssued(meta.issued_at)}</span>
         <span className="px-2.5 py-1 rounded-full border border-border text-xs text-muted">Simulated data</span>
       </div>
     </header>
