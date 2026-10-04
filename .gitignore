@@ -1,3 +1,13 @@
 node_modules/
 .next/
 
+
+# local planning notes (not part of the product)
+planning/
+
+# rewritten by `next dev`
+AGENTS.md
+CLAUDE.md
+
+# editor lock files
+.~lock.*
