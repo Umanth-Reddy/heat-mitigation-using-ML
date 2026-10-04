@@ -31,15 +31,13 @@ function windowLabel(window: string): string {
 function LeadCurve({ impact }: { impact: ImpactData }) {
   const [lead, setLead] = useState(3);
   const point = impact.lead_curve.find((p) => p.lead_days === lead)!;
-  const m1 = impact.lead_curve.find((p) => p.lead_days === 1)!;
-  const m3 = impact.lead_curve.find((p) => p.lead_days === 3)!;
+  // Markers use the scenario totals so they match the hero and bars (the conventional system also acts only from Orange).
+  const conventional = impact.scenarios.find((s) => s.id === "conventional")!;
+  const ushnaraksha = impact.scenarios.find((s) => s.id === "ushnaraksha")!;
   const label = lead === 1 ? "1 day's" : `${lead} days'`;
 
   return (
-    <Card
-      title="Earlier warning saves more lives"
-      caption="The curve gives every day the full lead time; the 6-day scenario above caps lead at days since issue, so its totals (3.8 and 6.9) are a little lower."
-    >
+    <Card title="Earlier warning saves more lives">
       <div className="h-52">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={impact.lead_curve} margin={{ top: 26, right: 24, left: -8, bottom: 16 }}>
@@ -49,8 +47,8 @@ function LeadCurve({ impact }: { impact: ImpactData }) {
             <Tooltip {...tooltipProps} labelFormatter={(v) => `${v} day lead`} formatter={(v: any, n: any) => [Number(v).toFixed(1), n]} />
             <Area dataKey="deaths_averted" name="Deaths averted" type="monotone" stroke="none" fill={CHART.brand} fillOpacity={0.2} isAnimationActive={false} />
             <Line dataKey="deaths_averted" name="Deaths averted" type="monotone" stroke={CHART.brand} strokeWidth={2.5} dot={false} isAnimationActive={false} />
-            <ReferenceDot x={1} y={m1.deaths_averted} r={6} fill={MUTED_AMBER} stroke="#07090c" strokeWidth={2} label={{ value: "Conventional", position: "top", fill: CHART.axis, fontSize: 12 }} />
-            <ReferenceDot x={3} y={m3.deaths_averted} r={6} fill={CHART.brand} stroke="#07090c" strokeWidth={2} label={{ value: "UshnaRaksha", position: "top", fill: CHART.text, fontSize: 12 }} />
+            <ReferenceDot x={1} y={conventional.deaths_averted} r={6} fill={MUTED_AMBER} stroke="#07090c" strokeWidth={2} label={{ value: "Conventional", position: "top", fill: CHART.axis, fontSize: 12 }} />
+            <ReferenceDot x={3} y={ushnaraksha.deaths_averted} r={6} fill={CHART.brand} stroke="#07090c" strokeWidth={2} label={{ value: "UshnaRaksha", position: "top", fill: CHART.text, fontSize: 12 }} />
             <ReferenceDot x={lead} y={point.deaths_averted} r={9} fill="none" stroke={CHART.text} strokeWidth={2.5} />
           </ComposedChart>
         </ResponsiveContainer>

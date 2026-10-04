@@ -6,9 +6,31 @@ interface ObjectPopupProps {
   object: any;
   onClose: () => void;
   onReadMore: () => void;
+  /** The detail drawer needs a selected block; without one we show a hint instead of a dead button. */
+  canReadMore: boolean;
 }
 
-export default function ObjectPopup({ object, onClose, onReadMore }: ObjectPopupProps) {
+const DRIVER_LABELS: Record<string, string> = {
+  low_albedo: "Low rooftop albedo",
+  building_height_trap: "Height / sky-view trap",
+  impervious_ground: "Impervious ground",
+  lack_of_canopy: "Lack of canopy",
+};
+
+/** Built from the object's own data: the two largest attribution values for a building; canopy facts for a tree. */
+function driversText(object: any, isBuilding: boolean): string {
+  if (isBuilding) {
+    const top = Object.entries(object.attribution ?? {})
+      .filter(([k]) => k in DRIVER_LABELS)
+      .sort((a: any, b: any) => b[1] - a[1])
+      .slice(0, 2)
+      .map(([k, v]: any) => `${DRIVER_LABELS[k]} (+${Number(v).toFixed(2)}°C)`);
+    return top.length ? top.join(" and ") : "No attribution available for this building.";
+  }
+  return `Canopy shading (${object.radius} m radius, density ${object.canopy_density}) and evapotranspiration.`;
+}
+
+export default function ObjectPopup({ object, onClose, onReadMore, canReadMore }: ObjectPopupProps) {
   if (!object) return null;
 
   const isBuilding = object.object_type === "building";
@@ -51,18 +73,20 @@ export default function ObjectPopup({ object, onClose, onReadMore }: ObjectPopup
 
         <div className="text-[11px] text-slate-300">
           <span className="text-slate-400">Primary Drivers: </span>
-          {isBuilding
-            ? "Low rooftop solar reflectivity & high surface imperviousness."
-            : "High evapotranspiration rate & localized canopy shading."}
+          {driversText(object, isBuilding)}
         </div>
       </div>
 
-      <button
-        onClick={onReadMore}
-        className="w-full py-1.5 px-3 rounded bg-slate-800 hover:bg-slate-700 text-sky-400 text-xs font-semibold border border-slate-700 transition-colors text-center"
-      >
-        Read Detailed SHAP Attribution →
-      </button>
+      {canReadMore ? (
+              <button
+                onClick={onReadMore}
+                className="w-full py-1.5 px-3 rounded bg-slate-800 hover:bg-slate-700 text-sky-400 text-xs font-semibold border border-slate-700 transition-colors text-center"
+              >
+                Read Detailed SHAP Attribution →
+              </button>
+      ) : (
+        <div className="text-[11px] text-slate-400 text-center py-1.5">Click a block on the map to open the detailed attribution.</div>
+      )}
     </div>
   );
 }

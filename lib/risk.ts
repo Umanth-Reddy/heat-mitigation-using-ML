@@ -113,3 +113,10 @@ export function fmtCompact(n: number): string {
 }
 
 export const CC_BLUE = "#38bdf8";
+
+/** IMD-style tier for a WBGT value: the highest tier whose lower bound is reached (same rule as the data generator). */
+export function tierOfWbgt(tiers: { id: number; wbgt_min: number | null }[], wbgt: number): TierId {
+  let tier = 0;
+  for (const t of tiers) if (t.wbgt_min !== null && wbgt >= t.wbgt_min) tier = t.id;
+  return tier as TierId;
+}

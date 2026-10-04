@@ -1,6 +1,6 @@
 "use client";
 
-import { Sun } from "lucide-react";
+import { Calculator, Sun } from "lucide-react";
 import { selectPendingCount, useStore, type TabId } from "@/lib/store";
 import { formatIssued } from "@/lib/format";
 import type { RiskMeta } from "@/lib/types";
@@ -11,6 +11,7 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "impact", label: "Impact" },
   { id: "models", label: "Model Insights" },
   { id: "planning", label: "Urban Planning" },
+  { id: "how", label: "How it works" },
 ];
 
 export default function AppHeader({ meta }: { meta: RiskMeta }) {
@@ -18,6 +19,8 @@ export default function AppHeader({ meta }: { meta: RiskMeta }) {
   const setTab = useStore((s) => s.setTab);
   const overrides = useStore((s) => s.alertOverrides);
   const pending = selectPendingCount(overrides);
+  const calcOpen = useStore((s) => s.calculatorOpen);
+  const setCalcOpen = useStore((s) => s.setCalculatorOpen);
 
   return (
     <header className="relative z-40 h-14 shrink-0 flex items-center justify-between px-5 border-b border-border bg-bg">
@@ -59,6 +62,14 @@ export default function AppHeader({ meta }: { meta: RiskMeta }) {
       </nav>
 
       <div className="flex items-center justify-end gap-4 min-w-[300px]">
+        <button
+          onClick={() => setCalcOpen(!calcOpen)}
+          aria-pressed={calcOpen}
+          title="Shortcut: C"
+          className={`flex items-center gap-2 px-3.5 h-9 rounded-lg text-sm border transition-colors ${calcOpen ? "border-brand text-text bg-white/10" : "border-border text-muted hover:text-text hover:bg-white/5"}`}
+        >
+          <Calculator className="w-4 h-4" /> Calculator
+        </button>
         <span className="text-sm text-text">New Delhi · Pilot</span>
         <span className="text-xs font-mono text-muted">Issued {formatIssued(meta.issued_at)}</span>
         <span className="px-2.5 py-1 rounded-full border border-border text-xs text-muted">Simulated data</span>

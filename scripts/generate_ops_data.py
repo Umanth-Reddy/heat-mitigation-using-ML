@@ -145,7 +145,8 @@ for lead in range(0, 6):
     for d in range(N_DAYS):
         for w in wards:
             wd = w["days"][d]
-            dd += wd["deaths"]["mean"] * (1 - reduction(wd["tier"], lead))
+            # same cap as the scenarios: a warning issued today can only have min(lead, d) days of notice on day d
+            dd += wd["deaths"]["mean"] * (1 - reduction(wd["tier"], min(lead, d)))
     lead_curve.append({"lead_days": lead, "deaths_averted": r1(base["deaths"] - dd),
                        "pct_reduction": round((base["deaths"] - dd) / base["deaths"] * 100, 1)})
 

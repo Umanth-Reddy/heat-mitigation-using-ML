@@ -184,6 +184,7 @@ export default function PlanningView() {
             object={selectedObject}
             onClose={() => setSelectedObject(null)}
             onReadMore={() => setShowReadMore(true)}
+            canReadMore={!!blockData}
           />
         )}
       </main>
@@ -193,6 +194,7 @@ export default function PlanningView() {
         <ReadMoreDrawer
           object={selectedObject}
           blockData={blockData}
+          interventions={interventions}
           onClose={() => setShowReadMore(false)}
         />
       )}

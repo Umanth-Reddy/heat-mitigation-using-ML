@@ -5,6 +5,7 @@ const PLAY_INTERVAL_MS = 1600;
 
 function isTypingTarget(t: EventTarget | null): boolean {
   if (!(t instanceof HTMLElement)) return false;
+  if (t instanceof HTMLInputElement && ["range", "checkbox", "radio", "button"].includes(t.type)) return false; // sliders etc. don't type
   return t.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(t.tagName);
 }
 
@@ -35,8 +36,10 @@ export function useShellEffects() {
         return;
       }
       if (e.key === "i" || e.key === "I") return s.openIntro();
-      const tabs = ["warning", "alerts", "impact", "models", "planning"] as const;
-      if (e.key >= "1" && e.key <= "5") return s.setTab(tabs[Number(e.key) - 1]);
+      if (e.key === "c" || e.key === "C") return s.setCalculatorOpen(!s.calculatorOpen);
+      if (e.key === "Escape" && s.calculatorOpen) return s.setCalculatorOpen(false);
+      const tabs = ["warning", "alerts", "impact", "models", "planning", "how"] as const;
+      if (e.key >= "1" && e.key <= "6") return s.setTab(tabs[Number(e.key) - 1]);
       if (s.activeTab !== "warning") return;
       if (e.key === "ArrowLeft") s.stepDay(-1);
       else if (e.key === "ArrowRight") s.stepDay(1);

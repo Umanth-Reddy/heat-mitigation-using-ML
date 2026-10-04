@@ -34,7 +34,7 @@ export default function InterventionsDrawer({
       ? interventions.filter((i) => i.cost_lakhs <= 10)
       : selectedTier === "50L"
       ? interventions.filter((i) => i.cost_lakhs <= 50)
-      : interventions;
+      : interventions.filter((i) => i.cost_lakhs <= 100);
 
   const scatterData = filteredList.map((item) => ({
     name: item.title,
@@ -68,7 +68,7 @@ export default function InterventionsDrawer({
         {/* Budget Tier Selector Slider */}
         <div className="bg-slate-900/80 p-3.5 rounded border border-slate-800">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-            <span>Budget Tier Slider</span>
+            <span>Budget tier</span>
             <span className="font-mono text-amber-400">
               {selectedTier === "ALL" ? "All Scenarios" : `Tier ₹${selectedTier}`}
             </span>

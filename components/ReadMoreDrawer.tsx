@@ -16,14 +16,29 @@ import {
 interface ReadMoreDrawerProps {
   object: any;
   blockData: any;
+  interventions: any[];
   onClose: () => void;
 }
 
-export default function ReadMoreDrawer({ object, blockData, onClose }: ReadMoreDrawerProps) {
+/**
+ * Pick the recommendation from interventions.json: the one planned for this cell if there is one,
+ * otherwise the best cooling per rupee of the matching type (Cool Roof for buildings, Tree Canopy for trees).
+ */
+function recommendIntervention(interventions: any[], cellId: string | undefined, isBuilding: boolean): any | null {
+  const sameCell = interventions.find((i) => i.cell_id === cellId);
+  if (sameCell) return sameCell;
+  const type = isBuilding ? "Cool Roof" : "Tree Canopy";
+  const ofType = interventions.filter((i) => i.type === type && i.cost_inr > 0);
+  if (ofType.length === 0) return null;
+  return ofType.reduce((best, i) => (i.expected_cooling_c / i.cost_inr > best.expected_cooling_c / best.cost_inr ? i : best));
+}
+
+export default function ReadMoreDrawer({ object, blockData, interventions, onClose }: ReadMoreDrawerProps) {
   if (!object || !blockData) return null;
 
   const isBuilding = object.object_type === "building";
   const cell = blockData.cell;
+  const rec = recommendIntervention(interventions, cell.cell_id, isBuilding);
   const attr = object.attribution || {
     low_albedo: 0.65,
     building_height_trap: 0.48,
@@ -152,31 +167,32 @@ export default function ReadMoreDrawer({ object, blockData, onClose }: ReadMoreD
           </div>
         </div>
 
-        {/* Recommended Intervention */}
-        <div className="bg-slate-900/90 p-4 rounded border border-slate-800">
-          <div className="flex items-center justify-between text-xs font-bold text-sky-400 mb-1">
-            <span>Recommended Intervention</span>
-            <span className="text-emerald-400 font-mono">-3.8°C Drop</span>
-          </div>
-
-          <h4 className="text-xs font-bold text-slate-100 mt-1">
-            Solar Reflective Roof Coating (SRI &gt; 104)
-          </h4>
-          <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
-            Apply solar reflective elastomeric coating on building rooftops to increase surface reflectance, reducing sensible heat flux.
-          </p>
-
-          <div className="grid grid-cols-2 gap-2 mt-3 pt-2 border-t border-slate-800 text-[11px]">
-            <div>
-              <span className="text-slate-400 block text-[10px]">Estimated Cost</span>
-              <span className="font-mono font-bold text-slate-100">₹8.5 Lakhs</span>
+        {/* Recommended Intervention (from interventions.json) */}
+        {rec && (
+          <div className="bg-slate-900/90 p-4 rounded border border-slate-800">
+            <div className="flex items-center justify-between text-xs font-bold text-sky-400 mb-1">
+              <span>Recommended Intervention</span>
+              <span className="text-emerald-400 font-mono">-{rec.expected_cooling_c}°C Drop</span>
             </div>
-            <div>
-              <span className="text-slate-400 block text-[10px]">Equity Flag</span>
-              <span className="text-slate-200">High Density Transit Corridor</span>
+
+            <h4 className="text-xs font-bold text-slate-100 mt-1">{rec.title}</h4>
+            <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">{rec.description}</p>
+            <p className="text-[10px] text-slate-500 mt-1">
+              {rec.cell_id === cell.cell_id ? `Planned for this block (${rec.cell_id}).` : `Best cooling per rupee for ${isBuilding ? "buildings" : "trees"} (${rec.type}), planned in ${rec.cell_id}.`}
+            </p>
+
+            <div className="grid grid-cols-2 gap-2 mt-3 pt-2 border-t border-slate-800 text-[11px]">
+              <div>
+                <span className="text-slate-400 block text-[10px]">Estimated Cost</span>
+                <span className="font-mono font-bold text-slate-100">₹{rec.cost_lakhs} Lakhs</span>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[10px]">Equity Flag</span>
+                <span className="text-slate-200">{rec.equity_note}</span>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className="p-3 rounded bg-slate-900/50 border border-slate-800 text-[10px] text-slate-400 mt-auto">
           <span className="font-semibold text-slate-300">Model Note:</span> Predicted from Landsat 8 / ECOSTRESS LST + ground station microclimate calibration.

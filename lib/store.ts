@@ -3,7 +3,7 @@ import { getRiskDataSync } from "./data";
 import { REVIEWER, type AlertOverride } from "./alerts";
 import type { Channel } from "./types";
 
-export type TabId = "warning" | "alerts" | "impact" | "models" | "planning";
+export type TabId = "warning" | "alerts" | "impact" | "models" | "planning" | "how";
 export type RiskLayer = "wbgt" | "utci" | "vulnerability" | "lst";
 export type AlertChannelView = "sms" | "whatsapp" | "cap";
 export type AlertLang = "en" | "hi";
@@ -19,6 +19,7 @@ interface UiState {
   selectedFacilityId: string | null;
   introOpen: boolean;
   introClosing: boolean;
+  calculatorOpen: boolean;
   selectedWardId: string | null;
   selectedAlertId: string | null;
   playing: boolean;
@@ -35,6 +36,7 @@ interface UiState {
   setIs3D: (v: boolean) => void;
   setShowFacilities: (v: boolean) => void;
   selectFacility: (id: string | null) => void;
+  setCalculatorOpen: (v: boolean) => void;
   openIntro: () => void;
   /** Fade the title screen out (400 ms), then unmount it. */
   dismissIntro: () => void;
@@ -63,6 +65,7 @@ export const useStore = create<UiState>()((set, get) => ({
   selectedFacilityId: null,
   introOpen: false,
   introClosing: false,
+  calculatorOpen: false,
   selectedWardId: null,
   selectedAlertId: null,
   playing: false,
@@ -78,6 +81,7 @@ export const useStore = create<UiState>()((set, get) => ({
   setIs3D: (is3D) => set({ is3D }),
   setShowFacilities: (showFacilities) => set({ showFacilities, selectedFacilityId: null }),
   selectFacility: (selectedFacilityId) => set({ selectedFacilityId }),
+  setCalculatorOpen: (calculatorOpen) => set({ calculatorOpen }),
   openIntro: () => set({ introOpen: true, introClosing: false }),
   dismissIntro: () => {
     if (!get().introOpen || get().introClosing) return;
