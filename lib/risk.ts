@@ -21,27 +21,52 @@ export function worstTier(byTier: number[]): TierId {
   return 0;
 }
 
-const VULN_STOPS: [number, [number, number, number]][] = [
+type RampStop = [number, [number, number, number]];
+
+function rampColor(stops: RampStop[], v: number): [number, number, number] {
+  const x = Math.max(stops[0][0], Math.min(stops[stops.length - 1][0], v));
+  for (let i = 0; i < stops.length - 1; i++) {
+    const [a, ca] = stops[i];
+    const [b, cb] = stops[i + 1];
+    if (x <= b) {
+      const t = (x - a) / (b - a);
+      return [0, 1, 2].map((k) => Math.round(ca[k] + (cb[k] - ca[k]) * t)) as [number, number, number];
+    }
+  }
+  return stops[stops.length - 1][1];
+}
+
+const rampCss = (stops: RampStop[]) => `linear-gradient(90deg, ${stops.map(([, c]) => `rgb(${c.join(",")})`).join(", ")})`;
+
+const VULN_STOPS: RampStop[] = [
   [0.2, hexToRgb("#2e1065")],
   [0.55, hexToRgb("#a78bfa")],
   [0.9, hexToRgb("#f5f3ff")],
 ];
 export const VULN_MIN = VULN_STOPS[0][0];
 export const VULN_MAX = VULN_STOPS[2][0];
-export const VULN_GRADIENT_CSS = `linear-gradient(90deg, ${VULN_STOPS.map(([, c]) => `rgb(${c.join(",")})`).join(", ")})`;
+export const VULN_GRADIENT_CSS = rampCss(VULN_STOPS);
 
 /** Sequential violet ramp across 0.2–0.9. */
-export function vulnerabilityColor(v: number): [number, number, number] {
-  const x = Math.max(VULN_MIN, Math.min(VULN_MAX, v));
-  for (let i = 0; i < VULN_STOPS.length - 1; i++) {
-    const [a, ca] = VULN_STOPS[i];
-    const [b, cb] = VULN_STOPS[i + 1];
-    if (x <= b) {
-      const t = (x - a) / (b - a);
-      return [0, 1, 2].map((k) => Math.round(ca[k] + (cb[k] - ca[k]) * t)) as [number, number, number];
-    }
-  }
-  return VULN_STOPS[2][1];
+export const vulnerabilityColor = (v: number) => rampColor(VULN_STOPS, v);
+
+const UTCI_STOPS: RampStop[] = [
+  [36, hexToRgb("#f59e0b")],
+  [43, hexToRgb("#dc2626")],
+  [50, hexToRgb("#7f1d1d")],
+];
+export const UTCI_MIN = UTCI_STOPS[0][0];
+export const UTCI_MAX = UTCI_STOPS[2][0];
+export const UTCI_GRADIENT_CSS = rampCss(UTCI_STOPS);
+
+/** Sequential amber -> red -> deep-red ramp across 36–50 °C. */
+export const utciColor = (v: number) => rampColor(UTCI_STOPS, v);
+
+/** 3D extrusion height (m) of a zone for the active layer. */
+export function zoneElevation(layer: "wbgt" | "utci" | "vulnerability", cell: { vulnerability: number }, day: { wbgt: number; utci: number }): number {
+  if (layer === "wbgt") return Math.max(0, day.wbgt - 26) * 60;
+  if (layer === "utci") return Math.max(0, day.utci - 36) * 40;
+  return cell.vulnerability * 400;
 }
 
 /** "Today" for day 0, otherwise "Tue 19". */

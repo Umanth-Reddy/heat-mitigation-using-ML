@@ -33,6 +33,7 @@ export function useShellEffects() {
       if (e.key === "ArrowLeft") s.stepDay(-1);
       else if (e.key === "ArrowRight") s.stepDay(1);
       else if (e.key === "Escape") s.selectWard(null);
+      else if (e.key === "d" || e.key === "D") s.toggle3D();
       else if (e.key === " ") {
         e.preventDefault(); // no page scroll, and no click on a focused button
         s.togglePlay();

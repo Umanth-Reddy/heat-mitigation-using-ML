@@ -10,12 +10,12 @@ prototype** for the demo video: everything is static JSON and **all data is simu
 
 | Tab | Shortcut | What it shows |
 |---|---|---|
-| **Early Warning** | `1` | Ward risk map (IMD tiers or vulnerability), 6-day forecast timeline, city outlook, ward detail with forecast charts, SHAP "why flagged", who is at risk and actions. |
-| **Alerts** | `2` | Alert queue, SMS / WhatsApp (English and Hindi) / CAP XML previews, and a human "Approve & dispatch" flow. |
+| **Early Warning** | `1` | Ward risk map (WBGT tiers, UTCI or vulnerability; 2D/3D), 6-day forecast timeline, city outlook, ward detail with forecast charts, SHAP "why flagged", who is at risk and actions. |
+| **Alerts** | `2` | Alert queue, SMS / WhatsApp (English and Hindi) / CAP XML previews, a human "Approve & dispatch" flow, history and settings. |
 | **Model Insights** | `3` | Pipeline, DLNM exposure–response, TFT backtest and comparison with baseline systems. |
 | **Urban Planning** | `4` | The original 3D heat-attribution tool (cool roofs and green cover interventions). |
 
-Other shortcuts on the Early Warning tab: `←` / `→` change the forecast day, `Space` plays or pauses, `Esc` closes the ward panel.
+Other shortcuts on the Early Warning tab: `←` / `→` change the forecast day, `Space` plays or pauses, `D` toggles 3D, `Esc` closes the ward panel.
 
 ## Run it
 

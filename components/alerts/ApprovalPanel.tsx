@@ -3,6 +3,7 @@
 import { CheckCircle2 } from "lucide-react";
 import { channelProgress, CHANNEL_LABELS, effectiveStatus, DISPATCH_MS, REVIEWER, STATUS_LABELS, type AlertOverride } from "@/lib/alerts";
 import { fmtInt } from "@/lib/risk";
+import { useRiskData } from "@/lib/data";
 import { useStore } from "@/lib/store";
 import type { PendingAlert, Ward } from "@/lib/types";
 
@@ -15,15 +16,19 @@ interface Props {
 
 export default function ApprovalPanel({ alert, ward, override, now }: Props) {
   const approveSelected = useStore((s) => s.approveSelected);
+  const toggles = useStore((s) => s.channelToggles);
+  const { alerts } = useRiskData();
   const status = effectiveStatus(alert, override, now);
   const adm = ward?.days[alert.day_index].admissions;
+  const enabledChannels = alert.channels.filter((c) => toggles[c] ?? alerts?.settings.channels[c] ?? true);
+  const switchedOff = alert.channels.length - enabledChannels.length;
   const showProgress = status === "dispatching" || status === "sent";
   const sentAt = override?.dispatchStartedAt
     ? new Date(override.dispatchStartedAt + DISPATCH_MS).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit", timeZone: "Asia/Kolkata" })
     : null;
 
   return (
-    <aside className="w-[340px] shrink-0 border-l border-border overflow-y-auto p-5 flex flex-col gap-4">
+    <>
       <div className="card p-4 flex flex-col gap-4">
         <h2 className="text-sm font-semibold">Human-in-the-loop review</h2>
 
@@ -56,7 +61,7 @@ export default function ApprovalPanel({ alert, ward, override, now }: Props) {
         </label>
 
         {status === "pending_approval" && (
-          <button onClick={approveSelected} className="h-11 rounded-xl bg-brand text-black font-semibold text-sm hover:brightness-110 transition">
+          <button onClick={() => approveSelected(alert.id)} className="h-11 rounded-xl bg-brand text-black font-semibold text-sm hover:brightness-110 transition">
             Approve &amp; dispatch
           </button>
         )}
@@ -79,7 +84,7 @@ export default function ApprovalPanel({ alert, ward, override, now }: Props) {
       {showProgress && (
         <div className="card p-4 flex flex-col gap-3 anim-fade">
           <h3 className="text-sm font-semibold">Delivery</h3>
-          {alert.channels.map((c, i) => {
+          {enabledChannels.map((c, i) => {
             const p = channelProgress(override, i, now);
             const reach = c === "cap" ? null : alert.reach[c];
             return (
@@ -96,8 +101,9 @@ export default function ApprovalPanel({ alert, ward, override, now }: Props) {
               </div>
             );
           })}
+          {switchedOff > 0 && <p className="text-xs text-muted">{switchedOff} channel{switchedOff === 1 ? "" : "s"} switched off in Settings.</p>}
         </div>
       )}
-    </aside>
+    </>
   );
 }

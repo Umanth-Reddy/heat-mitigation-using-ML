@@ -1,8 +1,10 @@
 "use client";
 
 import { useMemo } from "react";
+import { Bar, Cell, ComposedChart, CartesianGrid, ErrorBar, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useRiskData } from "@/lib/data";
-import { dayLabel, fmtCompact, fmtInt, TIER_COLORS } from "@/lib/risk";
+import { dayLabel, fmtCompact, fmtInt, TIER_COLORS, worstTier } from "@/lib/risk";
+import { axisProps, CHART, gridProps, tooltipProps } from "@/components/charts/theme";
 import { useStore } from "@/lib/store";
 import type { CityDay, RiskMeta, TierId, Ward } from "@/lib/types";
 
@@ -29,6 +31,7 @@ export default function CityOutlook() {
   const dayIndex = useStore((s) => s.dayIndex);
   const selectedWardId = useStore((s) => s.selectedWardId);
   const selectWard = useStore((s) => s.selectWard);
+  const setDay = useStore((s) => s.setDay);
 
   const ranked = useMemo(
     () => (wards ? [...wards].sort((a, b) => b.days[dayIndex].risk_score - a.days[dayIndex].risk_score) : []),
@@ -36,6 +39,15 @@ export default function CityOutlook() {
   );
   if (!meta || !wards) return null;
   const d = meta.days[dayIndex];
+
+  const series = meta.days.map((x) => ({
+    day: x.index === 0 ? "Today" : x.weekday,
+    adm: x.admissions,
+    err: [x.admissions - x.admissions_lo, x.admissions_hi - x.admissions] as [number, number],
+    wbgt: x.wbgt_max,
+    color: TIER_COLORS[worstTier(x.wards_by_tier)],
+  }));
+  const gridPct = (d.grid_peak_mw / meta.grid_capacity_mw) * 100;
 
   const kpis = [
     { label: "Wards at orange or red", value: String(d.wards_by_tier[2] + d.wards_by_tier[3]), sub: `of ${meta.city.n_wards} wards` },
@@ -62,6 +74,33 @@ export default function CityOutlook() {
             <div className="text-xs text-muted font-mono tabular-nums mt-0.5">{k.sub}</div>
           </div>
         ))}
+      </div>
+
+      <div>
+        <div className="text-xs uppercase tracking-wider text-muted mb-2.5">6-day outlook</div>
+        <div className="h-44 -ml-2">
+          <ResponsiveContainer width="100%" height="100%">
+            <ComposedChart data={series} margin={{ top: 6, right: 0, left: -18, bottom: 0 }}>
+              <CartesianGrid {...gridProps} />
+              <XAxis dataKey="day" interval={0} {...axisProps} />
+              <YAxis yAxisId="a" {...axisProps} />
+              <YAxis yAxisId="w" orientation="right" domain={[28, 40]} {...axisProps} />
+              <Tooltip
+                {...tooltipProps}
+                cursor={{ fill: "rgba(255,255,255,0.05)" }}
+                formatter={(v: any, n: any) => [n === "WBGT max" ? `${Number(v).toFixed(1)} °C` : Array.isArray(v) ? `−${v[0].toFixed(1)} / +${v[1].toFixed(1)}` : Number(v).toFixed(1), n]}
+              />
+              <Bar yAxisId="a" dataKey="adm" name="Admissions" barSize={22} radius={[3, 3, 0, 0]} cursor="pointer" onClick={(_: any, i: number) => setDay(i)}>
+                {series.map((x, i) => (
+                  <Cell key={i} fill={x.color} fillOpacity={i === dayIndex ? 1 : 0.45} stroke={i === dayIndex ? CHART.text : "none"} strokeWidth={2} />
+                ))}
+                <ErrorBar dataKey="err" width={5} stroke={CHART.text} strokeWidth={1.5} />
+              </Bar>
+              <Line yAxisId="w" dataKey="wbgt" name="WBGT max" stroke={CHART.text} strokeWidth={2} dot={{ r: 3, fill: CHART.text, stroke: "none" }} isAnimationActive={false} />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+        <p className="text-xs text-muted mt-1.5">Bars: predicted admissions with 80% range, coloured by the day&apos;s worst ward tier. Line: max WBGT (right axis). Click a bar to pick the day.</p>
       </div>
 
       <div>
@@ -97,6 +136,34 @@ export default function CityOutlook() {
             );
           })}
         </ul>
+      </div>
+
+      <div>
+        <div className="text-xs uppercase tracking-wider text-muted mb-2.5">Resources needed · {dayLabel(d)}</div>
+        <div className="grid grid-cols-3 gap-2.5">
+          {[
+            { label: "Beds", value: d.beds_needed },
+            { label: "Ambulances", value: d.ambulances },
+            { label: "Cooling centres", value: d.cooling_centres_active },
+          ].map((r) => (
+            <div key={r.label} className="rounded-xl border border-border bg-white/[0.03] p-3">
+              <div className="text-xs text-muted">{r.label}</div>
+              <div className="text-2xl font-mono tabular-nums font-medium mt-0.5">{r.value}</div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 rounded-xl border border-border bg-white/[0.03] p-3">
+          <div className="flex items-baseline justify-between text-xs mb-1.5">
+            <span className="text-muted">Grid peak load</span>
+            <span className="font-mono tabular-nums">
+              {d.grid_peak_mw} / {meta.grid_capacity_mw} MW · {gridPct.toFixed(0)}%
+            </span>
+          </div>
+          <div className="h-2.5 rounded-full bg-white/10 overflow-hidden" role="progressbar" aria-valuenow={Math.round(gridPct)} aria-valuemin={0} aria-valuemax={100}>
+            <div className="h-full rounded-full transition-all duration-300" style={{ width: `${Math.min(100, gridPct)}%`, background: gridPct > 95 ? TIER_COLORS[3] : CHART.brand }} />
+          </div>
+          {gridPct > 95 && <div className="text-xs mt-1.5" style={{ color: "#f87171" }}>Above 95% of capacity: plan load shifting</div>}
+        </div>
       </div>
     </aside>
   );

@@ -1,7 +1,9 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import { Area, CartesianGrid, ComposedChart, Line, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Area, Bar, BarChart, CartesianGrid, Cell, ComposedChart, ErrorBar, LabelList, Line, ReferenceLine, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis, ZAxis,
+} from "recharts";
 import { useRiskData } from "@/lib/data";
 import { axisProps, CHART, gridProps, tooltipProps } from "@/components/charts/theme";
 import type { ModelsData } from "@/lib/types";
@@ -18,6 +20,18 @@ function Panel({ title, caption, children, className = "" }: { title: string; ca
 
 function shortDate(iso: string): string {
   return new Date(iso + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+}
+
+/** Neutral sequential palette for years (older = darker). Deliberately not the IMD tier colours. */
+function yearColors(years: number[]): Record<number, string> {
+  const a = [75, 93, 134];
+  const b = [219, 228, 255];
+  return Object.fromEntries(
+    years.map((y, i) => {
+      const t = years.length > 1 ? i / (years.length - 1) : 1;
+      return [y, `rgb(${a.map((v, k) => Math.round(v + (b[k] - v) * t)).join(",")})`];
+    })
+  );
 }
 
 function Baselines({ rows }: { rows: ModelsData["baseline_comparison"] }) {
@@ -66,6 +80,10 @@ export default function ModelInsights() {
   ];
 
   const dlnm = models.dlnm.exposure_response.map((p) => ({ wbgt: p.wbgt, rr: p.rr, band: [p.lo, p.hi] as [number, number] }));
+  const lag = models.dlnm.lag_response.map((p) => ({ lag: String(p.lag), rr: p.rr, err: [p.rr - p.lo, p.hi - p.rr] as [number, number] }));
+  const skill = models.forecast_model.skill_by_lead.map((p) => ({ lead: `${p.lead_days}d`, mae: p.mae, r2: p.r2 }));
+  const years = [...new Set(models.historical.map((h) => h.year))].sort();
+  const yc = yearColors(years);
   const backtest = models.forecast_model.backtest.map((p) => ({ ...p, band: [p.lo, p.hi] as [number, number], label: shortDate(p.date) }));
 
   return (
@@ -149,6 +167,89 @@ export default function ModelInsights() {
             <Baselines rows={models.baseline_comparison} />
           </Panel>
         </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <Panel title="DLNM · lag–response" caption="Most risk arrives within 0–2 days, which is why a 3–5 day lead matters.">
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={lag} margin={{ top: 10, right: 8, left: -8, bottom: 14 }}>
+                  <CartesianGrid {...gridProps} />
+                  <XAxis dataKey="lag" {...axisProps} label={{ value: "Lag (days after exposure)", position: "insideBottom", offset: -10, fill: CHART.axis, fontSize: 12 }} />
+                  <YAxis domain={[1, 1.5]} {...axisProps} label={{ value: "Relative risk", angle: -90, position: "insideLeft", offset: 18, fill: CHART.axis, fontSize: 12 }} />
+                  <Tooltip {...tooltipProps} cursor={{ fill: "rgba(255,255,255,0.05)" }} labelFormatter={(v) => `Lag ${v} d`} formatter={(v: any, n: any) => [Array.isArray(v) ? `−${v[0].toFixed(2)} / +${v[1].toFixed(2)}` : Number(v).toFixed(2), n === "rr" ? "Relative risk" : n]} />
+                  <ReferenceLine y={1} stroke={CHART.axis} strokeDasharray="5 4" />
+                  <Bar dataKey="rr" name="Relative risk" fill={CHART.brand} radius={[3, 3, 0, 0]} barSize={34}>
+                    <ErrorBar dataKey="err" width={6} stroke={CHART.text} strokeWidth={1.5} />
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </Panel>
+
+          <Panel title="Forecast skill by lead day" caption="MAE (bars, admissions/day) grows and R² (line) falls as the lead time lengthens.">
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <ComposedChart data={skill} margin={{ top: 10, right: 0, left: -8, bottom: 14 }}>
+                  <CartesianGrid {...gridProps} />
+                  <XAxis dataKey="lead" {...axisProps} label={{ value: "Lead time", position: "insideBottom", offset: -10, fill: CHART.axis, fontSize: 12 }} />
+                  <YAxis yAxisId="m" {...axisProps} label={{ value: "MAE", angle: -90, position: "insideLeft", offset: 18, fill: CHART.axis, fontSize: 12 }} />
+                  <YAxis yAxisId="r" orientation="right" domain={[0.5, 1]} {...axisProps} label={{ value: "R²", angle: 90, position: "insideRight", offset: 8, fill: CHART.axis, fontSize: 12 }} />
+                  <Tooltip {...tooltipProps} cursor={{ fill: "rgba(255,255,255,0.05)" }} />
+                  <Bar yAxisId="m" dataKey="mae" name="MAE" fill={CHART.brand} fillOpacity={0.85} radius={[3, 3, 0, 0]} barSize={34} />
+                  <Line yAxisId="r" dataKey="r2" name="R²" stroke={CHART.text} strokeWidth={2} dot={{ r: 3.5, fill: CHART.text, stroke: "none" }} />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </Panel>
+        </div>
+
+        <Panel title="Heat &amp; mortality history" caption="Each dot is one day; darker = earlier year. Excess deaths are deaths above the seasonal baseline.">
+          <div className="grid grid-cols-[2fr_1fr] gap-6">
+            <div>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <ScatterChart margin={{ top: 8, right: 8, left: -6, bottom: 16 }}>
+                    <CartesianGrid {...gridProps} />
+                    <XAxis type="number" dataKey="wbgt" name="WBGT" unit=" °C" domain={[24, 38]} {...axisProps} label={{ value: "Daily WBGT (°C)", position: "insideBottom", offset: -10, fill: CHART.axis, fontSize: 12 }} />
+                    <YAxis type="number" dataKey="deaths" name="Deaths" {...axisProps} label={{ value: "Daily deaths", angle: -90, position: "insideLeft", offset: 16, fill: CHART.axis, fontSize: 12 }} />
+                    <ZAxis range={[34, 34]} />
+                    <Tooltip {...tooltipProps} cursor={{ strokeDasharray: "3 3", stroke: CHART.grid }} />
+                    {years.map((y) => (
+                      <Scatter key={y} name={String(y)} data={models.historical.filter((h) => h.year === y)} fill={yc[y]} fillOpacity={0.85} isAnimationActive={false} />
+                    ))}
+                  </ScatterChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted mt-1">
+                {years.map((y) => (
+                  <span key={y} className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: yc[y] }} />
+                    <span className="font-mono tabular-nums">{y}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="text-xs text-muted mb-2">Excess deaths per heat season</div>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={models.annual} margin={{ top: 18, right: 4, left: -14, bottom: 0 }}>
+                    <CartesianGrid {...gridProps} />
+                    <XAxis dataKey="year" {...axisProps} />
+                    <YAxis {...axisProps} />
+                    <Tooltip {...tooltipProps} cursor={{ fill: "rgba(255,255,255,0.05)" }} formatter={(v: any, n: any) => [v, n === "excess_deaths" ? "Excess deaths" : n]} />
+                    <Bar dataKey="excess_deaths" name="Excess deaths" radius={[3, 3, 0, 0]}>
+                      {models.annual.map((a) => (
+                        <Cell key={a.year} fill={yc[a.year] ?? CHART.muted} />
+                      ))}
+                      <LabelList dataKey="excess_deaths" position="top" fill={CHART.axis} fontSize={12} />
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+        </Panel>
       </div>
     </div>
   );

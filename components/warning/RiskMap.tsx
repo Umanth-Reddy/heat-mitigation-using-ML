@@ -4,11 +4,12 @@ import { useMemo, useState } from "react";
 import DeckGL from "@deck.gl/react";
 import { Map } from "react-map-gl/maplibre";
 import { setWorkerUrl } from "maplibre-gl";
+import { FlyToInterpolator, LinearInterpolator, WebMercatorViewport } from "@deck.gl/core";
 import { GeoJsonLayer, TextLayer } from "@deck.gl/layers";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useGridGeoJson, useRiskData } from "@/lib/data";
 import { useStore } from "@/lib/store";
-import { TIER_COLORS, TIER_LABELS, TIER_RGB, vulnerabilityColor } from "@/lib/risk";
+import { TIER_COLORS, TIER_LABELS, TIER_RGB, utciColor, vulnerabilityColor, zoneElevation } from "@/lib/risk";
 import type { TierId } from "@/lib/types";
 
 setWorkerUrl("/maplibre-worker.mjs");
@@ -41,6 +42,27 @@ const INITIAL_VIEW_STATE: any = {
 
 const AMBER: [number, number, number, number] = [255, 122, 26, 255];
 
+const PITCH_3D = 50;
+const FLY = new FlyToInterpolator();
+const TILT = new LinearInterpolator(["pitch"]);
+// Room left for the side panels when fitting a ward (panel width + gutters), the timeline and the header.
+const FIT_PADDING = { left: 392, right: 452, top: 60, bottom: 210 };
+
+function fitWard(bbox: [number, number, number, number], size: { width: number; height: number } | null, bearing: number) {
+  const [w, s, e, n] = bbox;
+  const center = { longitude: (w + e) / 2, latitude: (s + n) / 2, zoom: 16 };
+  if (!size) return center;
+  try {
+    const vp = new WebMercatorViewport({ width: size.width, height: size.height }).fitBounds(
+      [[w, s], [e, n]],
+      { padding: FIT_PADDING, maxZoom: 17 }
+    );
+    return { longitude: vp.longitude, latitude: vp.latitude, zoom: vp.zoom, bearing };
+  } catch {
+    return center; // viewport smaller than the padding
+  }
+}
+
 interface Hover {
   x: number;
   y: number;
@@ -54,8 +76,25 @@ export default function RiskMap() {
   const layer = useStore((s) => s.layer);
   const selectedWardId = useStore((s) => s.selectedWardId);
   const selectWard = useStore((s) => s.selectWard);
-  const [viewState, setViewState] = useState<any>(INITIAL_VIEW_STATE);
+  const is3D = useStore((s) => s.is3D);
+  const [viewState, setViewState] = useState<any>(() => ({ ...INITIAL_VIEW_STATE, pitch: is3D ? PITCH_3D : 0 }));
+  const [size, setSize] = useState<{ width: number; height: number } | null>(null);
   const [hover, setHover] = useState<Hover | null>(null);
+
+  // Camera: fly to the selected ward / back to the overview, and tilt when 3D is toggled.
+  // (State adjusted during render when the store values change: no effect needed.)
+  const [seen, setSeen] = useState({ wardId: selectedWardId, is3D });
+  if (seen.wardId !== selectedWardId || seen.is3D !== is3D) {
+    setSeen({ wardId: selectedWardId, is3D });
+    const pitch = is3D ? PITCH_3D : 0;
+    if (seen.wardId !== selectedWardId) {
+      const ward = selectedWardId ? wards?.find((w) => w.ward_id === selectedWardId) : null;
+      const target = ward ? fitWard(ward.bbox, size, viewState.bearing) : INITIAL_VIEW_STATE;
+      setViewState({ ...viewState, ...target, pitch, transitionDuration: 1200, transitionInterpolator: FLY });
+    } else {
+      setViewState({ ...viewState, pitch, transitionDuration: 800, transitionInterpolator: TILT });
+    }
+  }
 
   const layers = useMemo(() => {
     if (!grid || !cells || !wards || !outlines) return [];
@@ -70,6 +109,14 @@ export default function RiskMap() {
         pickable: true,
         filled: true,
         stroked: false,
+        // Always extruded: in 2D the elevation is 0 and unlit, so heights can animate when 3D toggles or the day changes.
+        extruded: true,
+        wireframe: false,
+        material: is3D ? { ambient: 0.6, diffuse: 0.55, shininess: 16, specularColor: [40, 40, 40] } : false,
+        getElevation: (f: any) => {
+          const cell = cells[f.properties.cell_id];
+          return is3D && cell ? zoneElevation(layer, cell, cell.days[dayIndex]) : 0;
+        },
         getFillColor: (f: any) => {
           const cell = cells[f.properties.cell_id];
           if (!cell) return [0, 0, 0, 0];
@@ -78,11 +125,14 @@ export default function RiskMap() {
             const rgb = TIER_RGB[cell.days[dayIndex].tier];
             return [...rgb, dim ? 60 : 190] as [number, number, number, number];
           }
+          if (layer === "utci") {
+            return [...utciColor(cell.days[dayIndex].utci), dim ? 60 : 200] as [number, number, number, number];
+          }
           const rgb = vulnerabilityColor(cell.vulnerability);
           return [...rgb, dim ? 60 : 200] as [number, number, number, number];
         },
-        transitions: { getFillColor: 600 },
-        updateTriggers: { getFillColor: [dayIndex, layer, selectedWardId] },
+        transitions: { getFillColor: 600, getElevation: 600 },
+        updateTriggers: { getFillColor: [dayIndex, layer, selectedWardId], getElevation: [dayIndex, layer, is3D] },
         onHover: (info: any) =>
           setHover(info.object ? { x: info.x, y: info.y, cellId: info.object.properties.cell_id } : null),
         onClick: (info: any) => {
@@ -99,6 +149,7 @@ export default function RiskMap() {
         lineWidthUnits: "pixels",
         getLineWidth: 1.5,
         getLineColor: [255, 255, 255, 230],
+        parameters: { depthTest: false },
       }),
       new GeoJsonLayer({
         id: "ward-outline-selected",
@@ -109,6 +160,7 @@ export default function RiskMap() {
         lineWidthUnits: "pixels",
         getLineWidth: 3,
         getLineColor: AMBER,
+        parameters: { depthTest: false },
       }),
       new TextLayer({
         id: "ward-labels",
@@ -125,9 +177,10 @@ export default function RiskMap() {
         outlineWidth: 3,
         outlineColor: [7, 9, 12, 240],
         characterSet: "auto",
+        parameters: { depthTest: false },
       }),
     ];
-  }, [grid, cells, wards, outlines, dayIndex, layer, selectedWardId, selectWard]);
+  }, [grid, cells, wards, outlines, dayIndex, layer, is3D, selectedWardId, selectWard]);
 
   const tip = hover && cells && meta && wards ? cells[hover.cellId] : null;
   const tipDay = tip && meta ? tip.days[dayIndex] : null;
@@ -139,6 +192,7 @@ export default function RiskMap() {
       <DeckGL
         viewState={viewState}
         onViewStateChange={(e: any) => setViewState(e.viewState)}
+        onResize={({ width, height }) => setSize({ width, height })}
         controller={{ doubleClickZoom: false }}
         layers={layers}
         getCursor={({ isHovering }) => (isHovering ? "pointer" : "grab")}
