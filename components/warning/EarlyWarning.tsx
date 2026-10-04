@@ -4,6 +4,8 @@ import dynamic from "next/dynamic";
 import ForecastTimeline from "./ForecastTimeline";
 import LayerControls from "./LayerControls";
 import Legend from "./Legend";
+import CityOutlook from "./CityOutlook";
+import WardDetail from "./WardDetail";
 import { useStore } from "@/lib/store";
 
 const RiskMap = dynamic(() => import("./RiskMap"), {
@@ -11,7 +13,7 @@ const RiskMap = dynamic(() => import("./RiskMap"), {
   loading: () => <div className="absolute inset-0 flex items-center justify-center text-muted text-sm font-mono">Loading map…</div>,
 });
 
-// Space reserved for the side panels added in Phase 3 (panel width + 16px gutter each side).
+// Space taken by the side panels (panel width + 16px gutter each side).
 const LEFT_INSET = 392;
 const RIGHT_INSET_WARD = 452;
 
@@ -22,6 +24,8 @@ export default function EarlyWarning() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <RiskMap />
+      <CityOutlook />
+      {wardOpen && <WardDetail />}
       <div className="absolute top-4 flex flex-col items-end gap-3 transition-[right] duration-200 ease-out" style={{ right }}>
         <LayerControls />
         <Legend />

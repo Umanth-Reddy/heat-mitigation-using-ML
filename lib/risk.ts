@@ -48,3 +48,17 @@ export function vulnerabilityColor(v: number): [number, number, number] {
 export function dayTitle(d: { index: number; weekday: string; short: string }): string {
   return d.index === 0 ? "Today" : `${d.weekday} ${d.short.split(" ")[0]}`;
 }
+
+export function fmtInt(n: number): string {
+  return Math.round(n).toLocaleString("en-IN");
+}
+
+/** "Thu 21 May" (day 0 -> "Today"). */
+export function dayLabel(d: { index: number; weekday: string; short: string }): string {
+  return d.index === 0 ? "Today" : `${d.weekday} ${d.short}`;
+}
+
+/** 765,464 -> "765K" for tight KPI tiles. */
+export function fmtCompact(n: number): string {
+  return n >= 100_000 ? `${Math.round(n / 1000)}K` : fmtInt(n);
+}
