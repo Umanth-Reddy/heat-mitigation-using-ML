@@ -66,7 +66,8 @@ flowchart LR
 |---|---|
 | Dashboard UI (6 tabs, map, charts, alerts flow) | **Built** (static prototype) |
 | WBGT and UTCI calculator | **Built**, real formulas, tested |
-| Ward-level forecast, health impact, model metrics, impact scenarios | **Simulated** by seeded scripts |
+| Ward-level forecast, health impact, impact scenarios | **Simulated** by seeded scripts |
+| Forecast model (TFT) and Model Insights results | **Evaluation design (training in progress)**: the page is status-driven (`results_status` in `models.json`), so real trained results swap in without a UI change |
 | Satellite LST, census vulnerability | **Simulated** (formula-generated) |
 | Building footprints (Urban Planning) | **Real** OSM data, simulated attributes |
 | Live IMD / satellite / census / hospital ingestion | Planned |

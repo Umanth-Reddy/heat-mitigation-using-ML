@@ -543,6 +543,19 @@ for yr in range(2019, 2026):
 
 models = {
     "simulated": True,
+    # Model Insights is status-driven. Switch "results_status" to "trained" (and fill in "dataset" /
+    # "evaluated_on", globally and per section) when real model results replace the illustrative values;
+    # the UI labels, badges and "What this shows" notes follow this flag (see lib/modelText.ts).
+    "results_status": "illustrative",
+    "dataset": "Simulated pilot data (New Delhi, 2019–2025)",
+    "evaluated_on": None,
+    "sections": {
+        "dlnm": {"dataset": "Simulated daily mortality, 2019–2025", "evaluated_on": None},
+        "forecast": {"dataset": "Simulated 2025 heat season", "evaluated_on": None},
+        "baselines": {"dataset": "Simulated 2025 heat season", "evaluated_on": None},
+        "shap": {"dataset": "Simulated zone-level data", "evaluated_on": None},
+        "history": {"dataset": "Simulated daily mortality, 2019–2025", "evaluated_on": None},
+    },
     "dlnm": {
         "name": "Distributed Lag Non-Linear Model (DLNM)", "purpose": "Exposure–response between WBGT and daily mortality, lags 0–5 days",
         "mmt": MMT, "exposure_response": exposure_response, "lag_response": lag_response,

@@ -49,7 +49,13 @@ export interface AlertsData { generated_at: string; pending: PendingAlert[]; his
   settings: { threshold_method: string; wbgt_p95: number; min_consecutive_days: number; require_human_approval: boolean;
     languages: string[]; quiet_hours: string; channels: Record<Channel, boolean> }; }
 
+export type ResultsStatus = "illustrative" | "trained";
+export type ModelSectionId = "dlnm" | "forecast" | "baselines" | "shap" | "history";
+export interface SectionMeta { dataset: string; evaluated_on: string | null; }
 export interface ModelsData { simulated: boolean;
+  /** "illustrative" until real trained results replace the placeholder values; drives labels in Model Insights. */
+  results_status: ResultsStatus; dataset: string; evaluated_on: string | null;
+  sections: Record<ModelSectionId, SectionMeta>;
   dlnm: { name: string; purpose: string; mmt: number;
     exposure_response: { wbgt: number; rr: number; lo: number; hi: number }[];
     lag_response: { lag: number; rr: number; lo: number; hi: number }[];

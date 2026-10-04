@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { useRiskData } from "@/lib/data";
+import { forecastModelStatus, otherModelsStatus } from "@/lib/modelText";
 import { TIER_COLORS } from "@/lib/risk";
 import type { TierId } from "@/lib/types";
 
@@ -55,10 +56,13 @@ function Table({ head, rows }: { head: string[]; rows: React.ReactNode[][] }) {
   );
 }
 
-type Status = "Working in browser" | "Simulated data" | "Planned backend" | "Partly real";
-function StatusChip({ s }: { s: Status }) {
+function StatusChip({ s }: { s: string }) {
   const tone =
-    s === "Working in browser" ? "border-white/40 text-text" : s === "Planned backend" ? "border-border text-muted border-dashed" : "border-brand/60 text-brand";
+    s === "Working in browser" || s === "Trained & tested"
+      ? "border-white/40 text-text"
+      : s === "Planned backend"
+        ? "border-border text-muted border-dashed"
+        : "border-brand/60 text-brand";
   return <span className={`inline-block px-2 py-0.5 rounded-full border text-xs whitespace-nowrap ${tone}`}>{s}</span>;
 }
 
@@ -119,8 +123,8 @@ const REFS: [string, string][] = [
 ];
 
 export default function HowItWorks() {
-  const { meta } = useRiskData();
-  if (!meta) return null;
+  const { meta, models } = useRiskData();
+  if (!meta || !models) return null;
   const range = (min: number | null, max: number | null) => (min === null ? `< ${max}` : max === null ? `≥ ${min}` : `${min}–${max}`);
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 
@@ -205,7 +209,9 @@ UTCI (Bröde et al. 2012):
                       <div>{v}</div>
                     </div>
                   ))}
-                  <div className="text-xs rounded-md border border-brand/40 bg-brand/10 px-2.5 py-2">In this prototype: {m.prototype}</div>
+                  {models.results_status === "illustrative" && (
+                    <div className="text-xs rounded-md border border-brand/40 bg-brand/10 px-2.5 py-2">In this prototype: {m.prototype}</div>
+                  )}
                 </article>
               ))}
             </div>
@@ -244,7 +250,18 @@ UTCI (Bröde et al. 2012):
                 ["Sending SMS / WhatsApp / CAP", <StatusChip key="6" s="Planned backend" />, "Needs gateway integrations and an approvals database."],
                 ["Cooling centres and hospitals", <StatusChip key="7" s="Simulated data" />, "Placeholder names and simulated loads."],
                 ["Impact tab (lives saved)", <StatusChip key="8" s="Simulated data" />, "Scenario estimates from assumed action effectiveness."],
-                ["Model Insights (DLNM, backtest, baselines)", <StatusChip key="9" s="Simulated data" />, "Illustrative; no model was trained."],
+                [
+                  "Forecast model (TFT)",
+                  <StatusChip key="9" s={forecastModelStatus(models)} />,
+                  models.results_status === "illustrative"
+                    ? "The evaluation design (backtest, skill by lead day, intervals) is ready; the values shown are illustrative until training finishes."
+                    : "Test-set results; see Model Insights.",
+                ],
+                [
+                  "DLNM, vulnerability model, baselines",
+                  <StatusChip key="9b" s={otherModelsStatus(models)} />,
+                  models.results_status === "illustrative" ? "Illustrative values; no model has been trained yet." : "Test-set results; see Model Insights.",
+                ],
                 ["Urban Planning 3D tool", <StatusChip key="10" s="Partly real" />, "Real OSM footprints; simulated heat attribution."],
                 ["Live forecast ingestion, model training, PostGIS, scheduling", <StatusChip key="11" s="Planned backend" />, "FastAPI, PostGIS, Airflow and the ML stack in the proposal."],
               ]}

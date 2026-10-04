@@ -6,14 +6,43 @@ import {
 } from "recharts";
 import { useRiskData } from "@/lib/data";
 import { axisProps, CHART, gridProps, tooltipProps } from "@/components/charts/theme";
-import type { ModelsData } from "@/lib/types";
+import {
+  backtestNote, badgeText, baselinesNote, dlnmNote, historyNote, introText, kpiPrefix, lagNote, shapNote, skillNote, subtitleText,
+} from "@/lib/modelText";
+import type { ModelSectionId, ModelsData } from "@/lib/types";
 
-function Panel({ title, caption, children, className = "" }: { title: string; caption?: string; children: React.ReactNode; className?: string }) {
+/** Muted status badge ("Evaluation design · illustrative values" / "Trained & tested · dataset"). */
+function Badge({ text, small = false }: { text: string; small?: boolean }) {
+  return (
+    <span className={`inline-flex items-center gap-1.5 rounded-full border border-border text-muted whitespace-nowrap ${small ? "px-2 py-0.5 text-xs" : "px-3 py-1 text-sm"}`}>
+      <span className="w-1.5 h-1.5 rounded-full bg-muted/70" />
+      {text}
+    </span>
+  );
+}
+
+function Panel({ title, caption, children, className = "", models, section, note }: {
+  title: string; caption?: string; children: React.ReactNode; className?: string;
+  /** With `section` and `note`, the card shows a status badge, a status-driven subtitle and a "What this shows" note. */
+  models?: ModelsData; section?: ModelSectionId; note?: string;
+}) {
   return (
     <section className={`card p-5 flex flex-col ${className}`}>
-      <h2 className="text-sm font-semibold mb-3">{title}</h2>
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <div>
+          <h2 className="text-sm font-semibold">{title}</h2>
+          {models && section && <div className="text-xs text-muted mt-0.5">{subtitleText(models, section)}</div>}
+        </div>
+        {models && section && <Badge small text={badgeText(models, section)} />}
+      </div>
       <div className="flex-1 min-h-0">{children}</div>
       {caption && <p className="text-xs text-muted mt-3">{caption}</p>}
+      {note && (
+        <p className="text-xs text-muted leading-relaxed mt-3 pt-3 border-t border-border">
+          <span className="text-text font-medium">What this shows. </span>
+          {note}
+        </p>
+      )}
     </section>
   );
 }
@@ -73,15 +102,16 @@ export default function ModelInsights() {
   const ours = models.baseline_comparison.find((b) => b.system.startsWith("UshnaRaksha"))!;
   const tempOnly = models.baseline_comparison[0];
   const kpis = [
-    { label: "Forecast lead time", value: `${ours.lead_days.toFixed(1)} days`, sub: `vs ${tempOnly.lead_days.toFixed(1)} days (temperature-only)` },
-    { label: "Hit rate", value: `${Math.round(ours.hit_rate * 100)}%`, sub: `vs ${Math.round(tempOnly.hit_rate * 100)}% (temperature-only)` },
-    { label: "False alarm ratio", value: `${Math.round(ours.false_alarm_ratio * 100)}%`, sub: `vs ${Math.round(tempOnly.false_alarm_ratio * 100)}% (temperature-only)` },
-    { label: "Vulnerability model AUC", value: models.vulnerability_model.metrics.auc.toFixed(2), sub: models.vulnerability_model.name },
+    { label: `${kpiPrefix(models)} forecast lead time`, value: `${ours.lead_days.toFixed(1)} days`, sub: `vs ${tempOnly.lead_days.toFixed(1)} days (temperature-only)` },
+    { label: `${kpiPrefix(models)} hit rate`, value: `${Math.round(ours.hit_rate * 100)}%`, sub: `vs ${Math.round(tempOnly.hit_rate * 100)}% (temperature-only)` },
+    { label: `${kpiPrefix(models)} false alarm ratio`, value: `${Math.round(ours.false_alarm_ratio * 100)}%`, sub: `vs ${Math.round(tempOnly.false_alarm_ratio * 100)}% (temperature-only)` },
+    { label: `${kpiPrefix(models)} vulnerability model AUC`, value: models.vulnerability_model.metrics.auc.toFixed(2), sub: models.vulnerability_model.name },
   ];
 
   const dlnm = models.dlnm.exposure_response.map((p) => ({ wbgt: p.wbgt, rr: p.rr, band: [p.lo, p.hi] as [number, number] }));
   const lag = models.dlnm.lag_response.map((p) => ({ lag: String(p.lag), rr: p.rr, err: [p.rr - p.lo, p.hi - p.rr] as [number, number] }));
   const skill = models.forecast_model.skill_by_lead.map((p) => ({ lead: `${p.lead_days}d`, mae: p.mae, r2: p.r2 }));
+  const shapData = [...models.vulnerability_model.shap_global].sort((a, b) => b.importance - a.importance);
   const years = [...new Set(models.historical.map((h) => h.year))].sort();
   const yc = yearColors(years);
   const backtest = models.forecast_model.backtest.map((p) => ({ ...p, band: [p.lo, p.hi] as [number, number], label: shortDate(p.date) }));
@@ -89,7 +119,10 @@ export default function ModelInsights() {
   return (
     <div className="absolute inset-0 overflow-y-auto p-6 anim-fade">
       <div className="max-w-[1872px] mx-auto flex flex-col gap-4">
-        <p className="text-sm text-muted">Illustrative results on simulated data — pipeline and evaluation design for the pilot.</p>
+        <div className="flex items-center gap-3 flex-wrap">
+          <Badge text={badgeText(models)} />
+          <p className="text-sm text-muted">{introText(models)}</p>
+        </div>
 
         <div className="grid grid-cols-4 gap-4">
           {kpis.map((k) => (
@@ -126,6 +159,7 @@ export default function ModelInsights() {
           <Panel
             title="DLNM · exposure–response"
             caption={`RR at P99 = ${models.dlnm.summary.rr_at_p99} · attributable fraction ${models.dlnm.summary.attributable_fraction_pct}% · ${models.dlnm.summary.calibration_period}`}
+            models={models} section="dlnm" note={dlnmNote(models)}
           >
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
@@ -143,7 +177,7 @@ export default function ModelInsights() {
             </div>
           </Panel>
 
-          <Panel title={models.forecast_model.backtest_label} caption={`Actual daily admissions vs TFT forecast · 80% interval coverage ${Math.round(models.forecast_model.coverage_80pct_interval * 100)}%`}>
+          <Panel title={models.forecast_model.backtest_label} caption={`Actual daily admissions vs TFT forecast · 80% interval coverage ${Math.round(models.forecast_model.coverage_80pct_interval * 100)}%`} models={models} section="forecast" note={backtestNote(models)}>
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <ComposedChart data={backtest} margin={{ top: 8, right: 8, left: -14, bottom: 0 }}>
@@ -163,13 +197,13 @@ export default function ModelInsights() {
             </div>
           </Panel>
 
-          <Panel title="Versus baselines" caption="Hit rate, false-alarm ratio and lead time against current practice.">
+          <Panel title="Versus baselines" models={models} section="baselines" note={baselinesNote(models)}>
             <Baselines rows={models.baseline_comparison} />
           </Panel>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <Panel title="DLNM · lag–response" caption="Most risk arrives within 0–2 days, which is why a 3–5 day lead matters.">
+        <div className="grid grid-cols-3 gap-4">
+          <Panel title="DLNM · lag–response" models={models} section="dlnm" note={lagNote(models)}>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={lag} margin={{ top: 10, right: 8, left: -8, bottom: 14 }}>
@@ -186,7 +220,7 @@ export default function ModelInsights() {
             </div>
           </Panel>
 
-          <Panel title="Forecast skill by lead day" caption="MAE (bars, admissions/day) grows and R² (line) falls as the lead time lengthens.">
+          <Panel title="Forecast skill by lead day" caption="MAE in bars (admissions/day), R² as a line." models={models} section="forecast" note={skillNote(models)}>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <ComposedChart data={skill} margin={{ top: 10, right: 0, left: -8, bottom: 14 }}>
@@ -201,9 +235,28 @@ export default function ModelInsights() {
               </ResponsiveContainer>
             </div>
           </Panel>
+
+          <Panel title="What drives vulnerability (global SHAP)" caption="Mean absolute SHAP value, as a share of total importance." models={models} section="shap" note={shapNote(models)}>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart layout="vertical" data={shapData} margin={{ top: 4, right: 36, left: 4, bottom: 0 }}>
+                  <CartesianGrid {...gridProps} horizontal={false} vertical />
+                  <XAxis type="number" tickFormatter={(v) => `${Math.round(v * 100)}%`} {...axisProps} />
+                  <YAxis type="category" dataKey="feature" width={170} {...axisProps} />
+                  <Tooltip {...tooltipProps} cursor={{ fill: "rgba(255,255,255,0.05)" }} formatter={(v: any) => [`${(Number(v) * 100).toFixed(0)}%`, "Importance"]} />
+                  <Bar dataKey="importance" radius={[0, 3, 3, 0]}>
+                    {shapData.map((d, i) => (
+                      <Cell key={d.feature} fill={i < 2 ? CHART.brand : CHART.muted} />
+                    ))}
+                    <LabelList dataKey="importance" position="right" formatter={(v: any) => `${Math.round(Number(v) * 100)}%`} fill={CHART.axis} fontSize={12} />
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </Panel>
         </div>
 
-        <Panel title="Heat &amp; mortality history" caption="Each dot is one day; darker = earlier year. Excess deaths are deaths above the seasonal baseline.">
+        <Panel title="Heat &amp; mortality history" caption="Each dot is one day; darker = earlier year. Excess deaths are deaths above the seasonal baseline." models={models} section="history" note={historyNote(models)}>
           <div className="grid grid-cols-[2fr_1fr] gap-6">
             <div>
               <div className="h-72">
