@@ -343,7 +343,7 @@ meta = {
     "simulated": True,
     "simulated_note": "Prototype data generated for demonstration. Not real observations or model output.",
     "city": {"id": "delhi", "name": "New Delhi", "pilot_area": "Connaught Place & Central Zone", "population": total_pop,
-             "n_wards": len(wards_out), "n_zones": len(cells_out), "zone_size_m": 100},
+             "n_wards": len(wards_out), "n_zones": len(cells_out), "zone_size_m": 120},
     "cities": [
         {"id": "delhi", "name": "New Delhi", "status": "pilot"},
         {"id": "ahmedabad", "name": "Ahmedabad", "status": "phase2"},
@@ -357,7 +357,7 @@ meta = {
     "threshold": {"method": "Local 95th-percentile WBGT baseline (2015–2025)", "wbgt_p95": 33.5, "min_consecutive_days": 2},
     "actions_by_tier": ACTIONS,
     "grid_capacity_mw": 365,
-    "sources": ["IMD NWP forecast (Ta, RH, wind)", "Landsat 8/9 + MODIS LST (downscaled to 100 m)", "Census 2011 / SECC demographics",
+    "sources": ["IMD NWP forecast (Ta, RH, wind)", "Landsat 8/9 + MODIS LST (downscaled to ~120 m)", "Census 2011 / SECC demographics",
                 "IDSP surveillance + hospital admissions", "OpenStreetMap buildings"],
 }
 
@@ -496,7 +496,7 @@ shap_global = [
     {"feature": "Peak WBGT (forecast)", "importance": 0.31}, {"feature": "Night-time minimum temp", "importance": 0.17},
     {"feature": "Consecutive hot days", "importance": 0.13}, {"feature": "Elderly population share", "importance": 0.11},
     {"feature": "Informal settlement share", "importance": 0.08}, {"feature": "Outdoor worker share", "importance": 0.07},
-    {"feature": "Downscaled LST (100 m)", "importance": 0.06}, {"feature": "Tree canopy cover", "importance": 0.04},
+    {"feature": "Downscaled LST (~120 m)", "importance": 0.06}, {"feature": "Tree canopy cover", "importance": 0.04},
     {"feature": "Relative humidity", "importance": 0.03},
 ]
 
@@ -562,7 +562,7 @@ models = {
     "annual": annual,
     "pipeline": [
         {"stage": "Ingest", "items": ["IMD NWP", "Landsat / MODIS LST", "Census / SECC", "IDSP + hospital admissions"]},
-        {"stage": "Compute", "items": ["WBGT + UTCI per 100 m zone", "LST downscaling", "Vulnerability index"]},
+        {"stage": "Compute", "items": ["WBGT + UTCI per ~120 m zone", "LST downscaling", "Vulnerability index"]},
         {"stage": "Model", "items": ["DLNM", "LightGBM", "TFT + SHAP"]},
         {"stage": "Decide", "items": ["IMD 4-tier risk", "Local P95 thresholds", "Human approval"]},
         {"stage": "Act", "items": ["SMS / WhatsApp / CAP", "Cooling centres", "Hospital & grid planning"]},
