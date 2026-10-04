@@ -8,6 +8,7 @@ import { GeoJsonLayer, PolygonLayer, ScatterplotLayer, BitmapLayer } from "@deck
 import { HeatmapLayer } from "@deck.gl/aggregation-layers";
 import { LightingEffect, AmbientLight, _SunLight as DirectionalLight } from "@deck.gl/core";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { THERMAL_COLOR_RANGE } from "@/lib/risk";
 
 // Point maplibre-gl at the static worker file in /public so it doesn't try
 // to spawn a worker via dynamic new URL() — which breaks in bundler contexts.
@@ -64,14 +65,6 @@ const SATELLITE_STYLE: any = {
 };
 
 // Premium thermal ramp: cool canopy areas stay readable while hotspots glow.
-const THERMAL_COLOR_RANGE: [number, number, number][] = [
-  [255, 247, 176],
-  [255, 235, 59],
-  [255, 193, 7],
-  [255, 152, 0],
-  [244, 67, 54],
-  [183, 28, 28],
-];
 
 // Building colors use warmer materials without flattening the 3D geometry.
 function getBuildingColor(val: number): [number, number, number, number] {

@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 const nextConfig: NextConfig = {
-  // This app is in a subdirectory; include parent workspace files for tracing.
-  outputFileTracingRoot: path.join(process.cwd(), ".."),
   transpilePackages: [
     "@deck.gl/aggregation-layers",
     "@deck.gl/core",

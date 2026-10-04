@@ -27,8 +27,16 @@ export function useShellEffects() {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey || e.metaKey || e.altKey || isTypingTarget(e.target)) return;
       const s = useStore.getState();
-      const tabs = ["warning", "alerts", "models", "planning"] as const;
-      if (e.key >= "1" && e.key <= "4") return s.setTab(tabs[Number(e.key) - 1]);
+      if (s.introOpen) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          s.dismissIntro();
+        }
+        return;
+      }
+      if (e.key === "i" || e.key === "I") return s.openIntro();
+      const tabs = ["warning", "alerts", "impact", "models", "planning"] as const;
+      if (e.key >= "1" && e.key <= "5") return s.setTab(tabs[Number(e.key) - 1]);
       if (s.activeTab !== "warning") return;
       if (e.key === "ArrowLeft") s.stepDay(-1);
       else if (e.key === "ArrowRight") s.stepDay(1);
@@ -41,7 +49,7 @@ export function useShellEffects() {
     };
     // Some browsers fire a focused button's click on Space keyup; swallow that too.
     const onKeyUp = (e: KeyboardEvent) => {
-      if (e.key === " " && !isTypingTarget(e.target) && useStore.getState().activeTab === "warning") e.preventDefault();
+      if (e.key === " " && !isTypingTarget(e.target) && (useStore.getState().introOpen || useStore.getState().activeTab === "warning")) e.preventDefault();
     };
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup", onKeyUp);

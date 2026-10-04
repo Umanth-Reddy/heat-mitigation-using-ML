@@ -9,7 +9,8 @@ import { GeoJsonLayer, TextLayer } from "@deck.gl/layers";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useGridGeoJson, useRiskData } from "@/lib/data";
 import { useStore } from "@/lib/store";
-import { TIER_COLORS, TIER_LABELS, TIER_RGB, utciColor, vulnerabilityColor, zoneElevation } from "@/lib/risk";
+import { lstColor, TIER_COLORS, TIER_LABELS, TIER_RGB, utciColor, vulnerabilityColor, zoneElevation } from "@/lib/risk";
+import FacilityMarkers from "./FacilityMarkers";
 import type { TierId } from "@/lib/types";
 
 setWorkerUrl("/maplibre-worker.mjs");
@@ -77,6 +78,7 @@ export default function RiskMap() {
   const selectedWardId = useStore((s) => s.selectedWardId);
   const selectWard = useStore((s) => s.selectWard);
   const is3D = useStore((s) => s.is3D);
+  const selectFacility = useStore((s) => s.selectFacility);
   const [viewState, setViewState] = useState<any>(() => ({ ...INITIAL_VIEW_STATE, pitch: is3D ? PITCH_3D : 0 }));
   const [size, setSize] = useState<{ width: number; height: number } | null>(null);
   const [hover, setHover] = useState<Hover | null>(null);
@@ -115,7 +117,7 @@ export default function RiskMap() {
         material: is3D ? { ambient: 0.6, diffuse: 0.55, shininess: 16, specularColor: [40, 40, 40] } : false,
         getElevation: (f: any) => {
           const cell = cells[f.properties.cell_id];
-          return is3D && cell ? zoneElevation(layer, cell, cell.days[dayIndex]) : 0;
+          return is3D && cell ? zoneElevation(layer, cell, cell.days[dayIndex], f.properties.lst_current) : 0;
         },
         getFillColor: (f: any) => {
           const cell = cells[f.properties.cell_id];
@@ -124,6 +126,9 @@ export default function RiskMap() {
           if (layer === "wbgt") {
             const rgb = TIER_RGB[cell.days[dayIndex].tier];
             return [...rgb, dim ? 60 : 190] as [number, number, number, number];
+          }
+          if (layer === "lst") {
+            return [...lstColor(f.properties.lst_current), dim ? 60 : 200] as [number, number, number, number];
           }
           if (layer === "utci") {
             return [...utciColor(cell.days[dayIndex].utci), dim ? 60 : 200] as [number, number, number, number];
@@ -182,6 +187,10 @@ export default function RiskMap() {
     ];
   }, [grid, cells, wards, outlines, dayIndex, layer, is3D, selectedWardId, selectWard]);
 
+  const lstById = useMemo(
+    () => Object.fromEntries((grid?.features ?? []).map((f: any) => [f.properties.cell_id, f.properties.lst_current as number])),
+    [grid]
+  );
   const tip = hover && cells && meta && wards ? cells[hover.cellId] : null;
   const tipDay = tip && meta ? tip.days[dayIndex] : null;
   const tipWard = tip && wards ? wards.find((w) => w.ward_id === tip.ward_id) : null;
@@ -193,12 +202,14 @@ export default function RiskMap() {
         viewState={viewState}
         onViewStateChange={(e: any) => setViewState(e.viewState)}
         onResize={({ width, height }) => setSize({ width, height })}
+        onClick={() => selectFacility(null)}
         controller={{ doubleClickZoom: false }}
         layers={layers}
         getCursor={({ isHovering }) => (isHovering ? "pointer" : "grab")}
       >
         <Map mapStyle={BASEMAP} />
       </DeckGL>
+      <FacilityMarkers viewState={viewState} size={size} />
 
       {hover && tip && tipDay && (
         <div
@@ -214,6 +225,7 @@ export default function RiskMap() {
           <Row label="UTCI">
             {tipDay.utci.toFixed(1)} °C{utciCat ? ` · ${utciCat.label}` : ""}
           </Row>
+          <Row label="Surface temp (LST)">{lstById[hover.cellId]?.toFixed(1)} °C</Row>
           <Row label="Air temp / RH">
             {tipDay.ta.toFixed(1)} °C · {tipDay.rh}%
           </Row>

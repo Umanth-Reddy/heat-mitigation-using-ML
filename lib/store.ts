@@ -3,8 +3,8 @@ import { getRiskDataSync } from "./data";
 import { REVIEWER, type AlertOverride } from "./alerts";
 import type { Channel } from "./types";
 
-export type TabId = "warning" | "alerts" | "models" | "planning";
-export type RiskLayer = "wbgt" | "utci" | "vulnerability";
+export type TabId = "warning" | "alerts" | "impact" | "models" | "planning";
+export type RiskLayer = "wbgt" | "utci" | "vulnerability" | "lst";
 export type AlertChannelView = "sms" | "whatsapp" | "cap";
 export type AlertLang = "en" | "hi";
 
@@ -15,6 +15,10 @@ interface UiState {
   dayIndex: number;
   layer: RiskLayer;
   is3D: boolean;
+  showFacilities: boolean;
+  selectedFacilityId: string | null;
+  introOpen: boolean;
+  introClosing: boolean;
   selectedWardId: string | null;
   selectedAlertId: string | null;
   playing: boolean;
@@ -29,6 +33,11 @@ interface UiState {
   stepDay: (delta: number) => void;
   setLayer: (l: RiskLayer) => void;
   setIs3D: (v: boolean) => void;
+  setShowFacilities: (v: boolean) => void;
+  selectFacility: (id: string | null) => void;
+  openIntro: () => void;
+  /** Fade the title screen out (400 ms), then unmount it. */
+  dismissIntro: () => void;
   toggle3D: () => void;
   toggleChannel: (c: Channel, current: boolean) => void;
   selectWard: (id: string | null) => void;
@@ -50,6 +59,10 @@ export const useStore = create<UiState>()((set, get) => ({
   dayIndex: 0,
   layer: "wbgt",
   is3D: false,
+  showFacilities: true,
+  selectedFacilityId: null,
+  introOpen: false,
+  introClosing: false,
   selectedWardId: null,
   selectedAlertId: null,
   playing: false,
@@ -63,6 +76,14 @@ export const useStore = create<UiState>()((set, get) => ({
   stepDay: (delta) => set((s) => ({ dayIndex: clampDay(s.dayIndex + delta) })),
   setLayer: (layer) => set({ layer }),
   setIs3D: (is3D) => set({ is3D }),
+  setShowFacilities: (showFacilities) => set({ showFacilities, selectedFacilityId: null }),
+  selectFacility: (selectedFacilityId) => set({ selectedFacilityId }),
+  openIntro: () => set({ introOpen: true, introClosing: false }),
+  dismissIntro: () => {
+    if (!get().introOpen || get().introClosing) return;
+    set({ introClosing: true });
+    window.setTimeout(() => set({ introOpen: false, introClosing: false }), 400);
+  },
   toggle3D: () => set((s) => ({ is3D: !s.is3D })),
   toggleChannel: (c, current) => set((s) => ({ channelToggles: { ...s.channelToggles, [c]: !current } })),
   selectWard: (selectedWardId) => set({ selectedWardId }),

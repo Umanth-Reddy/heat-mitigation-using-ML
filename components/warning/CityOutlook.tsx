@@ -27,7 +27,7 @@ function headline(meta: RiskMeta, wards: Ward[], dayIndex: number): string {
 }
 
 export default function CityOutlook() {
-  const { meta, wards } = useRiskData();
+  const { meta, wards, facilities } = useRiskData();
   const dayIndex = useStore((s) => s.dayIndex);
   const selectedWardId = useStore((s) => s.selectedWardId);
   const selectWard = useStore((s) => s.selectWard);
@@ -37,8 +37,15 @@ export default function CityOutlook() {
     () => (wards ? [...wards].sort((a, b) => b.days[dayIndex].risk_score - a.days[dayIndex].risk_score) : []),
     [wards, dayIndex]
   );
-  if (!meta || !wards) return null;
+  if (!meta || !wards || !facilities) return null;
   const d = meta.days[dayIndex];
+
+  // Hospitals over their heat-stroke bed capacity today, and where the overflow can go.
+  const surge = facilities.hospitals.filter((h) => h.days[dayIndex].status === "surge");
+  const spareOf = (h: (typeof facilities.hospitals)[number]) => h.heat_beds - h.days[dayIndex].occupied;
+  const redirectTo = facilities.hospitals
+    .filter((h) => h.days[dayIndex].status !== "surge" && spareOf(h) > 0)
+    .sort((a, b) => spareOf(b) - spareOf(a))[0];
 
   const series = meta.days.map((x) => ({
     day: x.index === 0 ? "Today" : x.weekday,
@@ -164,6 +171,16 @@ export default function CityOutlook() {
           </div>
           {gridPct > 95 && <div className="text-xs mt-1.5" style={{ color: "#f87171" }}>Above 95% of capacity: plan load shifting</div>}
         </div>
+        {surge.length > 0 && (
+          <ul className="mt-3 flex flex-col gap-1.5">
+            {surge.map((h) => (
+              <li key={h.id} className="text-xs leading-snug text-text">
+                <span style={{ color: "#f87171" }}>⚠</span> {h.name} over capacity:{" "}
+                {redirectTo ? `redirect overflow to ${redirectTo.id}` : "no spare heat-stroke beds in the pilot area"}
+              </li>
+            ))}
+          </ul>
+          )}
       </div>
     </aside>
   );

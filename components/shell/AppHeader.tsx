@@ -8,6 +8,7 @@ import type { RiskMeta } from "@/lib/types";
 const TABS: { id: TabId; label: string }[] = [
   { id: "warning", label: "Early Warning" },
   { id: "alerts", label: "Alerts" },
+  { id: "impact", label: "Impact" },
   { id: "models", label: "Model Insights" },
   { id: "planning", label: "Urban Planning" },
 ];

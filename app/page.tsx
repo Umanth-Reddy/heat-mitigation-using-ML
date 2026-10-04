@@ -1,9 +1,11 @@
 "use client";
 
 import AppHeader from "@/components/shell/AppHeader";
+import IntroScreen from "@/components/shell/IntroScreen";
 import { useShellEffects } from "@/components/shell/useShellEffects";
 import EarlyWarning from "@/components/warning/EarlyWarning";
 import AlertsCentre from "@/components/alerts/AlertsCentre";
+import ImpactView from "@/components/impact/ImpactView";
 import ModelInsights from "@/components/models/ModelInsights";
 import PlanningView from "@/components/planning/PlanningView";
 import { useRiskData } from "@/lib/data";
@@ -41,9 +43,11 @@ export default function Home() {
       <main className="relative flex-1 min-h-0">
         {activeTab === "warning" && <EarlyWarning />}
         {activeTab === "alerts" && <AlertsCentre />}
+        {activeTab === "impact" && <ImpactView />}
         {activeTab === "models" && <ModelInsights />}
         {activeTab === "planning" && <PlanningView />}
       </main>
+      <IntroScreen meta={data.meta} />
     </div>
   );
 }

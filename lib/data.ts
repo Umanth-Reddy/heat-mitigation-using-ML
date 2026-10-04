@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { AlertsData, ModelsData, RiskCells, RiskMeta, Ward } from "./types";
+import type { AlertsData, FacilitiesData, ImpactData, ModelsData, RiskCells, RiskMeta, Ward } from "./types";
 
 export interface RiskData {
   meta: RiskMeta;
@@ -8,11 +8,14 @@ export interface RiskData {
   outlines: GeoJSON.FeatureCollection;
   alerts: AlertsData;
   models: ModelsData;
+  facilities: FacilitiesData;
+  impact: ImpactData;
 }
 
+type NoData = { [K in keyof RiskData]: null };
 export type RiskDataState =
-  | { loading: true; error: null; meta: null; cells: null; wards: null; outlines: null; alerts: null; models: null }
-  | { loading: false; error: string; meta: null; cells: null; wards: null; outlines: null; alerts: null; models: null }
+  | ({ loading: true; error: null } & NoData)
+  | ({ loading: false; error: string } & NoData)
   | ({ loading: false; error: null } & RiskData);
 
 const BASE = "/data/risk";
@@ -34,8 +37,10 @@ function loadRiskData(): Promise<RiskData> {
     getJson<GeoJSON.FeatureCollection>("ward_outlines.geojson"),
     getJson<AlertsData>("alerts.json"),
     getJson<ModelsData>("models.json"),
+    getJson<FacilitiesData>("facilities.json"),
+    getJson<ImpactData>("impact.json"),
   ])
-    .then(([meta, cells, wards, outlines, alerts, models]) => (cache = { meta, cells, wards, outlines, alerts, models }))
+    .then(([meta, cells, wards, outlines, alerts, models, facilities, impact]) => (cache = { meta, cells, wards, outlines, alerts, models, facilities, impact }))
     .catch((err) => {
       inflight = null; // allow a retry on the next mount
       throw err;
@@ -48,9 +53,8 @@ export function getRiskDataSync(): RiskData | null {
   return cache;
 }
 
-const LOADING: RiskDataState = {
-  loading: true, error: null, meta: null, cells: null, wards: null, outlines: null, alerts: null, models: null,
-};
+const NO_DATA: NoData = { meta: null, cells: null, wards: null, outlines: null, alerts: null, models: null, facilities: null, impact: null };
+const LOADING: RiskDataState = { loading: true, error: null, ...NO_DATA };
 
 export function useRiskData(): RiskDataState {
   const [state, setState] = useState<RiskDataState>(() =>
@@ -64,10 +68,7 @@ export function useRiskData(): RiskDataState {
       .then((d) => live && setState({ loading: false, error: null, ...d }))
       .catch((e: unknown) =>
         live &&
-        setState({
-          loading: false, error: e instanceof Error ? e.message : String(e),
-          meta: null, cells: null, wards: null, outlines: null, alerts: null, models: null,
-        })
+        setState({ loading: false, error: e instanceof Error ? e.message : String(e), ...NO_DATA })
       );
     return () => {
       live = false;

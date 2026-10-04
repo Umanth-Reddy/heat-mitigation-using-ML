@@ -64,3 +64,28 @@ export interface ModelsData { simulated: boolean;
   historical: { date: string; year: number; wbgt: number; deaths: number }[];
   annual: { year: number; heat_days: number; excess_deaths: number }[];
   pipeline: { stage: string; items: string[] }[]; }
+
+// ---- Operations & impact add-on (scripts/generate_ops_data.py) ----
+
+export interface CoolingCentreDay { open: boolean; hours: string | null; expected_visitors: number; occupancy_pct: number; }
+export interface CoolingCentre { id: string; kind: "cooling_centre"; name: string; ward_id: string; position: [number, number];
+  capacity: number; amenities: string[]; days: CoolingCentreDay[]; }
+
+export type HospitalStatus = "normal" | "high" | "surge";
+export interface HospitalDay { expected_admissions: number; admissions_hi: number; occupied: number; occupancy_pct: number; status: HospitalStatus; }
+export interface Hospital { id: string; kind: "hospital"; name: string; type: string; position: [number, number];
+  beds_total: number; heat_beds: number; days: HospitalDay[]; }
+
+export interface FacilitiesData { simulated: boolean; note: string; cooling_centres: CoolingCentre[]; hospitals: Hospital[]; }
+
+export interface ScenarioDay { day_index: number; deaths: number; admissions: number; }
+export interface Scenario { id: "none" | "conventional" | "ushnaraksha"; label: string; lead_days: number | null;
+  deaths: number; admissions: number; per_day: ScenarioDay[]; deaths_averted: number; admissions_averted: number; }
+export interface ImpactData { simulated: boolean; window: string; note: string;
+  benchmark: { name: string; deaths_avoided_per_year: number; source: string };
+  actions: { id: string; label: string; max_reduction: number; min_tier: number; max_reduction_pct: number }[];
+  lead_realisation: { lead_days: number; fraction: number }[];
+  scenarios: Scenario[];
+  lead_curve: { lead_days: number; deaths_averted: number; pct_reduction: number }[];
+  wards: { ward_id: string; short_name: string; deaths_no_action: number; deaths_with_ushnaraksha: number; deaths_averted: number }[];
+  annualised: { heatwave_episodes_per_year: number; deaths_averted_per_year_pilot: number; admissions_averted_per_year_pilot: number }; }

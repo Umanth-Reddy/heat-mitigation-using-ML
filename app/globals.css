@@ -99,3 +99,10 @@ body {
   border-radius: 12px;
   backdrop-filter: blur(12px);
 }
+
+/* Pulsing ring for hospitals in surge */
+@keyframes ur-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px #dc2626, 0 0 0 3px rgba(220, 38, 38, 0.55); }
+  50% { box-shadow: 0 0 0 3px #dc2626, 0 0 0 11px rgba(220, 38, 38, 0); }
+}
+.ur-pulse { animation: ur-pulse 1.6s ease-out infinite; }

@@ -62,10 +62,34 @@ export const UTCI_GRADIENT_CSS = rampCss(UTCI_STOPS);
 /** Sequential amber -> red -> deep-red ramp across 36–50 °C. */
 export const utciColor = (v: number) => rampColor(UTCI_STOPS, v);
 
+/** Thermal ramp shared with the Urban Planning heatmap. */
+export const THERMAL_COLOR_RANGE: [number, number, number][] = [
+  [255, 247, 176],
+  [255, 235, 59],
+  [255, 193, 7],
+  [255, 152, 0],
+  [244, 67, 54],
+  [183, 28, 28],
+];
+
+export const LST_MIN = 38;
+export const LST_MAX = 48;
+const LST_STOPS: RampStop[] = THERMAL_COLOR_RANGE.map((c, i) => [LST_MIN + (i * (LST_MAX - LST_MIN)) / (THERMAL_COLOR_RANGE.length - 1), c]);
+export const LST_GRADIENT_CSS = rampCss(LST_STOPS);
+
+/** Land surface temperature (static, from grid.geojson `lst_current`) on the thermal ramp across 38–48 °C. */
+export const lstColor = (v: number) => rampColor(LST_STOPS, v);
+
 /** 3D extrusion height (m) of a zone for the active layer. */
-export function zoneElevation(layer: "wbgt" | "utci" | "vulnerability", cell: { vulnerability: number }, day: { wbgt: number; utci: number }): number {
+export function zoneElevation(
+  layer: "wbgt" | "utci" | "vulnerability" | "lst",
+  cell: { vulnerability: number },
+  day: { wbgt: number; utci: number },
+  lst: number
+): number {
   if (layer === "wbgt") return Math.max(0, day.wbgt - 26) * 60;
   if (layer === "utci") return Math.max(0, day.utci - 36) * 40;
+  if (layer === "lst") return Math.max(0, lst - 36) * 40;
   return cell.vulnerability * 400;
 }
 
@@ -87,3 +111,5 @@ export function dayLabel(d: { index: number; weekday: string; short: string }): 
 export function fmtCompact(n: number): string {
   return n >= 100_000 ? `${Math.round(n / 1000)}K` : fmtInt(n);
 }
+
+export const CC_BLUE = "#38bdf8";
