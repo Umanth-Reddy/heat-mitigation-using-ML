@@ -1,4 +1,4 @@
-import type { AlertStatus, PendingAlert } from "./types";
+import type { AlertStatus, Channel, PendingAlert } from "./types";
 
 export interface AlertOverride {
   status: AlertStatus;
@@ -36,4 +36,11 @@ export const STATUS_LABELS: Record<AlertStatus, string> = {
   dispatching: "Dispatching…",
   sent: "Sent ✓",
   rejected: "Rejected",
+};
+
+export const CHANNEL_LABELS: Record<Channel, string> = {
+  sms: "SMS",
+  whatsapp: "WhatsApp",
+  cap: "CAP feed (SACHET)",
+  chw_relay: "CHW relay",
 };
