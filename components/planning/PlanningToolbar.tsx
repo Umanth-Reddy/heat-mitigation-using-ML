@@ -12,11 +12,10 @@ interface HeaderProps {
   afterInterventions: boolean;
   onToggleAfterInterventions: (after: boolean) => void;
   onOpenInterventions: () => void;
-  onStartDemoGuide: () => void;
   summary: any;
 }
 
-export default function Header({
+export default function PlanningToolbar({
   showHeatmapOverlay,
   onToggleHeatmapOverlay,
   heatmapMode,
@@ -26,7 +25,6 @@ export default function Header({
   afterInterventions,
   onToggleAfterInterventions,
   onOpenInterventions,
-  onStartDemoGuide,
   summary,
 }: HeaderProps) {
   return (
@@ -36,13 +34,13 @@ export default function Header({
         <div className="w-1.5 h-7 bg-zinc-100 rounded-full"></div>
         <div>
           <h1 className="text-xs font-light tracking-widest uppercase text-zinc-100 flex items-center gap-2">
-            Urban Heat Attribution Platform
+            Urban Planning · Long-term cooling
             <span className="text-[10px] font-mono text-zinc-400 font-normal px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800">
               100m LST
             </span>
           </h1>
           <p className="text-[11px] text-zinc-400 font-light mt-0.5">
-            {summary?.city_name || "Connaught Place & Central Ward, New Delhi"} • Landsat 8 LST
+            {summary?.city_name || "Connaught Place & Central Ward, New Delhi"} • Downscaled LST
           </p>
         </div>
       </div>
@@ -129,13 +127,6 @@ export default function Header({
           className="btn-black px-3.5 py-1.5 rounded text-[11px] font-light tracking-wide transition-all"
         >
           Optimization Matrix
-        </button>
-
-        <button
-          onClick={onStartDemoGuide}
-          className="btn-black px-3.5 py-1.5 rounded text-[11px] font-light tracking-wide transition-all text-zinc-200 border-zinc-700"
-        >
-          Demo Guide
         </button>
       </div>
     </header>
