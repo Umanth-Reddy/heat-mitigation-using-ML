@@ -23,3 +23,11 @@ Every dataset used by the ML pipeline, with where and when it was fetched. Secti
 - Fetched: 2026-10-06
 - Licence: CC BY 4.0, attribution Open-Meteo.com; underlying model data from national weather services as listed by Open-Meteo.
 <!-- /nwp -->
+
+<!-- literature -->
+## Published coefficients (Layer B)
+
+- **Primary:** Hajat S, Armstrong BG, Gouveia N, Wilkinson P (2005). Mortality displacement of heat-related deaths: a comparison of Delhi, São Paulo, and London. *Epidemiology* 16(5):613–620. doi:10.1097/01.ede.0000164559.41092.2a, PMID 16135936. Values quoted from the PubMed abstract (full text paywalled, not consulted).
+- **Secondary:** de Bont J, et al. (2024). Impact of heatwaves on all-cause mortality in India: a comprehensive multi-city study. *Environment International* 184:108461. doi:10.1016/j.envint.2024.108461, PMC11790314 (CC BY 4.0). Full text consulted; Delhi baseline deaths from Table 1.
+- Exact quotes and locations: `ml/data/literature_coefficients.json`. Retrieved 2026-10-07.
+<!-- /literature -->

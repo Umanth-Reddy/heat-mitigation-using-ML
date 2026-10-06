@@ -22,3 +22,4 @@ Tested with Python 3.14 on CPU. Raw downloads are cached in `ml/data/raw/` (not 
 | 1b | `01b_fetch_forecasts.py` | Archived NWP forecasts as issued 1–5 days ahead (Open-Meteo Previous Runs API). Full WBGT inputs only from March 2024 |
 | 2a | `02_features.py` | Hourly WBGT/UTCI → daily (`data/daily_obs.csv`, `data/daily_nwp.csv`); 7-day lags, trends, season features |
 | 2b | `02b_layerA_models.py` | Persistence, climatology, raw NWP, LightGBM quantile, NWP post-processing, LSTM; metrics, events, SHAP, backtest → `outputs/layerA.json`, `reports/layerA_metrics.md` |
+| 3 | `03_layer_b.py`, `data/literature_coefficients.json` | Published Delhi heat–mortality slope (Hajat et al. 2005, quoted from the abstract), applied on its native air-temperature metric via a reported WBGT→Tmean mapping → `outputs/layerB.json`. DLNM benchmark skipped (no R) |

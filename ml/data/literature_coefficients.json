@@ -1,0 +1,51 @@
+{
+  "retrieved": "2026-10-07",
+  "primary": {
+    "use": "Layer B exposure–response (heat → all-cause mortality) for Delhi",
+    "citation": "Hajat S, Armstrong BG, Gouveia N, Wilkinson P. Mortality displacement of heat-related deaths: a comparison of Delhi, São Paulo, and London. Epidemiology. 2005;16(5):613–620.",
+    "doi": "10.1097/01.ede.0000164559.41092.2a",
+    "pmid": "16135936",
+    "source_consulted": "PubMed abstract (https://pubmed.ncbi.nlm.nih.gov/16135936/). The full text is paywalled and was not consulted, so no table or page number is available; values are from the Results section of the abstract.",
+    "location": "Abstract, Results",
+    "quotes": [
+      "For each city, an increase in all-cause mortality was observed with same-day (lag 0) and previous day (lag 1) temperatures greater than a threshold of 20 degrees C.",
+      "The risk summed over the course of 28 days was 2.4% (95% confidence interval = 0.1 to 4.7%) per degree greater than the heat threshold in Delhi",
+      "In Delhi, an excess was apparent up to 3 weeks after exposure, after which a deficit was observed that offset just part of the overall excess."
+    ],
+    "values": {
+      "outcome": "all-cause mortality",
+      "exposure_metric_as_stated": "daily ambient temperature (abstract: 'daily mortality data in relation to daily ambient temperature')",
+      "threshold_c": 20.0,
+      "pct_increase_per_c": 2.4,
+      "ci95_pct": [0.1, 4.7],
+      "lag_window_days": 28,
+      "lag_note": "cumulative effect summed over lags 0–27, net of mortality displacement"
+    },
+    "caveats": [
+      "Exposure is air temperature, not WBGT; the model is applied on its native metric after mapping forecast WBGT to daily mean air temperature (see ml/outputs/layerB.json). Whether the study used the daily mean or another daily statistic is not stated in the abstract; daily mean is assumed.",
+      "The underlying Delhi data are from the early 1990s; vulnerability, health care and population have changed since."
+    ]
+  },
+  "secondary": {
+    "use": "Cross-check of heatwave risk and the Delhi baseline death count",
+    "citation": "de Bont J, Nori-Sarma A, Stafoggia M, et al. Impact of heatwaves on all-cause mortality in India: A comprehensive multi-city study. Environment International. 2024;184:108461.",
+    "doi": "10.1016/j.envint.2024.108461",
+    "pmid": "38340402",
+    "pmcid": "PMC11790314",
+    "licence": "CC BY 4.0",
+    "source_consulted": "Full text on PubMed Central (PMC11790314)",
+    "quotes": [
+      {"location": "Abstract, Findings", "text": "temperatures above 97th percentile for 2-consecutive days was associated with a 14.7 % (95 %CI, 10.3; 19.3) increase in daily mortality"},
+      {"location": "Table 1, row 'Delhi'", "text": "Delhi | 2011—2018 | 284 | 19 | 2.7 | 66.9 | 3.9 | 37.7 (3.0)", "columns": "City | Time period | Daily deaths (mean) | N° of heatwaves | Heatwaves per year (mean) | Day in the season from start summer (mean days) | Length heatwave (mean days) | Intensity heatwave (mean heatwave temperature in °C and (%))"},
+      {"location": "Methods", "text": "We obtained all-cause mortality counts for ten cities in India (2008-2019) and estimated daily mean temperatures from satellite data."}
+    ],
+    "values": {
+      "heatwave_pct_increase": 14.7, "heatwave_ci95_pct": [10.3, 19.3],
+      "heatwave_definition": "daily mean temperature above the city's 97th annual percentile on 2 consecutive days; pooled over 10 cities",
+      "delhi_mean_daily_deaths": 284, "delhi_period": "2011–2018"
+    }
+  },
+  "not_done": {
+    "dlnm_benchmark": "Optional DLNM pipeline validation on dlnm::chicagoNMMAPS was not run: Rscript is not installed in this environment."
+  }
+}
