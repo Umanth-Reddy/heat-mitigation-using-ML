@@ -31,3 +31,13 @@ Every dataset used by the ML pipeline, with where and when it was fetched. Secti
 - **Secondary:** de Bont J, et al. (2024). Impact of heatwaves on all-cause mortality in India: a comprehensive multi-city study. *Environment International* 184:108461. doi:10.1016/j.envint.2024.108461, PMC11790314 (CC BY 4.0). Full text consulted; Delhi baseline deaths from Table 1.
 - Exact quotes and locations: `ml/data/literature_coefficients.json`. Retrieved 2026-10-07.
 <!-- /literature -->
+
+<!-- census -->
+## Census of India 2011 (Layer C and population)
+
+- Ward-level PCA, District New Delhi: table DDW_PCA0705, https://censusindia.gov.in/nada/index.php/catalog/6285 (download 9362).
+- District and sub-district PCA, NCT of Delhi (for the NCT population, 16,787,941): https://censusindia.gov.in/nada/index.php/catalog/11310 (download 14422).
+- Publisher: Office of the Registrar General & Census Commissioner, India. Fetched 2026-10-07.
+  The portal's TLS certificate chain could not be verified by the fetching client, so the files were downloaded with
+  certificate verification disabled; they are cached in ml/data/raw/ and the derived indicators are committed.
+<!-- /census -->

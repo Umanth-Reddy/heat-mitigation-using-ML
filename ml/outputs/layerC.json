@@ -1,0 +1,209 @@
+{
+ "level_achieved": "ward (11 ward-parts of New Delhi district, Census 2011)",
+ "source": {
+  "table": "DDW_PCA0705 Primary Census Abstract, town/village/ward level, NCT of Delhi, District New Delhi, 2011",
+  "publisher": "Office of the Registrar General & Census Commissioner, India",
+  "url": "https://censusindia.gov.in/nada/index.php/catalog/6285"
+ },
+ "indicators": {
+  "illiteracy_7plus": "Illiterate share of people aged 7+",
+  "children_0_6": "Children aged 0–6 share",
+  "sc_st": "Scheduled Caste / Tribe share",
+  "marginal_workers": "Marginal-worker share",
+  "persons_per_household": "Persons per household"
+ },
+ "not_available": [
+  "elderly share (age tables are district-level only)",
+  "slum households (town-level slum PCA)"
+ ],
+ "pca": {
+  "eigenvalues": [
+   3.484,
+   1.109,
+   0.718,
+   0.161,
+   0.029
+  ],
+  "explained_variance_ratio": [
+   0.633,
+   0.202,
+   0.131,
+   0.029,
+   0.005
+  ],
+  "kept_components": [
+   1,
+   2
+  ],
+  "weights": [
+   0.759,
+   0.241
+  ],
+  "loadings": {
+   "PC1": {
+    "illiteracy_7plus": 0.517,
+    "children_0_6": 0.511,
+    "sc_st": 0.448,
+    "marginal_workers": -0.455,
+    "persons_per_household": -0.252
+   },
+   "PC2": {
+    "illiteracy_7plus": -0.105,
+    "children_0_6": 0.018,
+    "sc_st": 0.501,
+    "marginal_workers": -0.08,
+    "persons_per_household": 0.855
+   }
+  }
+ },
+ "units": [
+  {
+   "unit": "DMC (U) (Part) ward 154 · Connaught Place",
+   "subdistrict": "Connaught Place",
+   "population": 2876,
+   "households": 664,
+   "illiteracy_7plus": 0.3701,
+   "children_0_6": 0.1273,
+   "sc_st": 0.2549,
+   "marginal_workers": 0.0163,
+   "persons_per_household": 4.3313,
+   "hvi": 1.0
+  },
+  {
+   "unit": "NDMC (Part) ward 1 · Connaught Place",
+   "subdistrict": "Connaught Place",
+   "population": 12900,
+   "households": 3011,
+   "illiteracy_7plus": 0.1789,
+   "children_0_6": 0.0757,
+   "sc_st": 0.2141,
+   "marginal_workers": 0.0277,
+   "persons_per_household": 4.2843,
+   "hvi": 0.483
+  },
+  {
+   "unit": "NDMC (Part) ward 4 · Connaught Place",
+   "subdistrict": "Connaught Place",
+   "population": 6589,
+   "households": 1702,
+   "illiteracy_7plus": 0.1912,
+   "children_0_6": 0.083,
+   "sc_st": 0.137,
+   "marginal_workers": 0.025,
+   "persons_per_household": 3.8713,
+   "hvi": 0.421
+  },
+  {
+   "unit": "NDMC (Part) ward 5 · Connaught Place",
+   "subdistrict": "Connaught Place",
+   "population": 5863,
+   "households": 1437,
+   "illiteracy_7plus": 0.1938,
+   "children_0_6": 0.0827,
+   "sc_st": 0.1938,
+   "marginal_workers": 0.0152,
+   "persons_per_household": 4.08,
+   "hvi": 0.551
+  },
+  {
+   "unit": "NDMC (Part) ward 3 · Chanakya Puri",
+   "subdistrict": "Chanakya Puri",
+   "population": 5818,
+   "households": 1111,
+   "illiteracy_7plus": 0.2198,
+   "children_0_6": 0.1016,
+   "sc_st": 0.3078,
+   "marginal_workers": 0.0138,
+   "persons_per_household": 5.2367,
+   "hvi": 0.836
+  },
+  {
+   "unit": "NDMC (Part) ward 5 · Chanakya Puri",
+   "subdistrict": "Chanakya Puri",
+   "population": 15860,
+   "households": 3848,
+   "illiteracy_7plus": 0.2248,
+   "children_0_6": 0.0855,
+   "sc_st": 0.2583,
+   "marginal_workers": 0.0168,
+   "persons_per_household": 4.1216,
+   "hvi": 0.683
+  },
+  {
+   "unit": "NDMC (Part) ward 9 · Chanakya Puri",
+   "subdistrict": "Chanakya Puri",
+   "population": 39704,
+   "households": 10115,
+   "illiteracy_7plus": 0.2466,
+   "children_0_6": 0.1019,
+   "sc_st": 0.2319,
+   "marginal_workers": 0.0316,
+   "persons_per_household": 3.9253,
+   "hvi": 0.667
+  },
+  {
+   "unit": "NDMC (Part) ward 2 · Parliament Street",
+   "subdistrict": "Parliament Street",
+   "population": 21936,
+   "households": 4687,
+   "illiteracy_7plus": 0.1931,
+   "children_0_6": 0.0826,
+   "sc_st": 0.2387,
+   "marginal_workers": 0.0075,
+   "persons_per_household": 4.6802,
+   "hvi": 0.653
+  },
+  {
+   "unit": "NDMC (Part) ward 3 · Parliament Street",
+   "subdistrict": "Parliament Street",
+   "population": 21097,
+   "households": 4498,
+   "illiteracy_7plus": 0.1976,
+   "children_0_6": 0.084,
+   "sc_st": 0.2592,
+   "marginal_workers": 0.017,
+   "persons_per_household": 4.6903,
+   "hvi": 0.652
+  },
+  {
+   "unit": "NDMC (Part) ward 4 · Parliament Street",
+   "subdistrict": "Parliament Street",
+   "population": 7672,
+   "households": 1827,
+   "illiteracy_7plus": 0.2177,
+   "children_0_6": 0.0928,
+   "sc_st": 0.226,
+   "marginal_workers": 0.0235,
+   "persons_per_household": 4.1992,
+   "hvi": 0.629
+  },
+  {
+   "unit": "NDMC (Part) ward 5 · Parliament Street",
+   "subdistrict": "Parliament Street",
+   "population": 1689,
+   "households": 308,
+   "illiteracy_7plus": 0.0892,
+   "children_0_6": 0.0574,
+   "sc_st": 0.1054,
+   "marginal_workers": 0.0645,
+   "persons_per_household": 5.4838,
+   "hvi": 0.0
+  }
+ ],
+ "subdistrict_hvi_pop_weighted": {
+  "Chanakya Puri": 0.687,
+  "Connaught Place": 0.535,
+  "Parliament Street": 0.628
+ },
+ "pilot_anchor": {
+  "subdistrict": "Connaught Place",
+  "hvi": 0.535,
+  "population_2011": 28228
+ },
+ "pilot_wards": "The dashboard's 6 pilot wards are not census wards; no boundaries are available to overlay them, so their relative vulnerability stays simulated.",
+ "nct_population_2011": 16787941,
+ "nct_source": {
+  "table": "PCA 2011, Districts & Sub-districts, NCT of Delhi",
+  "url": "https://censusindia.gov.in/nada/index.php/catalog/11310"
+ }
+}
