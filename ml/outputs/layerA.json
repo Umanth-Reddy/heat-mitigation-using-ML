@@ -26,21 +26,21 @@
   "tier_cutoffs": [
    {
     "tier": "Yellow",
-    "wbgt_min": 31.5
+    "wbgt_min": 29.6
    },
    {
     "tier": "Orange",
-    "wbgt_min": 33.5
+    "wbgt_min": 31.0
    },
    {
     "tier": "Red",
-    "wbgt_min": 35.5
+    "wbgt_min": 31.9
    }
   ],
   "test_tier_events": {
-   "Yellow": 22,
-   "Orange": 0,
-   "Red": 0
+   "Yellow": 83,
+   "Orange": 30,
+   "Red": 6
   }
  },
  "metrics": {
@@ -213,6 +213,90 @@
       "pinball": 0.4798,
       "cov80": 0.6667
      }
+    },
+    "lgbm_cal": {
+     "1": {
+      "mae": 0.8398,
+      "rmse": 1.1192,
+      "r2": 0.8961,
+      "bias": 0.1375,
+      "pinball": 0.2826,
+      "cov80": 0.7994
+     },
+     "2": {
+      "mae": 1.0997,
+      "rmse": 1.4459,
+      "r2": 0.8252,
+      "bias": 0.0561,
+      "pinball": 0.3588,
+      "cov80": 0.791
+     },
+     "3": {
+      "mae": 1.264,
+      "rmse": 1.6186,
+      "r2": 0.7785,
+      "bias": 0.0148,
+      "pinball": 0.4018,
+      "cov80": 0.7994
+     },
+     "4": {
+      "mae": 1.328,
+      "rmse": 1.6971,
+      "r2": 0.7524,
+      "bias": 0.0342,
+      "pinball": 0.4387,
+      "cov80": 0.7655
+     },
+     "5": {
+      "mae": 1.3345,
+      "rmse": 1.6943,
+      "r2": 0.7448,
+      "bias": -0.023,
+      "pinball": 0.4377,
+      "cov80": 0.8107
+     }
+    },
+    "lstm_cal": {
+     "1": {
+      "mae": 0.8817,
+      "rmse": 1.1327,
+      "r2": 0.8936,
+      "bias": -0.2376,
+      "pinball": 0.2871,
+      "cov80": 0.7034
+     },
+     "2": {
+      "mae": 1.1602,
+      "rmse": 1.5091,
+      "r2": 0.8095,
+      "bias": -0.32,
+      "pinball": 0.3701,
+      "cov80": 0.7542
+     },
+     "3": {
+      "mae": 1.3513,
+      "rmse": 1.7136,
+      "r2": 0.7518,
+      "bias": -0.2992,
+      "pinball": 0.4295,
+      "cov80": 0.7288
+     },
+     "4": {
+      "mae": 1.4611,
+      "rmse": 1.8382,
+      "r2": 0.7095,
+      "bias": -0.3862,
+      "pinball": 0.4639,
+      "cov80": 0.7006
+     },
+     "5": {
+      "mae": 1.4825,
+      "rmse": 1.8541,
+      "r2": 0.6944,
+      "bias": -0.45,
+      "pinball": 0.4769,
+      "cov80": 0.6808
+     }
     }
    },
    "utci": {
@@ -340,6 +424,48 @@
       "bias": -0.1881,
       "pinball": 1.0428,
       "cov80": 0.6215
+     }
+    },
+    "lgbm_cal": {
+     "1": {
+      "mae": 1.8616,
+      "rmse": 2.5026,
+      "r2": 0.8353,
+      "bias": 0.0764,
+      "pinball": 0.6329,
+      "cov80": 0.7797
+     },
+     "2": {
+      "mae": 2.4569,
+      "rmse": 3.167,
+      "r2": 0.7317,
+      "bias": -0.1201,
+      "pinball": 0.8204,
+      "cov80": 0.7429
+     },
+     "3": {
+      "mae": 2.7737,
+      "rmse": 3.4752,
+      "r2": 0.6653,
+      "bias": -0.3268,
+      "pinball": 0.9107,
+      "cov80": 0.7345
+     },
+     "4": {
+      "mae": 2.975,
+      "rmse": 3.6697,
+      "r2": 0.6166,
+      "bias": -0.2959,
+      "pinball": 0.9632,
+      "cov80": 0.7684
+     },
+     "5": {
+      "mae": 3.1449,
+      "rmse": 3.8817,
+      "r2": 0.5511,
+      "bias": -0.1881,
+      "pinball": 1.0076,
+      "cov80": 0.774
      }
     }
    }
@@ -587,6 +713,132 @@
       "pinball": 0.5215,
       "cov80": 0.6229
      }
+    },
+    "lgbm_cal": {
+     "1": {
+      "mae": 0.8502,
+      "rmse": 1.129,
+      "r2": 0.8741,
+      "bias": 0.149,
+      "pinball": 0.2823,
+      "cov80": 0.8136
+     },
+     "2": {
+      "mae": 1.1167,
+      "rmse": 1.4613,
+      "r2": 0.7881,
+      "bias": 0.0824,
+      "pinball": 0.3644,
+      "cov80": 0.8008
+     },
+     "3": {
+      "mae": 1.271,
+      "rmse": 1.6187,
+      "r2": 0.737,
+      "bias": 0.0163,
+      "pinball": 0.4037,
+      "cov80": 0.8051
+     },
+     "4": {
+      "mae": 1.3452,
+      "rmse": 1.7093,
+      "r2": 0.705,
+      "bias": 0.0421,
+      "pinball": 0.4432,
+      "cov80": 0.7669
+     },
+     "5": {
+      "mae": 1.355,
+      "rmse": 1.728,
+      "r2": 0.6948,
+      "bias": 0.0067,
+      "pinball": 0.4439,
+      "cov80": 0.8008
+     }
+    },
+    "lstm_cal": {
+     "1": {
+      "mae": 0.9263,
+      "rmse": 1.1697,
+      "r2": 0.8648,
+      "bias": -0.2958,
+      "pinball": 0.2985,
+      "cov80": 0.6653
+     },
+     "2": {
+      "mae": 1.2358,
+      "rmse": 1.5843,
+      "r2": 0.7509,
+      "bias": -0.4569,
+      "pinball": 0.3923,
+      "cov80": 0.7119
+     },
+     "3": {
+      "mae": 1.45,
+      "rmse": 1.821,
+      "r2": 0.6671,
+      "bias": -0.4735,
+      "pinball": 0.4623,
+      "cov80": 0.7076
+     },
+     "4": {
+      "mae": 1.5695,
+      "rmse": 1.9616,
+      "r2": 0.6114,
+      "bias": -0.5542,
+      "pinball": 0.5002,
+      "cov80": 0.6695
+     },
+     "5": {
+      "mae": 1.5928,
+      "rmse": 1.9821,
+      "r2": 0.5984,
+      "bias": -0.6019,
+      "pinball": 0.5176,
+      "cov80": 0.6398
+     }
+    },
+    "nwp_pp_cal": {
+     "1": {
+      "mae": 0.7741,
+      "rmse": 0.9869,
+      "r2": 0.9038,
+      "bias": -0.1497,
+      "pinball": 0.2665,
+      "cov80": 0.9703
+     },
+     "2": {
+      "mae": 0.9234,
+      "rmse": 1.1738,
+      "r2": 0.8633,
+      "bias": -0.3419,
+      "pinball": 0.3227,
+      "cov80": 0.9619
+     },
+     "3": {
+      "mae": 0.979,
+      "rmse": 1.2489,
+      "r2": 0.8434,
+      "bias": -0.0768,
+      "pinball": 0.3192,
+      "cov80": 0.8771
+     },
+     "4": {
+      "mae": 0.8772,
+      "rmse": 1.1398,
+      "r2": 0.8688,
+      "bias": -0.0008,
+      "pinball": 0.3025,
+      "cov80": 0.8729
+     },
+     "5": {
+      "mae": 0.9442,
+      "rmse": 1.2277,
+      "r2": 0.8459,
+      "bias": -0.0495,
+      "pinball": 0.3119,
+      "cov80": 0.8602
+     }
     }
    },
    "utci": {
@@ -789,6 +1041,90 @@
       "pinball": 0.8706,
       "cov80": 0.4449
      }
+    },
+    "lgbm_cal": {
+     "1": {
+      "mae": 1.8654,
+      "rmse": 2.5467,
+      "r2": 0.7765,
+      "bias": 0.1744,
+      "pinball": 0.6296,
+      "cov80": 0.7881
+     },
+     "2": {
+      "mae": 2.5019,
+      "rmse": 3.2345,
+      "r2": 0.6319,
+      "bias": 0.0675,
+      "pinball": 0.8167,
+      "cov80": 0.75
+     },
+     "3": {
+      "mae": 2.8368,
+      "rmse": 3.5206,
+      "r2": 0.551,
+      "bias": -0.0907,
+      "pinball": 0.9143,
+      "cov80": 0.75
+     },
+     "4": {
+      "mae": 3.0525,
+      "rmse": 3.7071,
+      "r2": 0.4936,
+      "bias": -0.017,
+      "pinball": 0.9641,
+      "cov80": 0.7754
+     },
+     "5": {
+      "mae": 3.2291,
+      "rmse": 3.8858,
+      "r2": 0.4246,
+      "bias": 0.1518,
+      "pinball": 1.0135,
+      "cov80": 0.7797
+     }
+    },
+    "nwp_pp_cal": {
+     "1": {
+      "mae": 1.9063,
+      "rmse": 2.355,
+      "r2": 0.8089,
+      "bias": -0.8293,
+      "pinball": 0.6232,
+      "cov80": 0.8729
+     },
+     "2": {
+      "mae": 1.8827,
+      "rmse": 2.4405,
+      "r2": 0.7904,
+      "bias": -0.5693,
+      "pinball": 0.6277,
+      "cov80": 0.8729
+     },
+     "3": {
+      "mae": 2.1898,
+      "rmse": 2.8106,
+      "r2": 0.7138,
+      "bias": -0.4993,
+      "pinball": 0.73,
+      "cov80": 0.9322
+     },
+     "4": {
+      "mae": 1.9468,
+      "rmse": 2.5322,
+      "r2": 0.7638,
+      "bias": -0.2109,
+      "pinball": 0.6535,
+      "cov80": 0.8771
+     },
+     "5": {
+      "mae": 2.2968,
+      "rmse": 2.9071,
+      "r2": 0.678,
+      "bias": -0.276,
+      "pinball": 0.7727,
+      "cov80": 0.8983
+     }
     }
    }
   },
@@ -815,31 +1151,31 @@
        "csi": 0.3158
       },
       "Yellow": {
-       "events": 22,
-       "hits": 9,
-       "misses": 13,
-       "false_alarms": 12,
-       "hit_rate": 0.4091,
-       "far": 0.5714,
-       "csi": 0.2647
+       "events": 83,
+       "hits": 60,
+       "misses": 23,
+       "false_alarms": 20,
+       "hit_rate": 0.7229,
+       "far": 0.25,
+       "csi": 0.5825
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 30,
+       "hits": 16,
+       "misses": 14,
+       "false_alarms": 13,
+       "hit_rate": 0.5333,
+       "far": 0.4483,
+       "csi": 0.3721
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 6,
+       "hits": 4,
+       "misses": 2,
+       "false_alarms": 2,
+       "hit_rate": 0.6667,
+       "far": 0.3333,
+       "csi": 0.5
       }
      },
      "2": {
@@ -862,31 +1198,31 @@
        "csi": 0.1954
       },
       "Yellow": {
-       "events": 23,
-       "hits": 7,
-       "misses": 16,
-       "false_alarms": 14,
-       "hit_rate": 0.3043,
-       "far": 0.6667,
-       "csi": 0.1892
+       "events": 85,
+       "hits": 57,
+       "misses": 28,
+       "false_alarms": 23,
+       "hit_rate": 0.6706,
+       "far": 0.2875,
+       "csi": 0.5278
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 31,
+       "hits": 12,
+       "misses": 19,
+       "false_alarms": 17,
+       "hit_rate": 0.3871,
+       "far": 0.5862,
+       "csi": 0.25
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 6,
+       "hits": 2,
+       "misses": 4,
+       "false_alarms": 4,
+       "hit_rate": 0.3333,
+       "far": 0.6667,
+       "csi": 0.2
       }
      },
      "3": {
@@ -909,31 +1245,31 @@
        "csi": 0.2072
       },
       "Yellow": {
-       "events": 25,
-       "hits": 5,
-       "misses": 20,
-       "false_alarms": 16,
-       "hit_rate": 0.2,
-       "far": 0.7619,
-       "csi": 0.122
+       "events": 87,
+       "hits": 56,
+       "misses": 31,
+       "false_alarms": 24,
+       "hit_rate": 0.6437,
+       "far": 0.3,
+       "csi": 0.5045
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 33,
+       "hits": 8,
+       "misses": 25,
+       "false_alarms": 21,
+       "hit_rate": 0.2424,
+       "far": 0.7241,
+       "csi": 0.1481
       },
       "Red": {
-       "events": 0,
+       "events": 7,
        "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "misses": 7,
+       "false_alarms": 6,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
       }
      },
      "4": {
@@ -956,31 +1292,31 @@
        "csi": 0.1951
       },
       "Yellow": {
-       "events": 26,
-       "hits": 5,
-       "misses": 21,
-       "false_alarms": 16,
-       "hit_rate": 0.1923,
-       "far": 0.7619,
-       "csi": 0.119
+       "events": 90,
+       "hits": 53,
+       "misses": 37,
+       "false_alarms": 27,
+       "hit_rate": 0.5889,
+       "far": 0.3375,
+       "csi": 0.453
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 34,
+       "hits": 9,
+       "misses": 25,
+       "false_alarms": 20,
+       "hit_rate": 0.2647,
+       "far": 0.6897,
+       "csi": 0.1667
       },
       "Red": {
-       "events": 0,
+       "events": 8,
        "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "misses": 8,
+       "false_alarms": 6,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
       }
      },
      "5": {
@@ -1003,31 +1339,31 @@
        "csi": 0.1797
       },
       "Yellow": {
-       "events": 27,
-       "hits": 5,
-       "misses": 22,
-       "false_alarms": 16,
-       "hit_rate": 0.1852,
-       "far": 0.7619,
-       "csi": 0.1163
+       "events": 93,
+       "hits": 51,
+       "misses": 42,
+       "false_alarms": 29,
+       "hit_rate": 0.5484,
+       "far": 0.3625,
+       "csi": 0.418
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 36,
+       "hits": 7,
+       "misses": 29,
+       "false_alarms": 22,
+       "hit_rate": 0.1944,
+       "far": 0.7586,
+       "csi": 0.1207
       },
       "Red": {
-       "events": 0,
+       "events": 8,
        "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "misses": 8,
+       "false_alarms": 6,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
       }
      }
     },
@@ -1052,31 +1388,31 @@
        "csi": 0.1778
       },
       "Yellow": {
-       "events": 22,
+       "events": 83,
+       "hits": 54,
+       "misses": 29,
+       "false_alarms": 28,
+       "hit_rate": 0.6506,
+       "far": 0.3415,
+       "csi": 0.4865
+      },
+      "Orange": {
+       "events": 30,
        "hits": 0,
-       "misses": 22,
+       "misses": 30,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 6,
        "hits": 0,
-       "misses": 0,
+       "misses": 6,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "2": {
@@ -1099,31 +1435,31 @@
        "csi": 0.1828
       },
       "Yellow": {
-       "events": 23,
+       "events": 85,
+       "hits": 56,
+       "misses": 29,
+       "false_alarms": 29,
+       "hit_rate": 0.6588,
+       "far": 0.3412,
+       "csi": 0.4912
+      },
+      "Orange": {
+       "events": 31,
        "hits": 0,
-       "misses": 23,
+       "misses": 31,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 6,
        "hits": 0,
-       "misses": 0,
+       "misses": 6,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "3": {
@@ -1146,31 +1482,31 @@
        "csi": 0.1979
       },
       "Yellow": {
-       "events": 25,
+       "events": 87,
+       "hits": 58,
+       "misses": 29,
+       "false_alarms": 30,
+       "hit_rate": 0.6667,
+       "far": 0.3409,
+       "csi": 0.4957
+      },
+      "Orange": {
+       "events": 33,
        "hits": 0,
-       "misses": 25,
+       "misses": 33,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 7,
        "hits": 0,
-       "misses": 0,
+       "misses": 7,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "4": {
@@ -1193,31 +1529,31 @@
        "csi": 0.202
       },
       "Yellow": {
-       "events": 26,
+       "events": 90,
+       "hits": 61,
+       "misses": 29,
+       "false_alarms": 30,
+       "hit_rate": 0.6778,
+       "far": 0.3297,
+       "csi": 0.5083
+      },
+      "Orange": {
+       "events": 34,
        "hits": 0,
-       "misses": 26,
+       "misses": 34,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 8,
        "hits": 0,
-       "misses": 0,
+       "misses": 8,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "5": {
@@ -1240,31 +1576,31 @@
        "csi": 0.1961
       },
       "Yellow": {
-       "events": 27,
+       "events": 93,
+       "hits": 64,
+       "misses": 29,
+       "false_alarms": 30,
+       "hit_rate": 0.6882,
+       "far": 0.3191,
+       "csi": 0.5203
+      },
+      "Orange": {
+       "events": 36,
        "hits": 0,
-       "misses": 27,
+       "misses": 36,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 8,
        "hits": 0,
-       "misses": 0,
+       "misses": 8,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      }
     },
@@ -1289,31 +1625,31 @@
        "csi": 0.2857
       },
       "Yellow": {
-       "events": 22,
-       "hits": 3,
-       "misses": 19,
-       "false_alarms": 1,
-       "hit_rate": 0.1364,
-       "far": 0.25,
-       "csi": 0.1304
+       "events": 83,
+       "hits": 65,
+       "misses": 18,
+       "false_alarms": 24,
+       "hit_rate": 0.7831,
+       "far": 0.2697,
+       "csi": 0.6075
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 30,
+       "hits": 15,
+       "misses": 15,
+       "false_alarms": 11,
+       "hit_rate": 0.5,
+       "far": 0.4231,
+       "csi": 0.3659
       },
       "Red": {
-       "events": 0,
+       "events": 6,
        "hits": 0,
-       "misses": 0,
+       "misses": 6,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "2": {
@@ -1336,31 +1672,31 @@
        "csi": 0.1842
       },
       "Yellow": {
-       "events": 23,
+       "events": 85,
+       "hits": 61,
+       "misses": 24,
+       "false_alarms": 21,
+       "hit_rate": 0.7176,
+       "far": 0.2561,
+       "csi": 0.5755
+      },
+      "Orange": {
+       "events": 31,
+       "hits": 3,
+       "misses": 28,
+       "false_alarms": 6,
+       "hit_rate": 0.0968,
+       "far": 0.6667,
+       "csi": 0.0811
+      },
+      "Red": {
+       "events": 6,
        "hits": 0,
-       "misses": 23,
+       "misses": 6,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      },
      "3": {
@@ -1383,31 +1719,31 @@
        "csi": 0.0882
       },
       "Yellow": {
-       "events": 25,
+       "events": 87,
+       "hits": 58,
+       "misses": 29,
+       "false_alarms": 18,
+       "hit_rate": 0.6667,
+       "far": 0.2368,
+       "csi": 0.5524
+      },
+      "Orange": {
+       "events": 33,
        "hits": 0,
-       "misses": 25,
+       "misses": 33,
+       "false_alarms": 2,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 7,
+       "hits": 0,
+       "misses": 7,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      },
      "4": {
@@ -1430,31 +1766,31 @@
        "csi": 0.0303
       },
       "Yellow": {
-       "events": 26,
+       "events": 90,
+       "hits": 60,
+       "misses": 30,
+       "false_alarms": 22,
+       "hit_rate": 0.6667,
+       "far": 0.2683,
+       "csi": 0.5357
+      },
+      "Orange": {
+       "events": 34,
        "hits": 0,
-       "misses": 26,
+       "misses": 34,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 8,
        "hits": 0,
-       "misses": 0,
+       "misses": 8,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "5": {
@@ -1477,31 +1813,31 @@
        "csi": 0.0625
       },
       "Yellow": {
-       "events": 27,
+       "events": 93,
+       "hits": 60,
+       "misses": 33,
+       "false_alarms": 27,
+       "hit_rate": 0.6452,
+       "far": 0.3103,
+       "csi": 0.5
+      },
+      "Orange": {
+       "events": 36,
        "hits": 0,
-       "misses": 27,
+       "misses": 36,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 8,
        "hits": 0,
-       "misses": 0,
+       "misses": 8,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      }
     },
@@ -1526,31 +1862,31 @@
        "csi": 0.275
       },
       "Yellow": {
-       "events": 22,
-       "hits": 4,
-       "misses": 18,
-       "false_alarms": 0,
-       "hit_rate": 0.1818,
-       "far": 0.0,
-       "csi": 0.1818
+       "events": 83,
+       "hits": 54,
+       "misses": 29,
+       "false_alarms": 15,
+       "hit_rate": 0.6506,
+       "far": 0.2174,
+       "csi": 0.551
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 30,
+       "hits": 8,
+       "misses": 22,
+       "false_alarms": 2,
+       "hit_rate": 0.2667,
+       "far": 0.2,
+       "csi": 0.25
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 6,
+       "hits": 1,
+       "misses": 5,
+       "false_alarms": 1,
+       "hit_rate": 0.1667,
+       "far": 0.5,
+       "csi": 0.1429
       }
      },
      "2": {
@@ -1573,31 +1909,31 @@
        "csi": 0.24
       },
       "Yellow": {
-       "events": 23,
-       "hits": 0,
-       "misses": 23,
-       "false_alarms": 1,
-       "hit_rate": 0.0,
-       "far": 1.0,
-       "csi": 0.0
+       "events": 85,
+       "hits": 51,
+       "misses": 34,
+       "false_alarms": 17,
+       "hit_rate": 0.6,
+       "far": 0.25,
+       "csi": 0.5
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 31,
+       "hits": 2,
+       "misses": 29,
+       "false_alarms": 3,
+       "hit_rate": 0.0645,
+       "far": 0.6,
+       "csi": 0.0588
       },
       "Red": {
-       "events": 0,
+       "events": 6,
        "hits": 0,
-       "misses": 0,
+       "misses": 6,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "3": {
@@ -1620,31 +1956,31 @@
        "csi": 0.2241
       },
       "Yellow": {
-       "events": 25,
+       "events": 87,
+       "hits": 58,
+       "misses": 29,
+       "false_alarms": 26,
+       "hit_rate": 0.6667,
+       "far": 0.3095,
+       "csi": 0.5133
+      },
+      "Orange": {
+       "events": 33,
+       "hits": 1,
+       "misses": 32,
+       "false_alarms": 2,
+       "hit_rate": 0.0303,
+       "far": 0.6667,
+       "csi": 0.0286
+      },
+      "Red": {
+       "events": 7,
        "hits": 0,
-       "misses": 25,
+       "misses": 7,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      },
      "4": {
@@ -1667,31 +2003,31 @@
        "csi": 0.1935
       },
       "Yellow": {
-       "events": 26,
+       "events": 90,
+       "hits": 54,
+       "misses": 36,
+       "false_alarms": 26,
+       "hit_rate": 0.6,
+       "far": 0.325,
+       "csi": 0.4655
+      },
+      "Orange": {
+       "events": 34,
        "hits": 0,
-       "misses": 26,
+       "misses": 34,
+       "false_alarms": 2,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 8,
+       "hits": 0,
+       "misses": 8,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      },
      "5": {
@@ -1714,31 +2050,505 @@
        "csi": 0.1918
       },
       "Yellow": {
-       "events": 27,
+       "events": 93,
+       "hits": 54,
+       "misses": 39,
+       "false_alarms": 22,
+       "hit_rate": 0.5806,
+       "far": 0.2895,
+       "csi": 0.4696
+      },
+      "Orange": {
+       "events": 36,
        "hits": 0,
-       "misses": 27,
+       "misses": 36,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
+      "Red": {
+       "events": 8,
        "hits": 0,
-       "misses": 0,
+       "misses": 8,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
+      }
+     }
+    },
+    "lgbm_cal": {
+     "1": {
+      "p95": {
+       "events": 21,
+       "hits": 1,
+       "misses": 20,
+       "false_alarms": 1,
+       "hit_rate": 0.0476,
+       "far": 0.5,
+       "csi": 0.0455
+      },
+      "p95_q90_trigger": {
+       "events": 21,
+       "hits": 13,
+       "misses": 8,
+       "false_alarms": 25,
+       "hit_rate": 0.619,
+       "far": 0.6579,
+       "csi": 0.2826
+      },
+      "Yellow": {
+       "events": 83,
+       "hits": 65,
+       "misses": 18,
+       "false_alarms": 24,
+       "hit_rate": 0.7831,
+       "far": 0.2697,
+       "csi": 0.6075
+      },
+      "Orange": {
+       "events": 30,
+       "hits": 15,
+       "misses": 15,
+       "false_alarms": 11,
+       "hit_rate": 0.5,
+       "far": 0.4231,
+       "csi": 0.3659
       },
       "Red": {
-       "events": 0,
+       "events": 6,
        "hits": 0,
-       "misses": 0,
+       "misses": 6,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
+      }
+     },
+     "2": {
+      "p95": {
+       "events": 22,
+       "hits": 0,
+       "misses": 22,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 22,
+       "hits": 14,
+       "misses": 8,
+       "false_alarms": 37,
+       "hit_rate": 0.6364,
+       "far": 0.7255,
+       "csi": 0.2373
+      },
+      "Yellow": {
+       "events": 85,
+       "hits": 61,
+       "misses": 24,
+       "false_alarms": 21,
+       "hit_rate": 0.7176,
+       "far": 0.2561,
+       "csi": 0.5755
+      },
+      "Orange": {
+       "events": 31,
+       "hits": 3,
+       "misses": 28,
+       "false_alarms": 6,
+       "hit_rate": 0.0968,
+       "far": 0.6667,
+       "csi": 0.0811
+      },
+      "Red": {
+       "events": 6,
+       "hits": 0,
+       "misses": 6,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "3": {
+      "p95": {
+       "events": 24,
+       "hits": 0,
+       "misses": 24,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 24,
+       "hits": 19,
+       "misses": 5,
+       "false_alarms": 60,
+       "hit_rate": 0.7917,
+       "far": 0.7595,
+       "csi": 0.2262
+      },
+      "Yellow": {
+       "events": 87,
+       "hits": 58,
+       "misses": 29,
+       "false_alarms": 18,
+       "hit_rate": 0.6667,
+       "far": 0.2368,
+       "csi": 0.5524
+      },
+      "Orange": {
+       "events": 33,
+       "hits": 0,
+       "misses": 33,
+       "false_alarms": 2,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 7,
+       "hits": 0,
+       "misses": 7,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "4": {
+      "p95": {
+       "events": 25,
+       "hits": 0,
+       "misses": 25,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 25,
+       "hits": 16,
+       "misses": 9,
+       "false_alarms": 51,
+       "hit_rate": 0.64,
+       "far": 0.7612,
+       "csi": 0.2105
+      },
+      "Yellow": {
+       "events": 90,
+       "hits": 60,
+       "misses": 30,
+       "false_alarms": 22,
+       "hit_rate": 0.6667,
+       "far": 0.2683,
+       "csi": 0.5357
+      },
+      "Orange": {
+       "events": 34,
+       "hits": 0,
+       "misses": 34,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 8,
+       "hits": 0,
+       "misses": 8,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "5": {
+      "p95": {
+       "events": 25,
+       "hits": 0,
+       "misses": 25,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 25,
+       "hits": 19,
+       "misses": 6,
+       "false_alarms": 72,
+       "hit_rate": 0.76,
+       "far": 0.7912,
+       "csi": 0.1959
+      },
+      "Yellow": {
+       "events": 93,
+       "hits": 60,
+       "misses": 33,
+       "false_alarms": 27,
+       "hit_rate": 0.6452,
+       "far": 0.3103,
+       "csi": 0.5
+      },
+      "Orange": {
+       "events": 36,
+       "hits": 0,
+       "misses": 36,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 8,
+       "hits": 0,
+       "misses": 8,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     }
+    },
+    "lstm_cal": {
+     "1": {
+      "p95": {
+       "events": 21,
+       "hits": 4,
+       "misses": 17,
+       "false_alarms": 0,
+       "hit_rate": 0.1905,
+       "far": 0.0,
+       "csi": 0.1905
+      },
+      "p95_q90_trigger": {
+       "events": 21,
+       "hits": 11,
+       "misses": 10,
+       "false_alarms": 17,
+       "hit_rate": 0.5238,
+       "far": 0.6071,
+       "csi": 0.2895
+      },
+      "Yellow": {
+       "events": 83,
+       "hits": 54,
+       "misses": 29,
+       "false_alarms": 15,
+       "hit_rate": 0.6506,
+       "far": 0.2174,
+       "csi": 0.551
+      },
+      "Orange": {
+       "events": 30,
+       "hits": 8,
+       "misses": 22,
+       "false_alarms": 2,
+       "hit_rate": 0.2667,
+       "far": 0.2,
+       "csi": 0.25
+      },
+      "Red": {
+       "events": 6,
+       "hits": 1,
+       "misses": 5,
+       "false_alarms": 1,
+       "hit_rate": 0.1667,
+       "far": 0.5,
+       "csi": 0.1429
+      }
+     },
+     "2": {
+      "p95": {
+       "events": 22,
+       "hits": 0,
+       "misses": 22,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 22,
+       "hits": 13,
+       "misses": 9,
+       "false_alarms": 34,
+       "hit_rate": 0.5909,
+       "far": 0.7234,
+       "csi": 0.2321
+      },
+      "Yellow": {
+       "events": 85,
+       "hits": 51,
+       "misses": 34,
+       "false_alarms": 17,
+       "hit_rate": 0.6,
+       "far": 0.25,
+       "csi": 0.5
+      },
+      "Orange": {
+       "events": 31,
+       "hits": 2,
+       "misses": 29,
+       "false_alarms": 3,
+       "hit_rate": 0.0645,
+       "far": 0.6,
+       "csi": 0.0588
+      },
+      "Red": {
+       "events": 6,
+       "hits": 0,
+       "misses": 6,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "3": {
+      "p95": {
+       "events": 24,
+       "hits": 0,
+       "misses": 24,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 24,
+       "hits": 17,
+       "misses": 7,
+       "false_alarms": 45,
+       "hit_rate": 0.7083,
+       "far": 0.7258,
+       "csi": 0.2464
+      },
+      "Yellow": {
+       "events": 87,
+       "hits": 58,
+       "misses": 29,
+       "false_alarms": 26,
+       "hit_rate": 0.6667,
+       "far": 0.3095,
+       "csi": 0.5133
+      },
+      "Orange": {
+       "events": 33,
+       "hits": 1,
+       "misses": 32,
+       "false_alarms": 2,
+       "hit_rate": 0.0303,
+       "far": 0.6667,
+       "csi": 0.0286
+      },
+      "Red": {
+       "events": 7,
+       "hits": 0,
+       "misses": 7,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "4": {
+      "p95": {
+       "events": 25,
+       "hits": 0,
+       "misses": 25,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 25,
+       "hits": 16,
+       "misses": 9,
+       "false_alarms": 46,
+       "hit_rate": 0.64,
+       "far": 0.7419,
+       "csi": 0.2254
+      },
+      "Yellow": {
+       "events": 90,
+       "hits": 54,
+       "misses": 36,
+       "false_alarms": 26,
+       "hit_rate": 0.6,
+       "far": 0.325,
+       "csi": 0.4655
+      },
+      "Orange": {
+       "events": 34,
+       "hits": 0,
+       "misses": 34,
+       "false_alarms": 2,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 8,
+       "hits": 0,
+       "misses": 8,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "5": {
+      "p95": {
+       "events": 25,
+       "hits": 0,
+       "misses": 25,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 25,
+       "hits": 16,
+       "misses": 9,
+       "false_alarms": 51,
+       "hit_rate": 0.64,
+       "far": 0.7612,
+       "csi": 0.2105
+      },
+      "Yellow": {
+       "events": 93,
+       "hits": 54,
+       "misses": 39,
+       "false_alarms": 22,
+       "hit_rate": 0.5806,
+       "far": 0.2895,
+       "csi": 0.4696
+      },
+      "Orange": {
+       "events": 36,
+       "hits": 0,
+       "misses": 36,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 8,
+       "hits": 0,
+       "misses": 8,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
       }
      }
     }
@@ -1765,31 +2575,31 @@
        "csi": 0.2857
       },
       "Yellow": {
-       "events": 13,
-       "hits": 5,
-       "misses": 8,
-       "false_alarms": 7,
-       "hit_rate": 0.3846,
-       "far": 0.5833,
-       "csi": 0.25
+       "events": 52,
+       "hits": 36,
+       "misses": 16,
+       "false_alarms": 14,
+       "hit_rate": 0.6923,
+       "far": 0.28,
+       "csi": 0.5455
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 17,
+       "hits": 9,
+       "misses": 8,
+       "false_alarms": 7,
+       "hit_rate": 0.5294,
+       "far": 0.4375,
+       "csi": 0.375
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 3,
+       "hits": 2,
+       "misses": 1,
+       "false_alarms": 1,
+       "hit_rate": 0.6667,
+       "far": 0.3333,
+       "csi": 0.5
       }
      },
      "2": {
@@ -1812,31 +2622,31 @@
        "csi": 0.1852
       },
       "Yellow": {
-       "events": 14,
-       "hits": 4,
-       "misses": 10,
-       "false_alarms": 8,
-       "hit_rate": 0.2857,
-       "far": 0.6667,
-       "csi": 0.1818
+       "events": 54,
+       "hits": 33,
+       "misses": 21,
+       "false_alarms": 17,
+       "hit_rate": 0.6111,
+       "far": 0.34,
+       "csi": 0.4648
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 18,
+       "hits": 5,
+       "misses": 13,
+       "false_alarms": 11,
+       "hit_rate": 0.2778,
+       "far": 0.6875,
+       "csi": 0.1724
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 3,
+       "hits": 1,
+       "misses": 2,
+       "false_alarms": 2,
+       "hit_rate": 0.3333,
+       "far": 0.6667,
+       "csi": 0.2
       }
      },
      "3": {
@@ -1859,31 +2669,31 @@
        "csi": 0.2
       },
       "Yellow": {
-       "events": 16,
-       "hits": 3,
-       "misses": 13,
-       "false_alarms": 9,
-       "hit_rate": 0.1875,
-       "far": 0.75,
-       "csi": 0.12
+       "events": 56,
+       "hits": 34,
+       "misses": 22,
+       "false_alarms": 16,
+       "hit_rate": 0.6071,
+       "far": 0.32,
+       "csi": 0.4722
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 20,
+       "hits": 4,
+       "misses": 16,
+       "false_alarms": 12,
+       "hit_rate": 0.2,
+       "far": 0.75,
+       "csi": 0.125
       },
       "Red": {
-       "events": 0,
+       "events": 4,
        "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "misses": 4,
+       "false_alarms": 3,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
       }
      },
      "4": {
@@ -1906,31 +2716,31 @@
        "csi": 0.1852
       },
       "Yellow": {
-       "events": 17,
-       "hits": 3,
-       "misses": 14,
-       "false_alarms": 9,
-       "hit_rate": 0.1765,
-       "far": 0.75,
-       "csi": 0.1154
+       "events": 58,
+       "hits": 33,
+       "misses": 25,
+       "false_alarms": 17,
+       "hit_rate": 0.569,
+       "far": 0.34,
+       "csi": 0.44
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 21,
+       "hits": 4,
+       "misses": 17,
+       "false_alarms": 12,
+       "hit_rate": 0.1905,
+       "far": 0.75,
+       "csi": 0.1212
       },
       "Red": {
-       "events": 0,
+       "events": 5,
        "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "misses": 5,
+       "false_alarms": 3,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
       }
      },
      "5": {
@@ -1953,31 +2763,31 @@
        "csi": 0.1786
       },
       "Yellow": {
-       "events": 18,
-       "hits": 2,
-       "misses": 16,
-       "false_alarms": 10,
-       "hit_rate": 0.1111,
-       "far": 0.8333,
-       "csi": 0.0714
+       "events": 60,
+       "hits": 32,
+       "misses": 28,
+       "false_alarms": 18,
+       "hit_rate": 0.5333,
+       "far": 0.36,
+       "csi": 0.4103
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 22,
+       "hits": 3,
+       "misses": 19,
+       "false_alarms": 13,
+       "hit_rate": 0.1364,
+       "far": 0.8125,
+       "csi": 0.0857
       },
       "Red": {
-       "events": 0,
+       "events": 5,
        "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "misses": 5,
+       "false_alarms": 3,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
       }
      }
     },
@@ -2002,31 +2812,31 @@
        "csi": 0.1333
       },
       "Yellow": {
-       "events": 13,
+       "events": 52,
+       "hits": 33,
+       "misses": 19,
+       "false_alarms": 21,
+       "hit_rate": 0.6346,
+       "far": 0.3889,
+       "csi": 0.4521
+      },
+      "Orange": {
+       "events": 17,
        "hits": 0,
-       "misses": 13,
+       "misses": 17,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 3,
        "hits": 0,
-       "misses": 0,
+       "misses": 3,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "2": {
@@ -2049,31 +2859,31 @@
        "csi": 0.1452
       },
       "Yellow": {
-       "events": 14,
+       "events": 54,
+       "hits": 35,
+       "misses": 19,
+       "false_alarms": 21,
+       "hit_rate": 0.6481,
+       "far": 0.375,
+       "csi": 0.4667
+      },
+      "Orange": {
+       "events": 18,
        "hits": 0,
-       "misses": 14,
+       "misses": 18,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 3,
        "hits": 0,
-       "misses": 0,
+       "misses": 3,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "3": {
@@ -2096,31 +2906,31 @@
        "csi": 0.1719
       },
       "Yellow": {
-       "events": 16,
+       "events": 56,
+       "hits": 37,
+       "misses": 19,
+       "false_alarms": 21,
+       "hit_rate": 0.6607,
+       "far": 0.3621,
+       "csi": 0.4805
+      },
+      "Orange": {
+       "events": 20,
        "hits": 0,
-       "misses": 16,
+       "misses": 20,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 4,
        "hits": 0,
-       "misses": 0,
+       "misses": 4,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "4": {
@@ -2143,31 +2953,31 @@
        "csi": 0.1818
       },
       "Yellow": {
-       "events": 17,
+       "events": 58,
+       "hits": 39,
+       "misses": 19,
+       "false_alarms": 21,
+       "hit_rate": 0.6724,
+       "far": 0.35,
+       "csi": 0.4937
+      },
+      "Orange": {
+       "events": 21,
        "hits": 0,
-       "misses": 17,
+       "misses": 21,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 5,
        "hits": 0,
-       "misses": 0,
+       "misses": 5,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "5": {
@@ -2190,31 +3000,31 @@
        "csi": 0.1765
       },
       "Yellow": {
-       "events": 18,
+       "events": 60,
+       "hits": 41,
+       "misses": 19,
+       "false_alarms": 21,
+       "hit_rate": 0.6833,
+       "far": 0.3387,
+       "csi": 0.5062
+      },
+      "Orange": {
+       "events": 22,
        "hits": 0,
-       "misses": 18,
+       "misses": 22,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 5,
        "hits": 0,
-       "misses": 0,
+       "misses": 5,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      }
     },
@@ -2230,31 +3040,31 @@
        "csi": 0.3684
       },
       "Yellow": {
-       "events": 13,
-       "hits": 9,
-       "misses": 4,
-       "false_alarms": 8,
-       "hit_rate": 0.6923,
-       "far": 0.4706,
-       "csi": 0.4286
+       "events": 52,
+       "hits": 47,
+       "misses": 5,
+       "false_alarms": 22,
+       "hit_rate": 0.9038,
+       "far": 0.3188,
+       "csi": 0.6351
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 17,
+       "hits": 15,
+       "misses": 2,
+       "false_alarms": 8,
+       "hit_rate": 0.8824,
+       "far": 0.3478,
+       "csi": 0.6
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
+       "events": 3,
+       "hits": 3,
        "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "false_alarms": 9,
+       "hit_rate": 1.0,
+       "far": 0.75,
+       "csi": 0.25
       }
      },
      "2": {
@@ -2268,31 +3078,31 @@
        "csi": 0.4706
       },
       "Yellow": {
-       "events": 14,
-       "hits": 9,
-       "misses": 5,
-       "false_alarms": 4,
-       "hit_rate": 0.6429,
-       "far": 0.3077,
-       "csi": 0.5
+       "events": 54,
+       "hits": 47,
+       "misses": 7,
+       "false_alarms": 27,
+       "hit_rate": 0.8704,
+       "far": 0.3649,
+       "csi": 0.5802
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 18,
+       "hits": 12,
+       "misses": 6,
+       "false_alarms": 10,
+       "hit_rate": 0.6667,
+       "far": 0.4545,
+       "csi": 0.4286
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
+       "events": 3,
+       "hits": 3,
        "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "false_alarms": 5,
+       "hit_rate": 1.0,
+       "far": 0.625,
+       "csi": 0.375
       }
      },
      "3": {
@@ -2306,31 +3116,31 @@
        "csi": 0.4
       },
       "Yellow": {
-       "events": 16,
-       "hits": 11,
-       "misses": 5,
-       "false_alarms": 10,
-       "hit_rate": 0.6875,
-       "far": 0.4762,
-       "csi": 0.4231
+       "events": 56,
+       "hits": 49,
+       "misses": 7,
+       "false_alarms": 45,
+       "hit_rate": 0.875,
+       "far": 0.4787,
+       "csi": 0.4851
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 20,
+       "hits": 14,
+       "misses": 6,
+       "false_alarms": 18,
+       "hit_rate": 0.7,
+       "far": 0.5625,
+       "csi": 0.3684
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
+       "events": 4,
+       "hits": 4,
        "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "false_alarms": 13,
+       "hit_rate": 1.0,
+       "far": 0.7647,
+       "csi": 0.2353
       }
      },
      "4": {
@@ -2344,31 +3154,31 @@
        "csi": 0.4231
       },
       "Yellow": {
-       "events": 17,
-       "hits": 11,
+       "events": 58,
+       "hits": 52,
        "misses": 6,
-       "false_alarms": 14,
-       "hit_rate": 0.6471,
-       "far": 0.56,
-       "csi": 0.3548
+       "false_alarms": 44,
+       "hit_rate": 0.8966,
+       "far": 0.4583,
+       "csi": 0.5098
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 21,
+       "hits": 14,
+       "misses": 7,
+       "false_alarms": 23,
+       "hit_rate": 0.6667,
+       "far": 0.6216,
+       "csi": 0.3182
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
+       "events": 5,
+       "hits": 5,
        "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "false_alarms": 11,
+       "hit_rate": 1.0,
+       "far": 0.6875,
+       "csi": 0.3125
       }
      },
      "5": {
@@ -2382,31 +3192,31 @@
        "csi": 0.44
       },
       "Yellow": {
-       "events": 18,
-       "hits": 12,
-       "misses": 6,
-       "false_alarms": 10,
-       "hit_rate": 0.6667,
-       "far": 0.4545,
-       "csi": 0.4286
+       "events": 60,
+       "hits": 51,
+       "misses": 9,
+       "false_alarms": 28,
+       "hit_rate": 0.85,
+       "far": 0.3544,
+       "csi": 0.5795
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 1,
-       "hit_rate": null,
-       "far": 1.0,
-       "csi": 0.0
+       "events": 22,
+       "hits": 17,
+       "misses": 5,
+       "false_alarms": 16,
+       "hit_rate": 0.7727,
+       "far": 0.4848,
+       "csi": 0.4474
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
+       "events": 5,
+       "hits": 5,
        "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "false_alarms": 12,
+       "hit_rate": 1.0,
+       "far": 0.7059,
+       "csi": 0.2941
       }
      }
     },
@@ -2431,31 +3241,31 @@
        "csi": 0.2857
       },
       "Yellow": {
-       "events": 13,
-       "hits": 3,
-       "misses": 10,
-       "false_alarms": 0,
-       "hit_rate": 0.2308,
-       "far": 0.0,
-       "csi": 0.2308
+       "events": 52,
+       "hits": 40,
+       "misses": 12,
+       "false_alarms": 17,
+       "hit_rate": 0.7692,
+       "far": 0.2982,
+       "csi": 0.5797
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 17,
+       "hits": 8,
+       "misses": 9,
+       "false_alarms": 8,
+       "hit_rate": 0.4706,
+       "far": 0.5,
+       "csi": 0.32
       },
       "Red": {
-       "events": 0,
+       "events": 3,
        "hits": 0,
-       "misses": 0,
+       "misses": 3,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "2": {
@@ -2478,31 +3288,31 @@
        "csi": 0.2727
       },
       "Yellow": {
-       "events": 14,
+       "events": 54,
+       "hits": 37,
+       "misses": 17,
+       "false_alarms": 15,
+       "hit_rate": 0.6852,
+       "far": 0.2885,
+       "csi": 0.5362
+      },
+      "Orange": {
+       "events": 18,
+       "hits": 2,
+       "misses": 16,
+       "false_alarms": 5,
+       "hit_rate": 0.1111,
+       "far": 0.7143,
+       "csi": 0.087
+      },
+      "Red": {
+       "events": 3,
        "hits": 0,
-       "misses": 14,
+       "misses": 3,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      },
      "3": {
@@ -2525,31 +3335,31 @@
        "csi": 0.1304
       },
       "Yellow": {
-       "events": 16,
+       "events": 56,
+       "hits": 39,
+       "misses": 17,
+       "false_alarms": 13,
+       "hit_rate": 0.6964,
+       "far": 0.25,
+       "csi": 0.5652
+      },
+      "Orange": {
+       "events": 20,
        "hits": 0,
-       "misses": 16,
+       "misses": 20,
+       "false_alarms": 2,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 4,
+       "hits": 0,
+       "misses": 4,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      },
      "4": {
@@ -2572,31 +3382,31 @@
        "csi": 0.0435
       },
       "Yellow": {
-       "events": 17,
+       "events": 58,
+       "hits": 43,
+       "misses": 15,
+       "false_alarms": 14,
+       "hit_rate": 0.7414,
+       "far": 0.2456,
+       "csi": 0.5972
+      },
+      "Orange": {
+       "events": 21,
        "hits": 0,
-       "misses": 17,
+       "misses": 21,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 5,
        "hits": 0,
-       "misses": 0,
+       "misses": 5,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "5": {
@@ -2619,31 +3429,31 @@
        "csi": 0.0909
       },
       "Yellow": {
-       "events": 18,
+       "events": 60,
+       "hits": 45,
+       "misses": 15,
+       "false_alarms": 21,
+       "hit_rate": 0.75,
+       "far": 0.3182,
+       "csi": 0.5556
+      },
+      "Orange": {
+       "events": 22,
        "hits": 0,
-       "misses": 18,
+       "misses": 22,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
       "Red": {
-       "events": 0,
+       "events": 5,
        "hits": 0,
-       "misses": 0,
+       "misses": 5,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      }
     },
@@ -2668,31 +3478,31 @@
        "csi": 0.375
       },
       "Yellow": {
-       "events": 13,
-       "hits": 4,
-       "misses": 9,
-       "false_alarms": 3,
-       "hit_rate": 0.3077,
-       "far": 0.4286,
-       "csi": 0.25
+       "events": 52,
+       "hits": 32,
+       "misses": 20,
+       "false_alarms": 10,
+       "hit_rate": 0.6154,
+       "far": 0.2381,
+       "csi": 0.5161
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 17,
+       "hits": 10,
+       "misses": 7,
+       "false_alarms": 2,
+       "hit_rate": 0.5882,
+       "far": 0.1667,
+       "csi": 0.5263
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 3,
+       "hits": 1,
+       "misses": 2,
+       "false_alarms": 1,
+       "hit_rate": 0.3333,
+       "far": 0.5,
+       "csi": 0.25
       }
      },
      "2": {
@@ -2715,31 +3525,31 @@
        "csi": 0.4286
       },
       "Yellow": {
-       "events": 14,
-       "hits": 0,
+       "events": 54,
+       "hits": 38,
+       "misses": 16,
+       "false_alarms": 10,
+       "hit_rate": 0.7037,
+       "far": 0.2083,
+       "csi": 0.5938
+      },
+      "Orange": {
+       "events": 18,
+       "hits": 4,
        "misses": 14,
+       "false_alarms": 2,
+       "hit_rate": 0.2222,
+       "far": 0.3333,
+       "csi": 0.2
+      },
+      "Red": {
+       "events": 3,
+       "hits": 0,
+       "misses": 3,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      },
      "3": {
@@ -2762,31 +3572,31 @@
        "csi": 0.0476
       },
       "Yellow": {
-       "events": 16,
+       "events": 56,
+       "hits": 37,
+       "misses": 19,
+       "false_alarms": 18,
+       "hit_rate": 0.6607,
+       "far": 0.3273,
+       "csi": 0.5
+      },
+      "Orange": {
+       "events": 20,
+       "hits": 3,
+       "misses": 17,
+       "false_alarms": 1,
+       "hit_rate": 0.15,
+       "far": 0.25,
+       "csi": 0.1429
+      },
+      "Red": {
+       "events": 4,
        "hits": 0,
-       "misses": 16,
+       "misses": 4,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      },
      "4": {
@@ -2809,31 +3619,31 @@
        "csi": 0.1905
       },
       "Yellow": {
-       "events": 17,
-       "hits": 0,
+       "events": 58,
+       "hits": 41,
        "misses": 17,
-       "false_alarms": 1,
-       "hit_rate": 0.0,
-       "far": 1.0,
-       "csi": 0.0
+       "false_alarms": 18,
+       "hit_rate": 0.7069,
+       "far": 0.3051,
+       "csi": 0.5395
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 21,
+       "hits": 10,
+       "misses": 11,
+       "false_alarms": 2,
+       "hit_rate": 0.4762,
+       "far": 0.1667,
+       "csi": 0.4348
       },
       "Red": {
-       "events": 0,
+       "events": 5,
        "hits": 0,
-       "misses": 0,
+       "misses": 5,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "5": {
@@ -2856,31 +3666,31 @@
        "csi": 0.2353
       },
       "Yellow": {
-       "events": 18,
+       "events": 60,
+       "hits": 47,
+       "misses": 13,
+       "false_alarms": 16,
+       "hit_rate": 0.7833,
+       "far": 0.254,
+       "csi": 0.6184
+      },
+      "Orange": {
+       "events": 22,
+       "hits": 1,
+       "misses": 21,
+       "false_alarms": 0,
+       "hit_rate": 0.0455,
+       "far": 0.0,
+       "csi": 0.0455
+      },
+      "Red": {
+       "events": 5,
        "hits": 0,
-       "misses": 18,
+       "misses": 5,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      }
     },
@@ -2905,31 +3715,31 @@
        "csi": 0.2273
       },
       "Yellow": {
-       "events": 13,
-       "hits": 3,
-       "misses": 10,
-       "false_alarms": 0,
-       "hit_rate": 0.2308,
-       "far": 0.0,
-       "csi": 0.2308
+       "events": 52,
+       "hits": 32,
+       "misses": 20,
+       "false_alarms": 12,
+       "hit_rate": 0.6154,
+       "far": 0.2727,
+       "csi": 0.5
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 17,
+       "hits": 4,
+       "misses": 13,
+       "false_alarms": 1,
+       "hit_rate": 0.2353,
+       "far": 0.2,
+       "csi": 0.2222
       },
       "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 3,
+       "hits": 1,
+       "misses": 2,
+       "false_alarms": 1,
+       "hit_rate": 0.3333,
+       "far": 0.5,
+       "csi": 0.25
       }
      },
      "2": {
@@ -2952,31 +3762,31 @@
        "csi": 0.2333
       },
       "Yellow": {
-       "events": 14,
-       "hits": 0,
-       "misses": 14,
-       "false_alarms": 1,
-       "hit_rate": 0.0,
-       "far": 1.0,
-       "csi": 0.0
+       "events": 54,
+       "hits": 32,
+       "misses": 22,
+       "false_alarms": 13,
+       "hit_rate": 0.5926,
+       "far": 0.2889,
+       "csi": 0.4776
       },
       "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
+       "events": 18,
+       "hits": 2,
+       "misses": 16,
+       "false_alarms": 2,
+       "hit_rate": 0.1111,
+       "far": 0.5,
+       "csi": 0.1
       },
       "Red": {
-       "events": 0,
+       "events": 3,
        "hits": 0,
-       "misses": 0,
+       "misses": 3,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
       }
      },
      "3": {
@@ -2999,31 +3809,31 @@
        "csi": 0.2195
       },
       "Yellow": {
-       "events": 16,
+       "events": 56,
+       "hits": 37,
+       "misses": 19,
+       "false_alarms": 17,
+       "hit_rate": 0.6607,
+       "far": 0.3148,
+       "csi": 0.5068
+      },
+      "Orange": {
+       "events": 20,
+       "hits": 1,
+       "misses": 19,
+       "false_alarms": 2,
+       "hit_rate": 0.05,
+       "far": 0.6667,
+       "csi": 0.0455
+      },
+      "Red": {
+       "events": 4,
        "hits": 0,
-       "misses": 16,
+       "misses": 4,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      },
      "4": {
@@ -3046,31 +3856,31 @@
        "csi": 0.1957
       },
       "Yellow": {
-       "events": 17,
+       "events": 58,
+       "hits": 34,
+       "misses": 24,
+       "false_alarms": 18,
+       "hit_rate": 0.5862,
+       "far": 0.3462,
+       "csi": 0.4474
+      },
+      "Orange": {
+       "events": 21,
        "hits": 0,
-       "misses": 17,
+       "misses": 21,
+       "false_alarms": 2,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 5,
+       "hits": 0,
+       "misses": 5,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
-      },
-      "Orange": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
-      },
-      "Red": {
-       "events": 0,
-       "hits": 0,
-       "misses": 0,
-       "false_alarms": 0,
-       "hit_rate": null,
-       "far": null,
-       "csi": null
       }
      },
      "5": {
@@ -3093,36 +3903,1062 @@
        "csi": 0.1667
       },
       "Yellow": {
-       "events": 18,
+       "events": 60,
+       "hits": 35,
+       "misses": 25,
+       "false_alarms": 15,
+       "hit_rate": 0.5833,
+       "far": 0.3,
+       "csi": 0.4667
+      },
+      "Orange": {
+       "events": 22,
        "hits": 0,
-       "misses": 18,
+       "misses": 22,
        "false_alarms": 0,
        "hit_rate": 0.0,
        "far": null,
        "csi": 0.0
       },
-      "Orange": {
-       "events": 0,
+      "Red": {
+       "events": 5,
        "hits": 0,
-       "misses": 0,
+       "misses": 5,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
+      }
+     }
+    },
+    "lgbm_cal": {
+     "1": {
+      "p95": {
+       "events": 12,
+       "hits": 1,
+       "misses": 11,
+       "false_alarms": 0,
+       "hit_rate": 0.0833,
+       "far": 0.0,
+       "csi": 0.0833
+      },
+      "p95_q90_trigger": {
+       "events": 12,
+       "hits": 8,
+       "misses": 4,
+       "false_alarms": 15,
+       "hit_rate": 0.6667,
+       "far": 0.6522,
+       "csi": 0.2963
+      },
+      "Yellow": {
+       "events": 52,
+       "hits": 40,
+       "misses": 12,
+       "false_alarms": 17,
+       "hit_rate": 0.7692,
+       "far": 0.2982,
+       "csi": 0.5797
+      },
+      "Orange": {
+       "events": 17,
+       "hits": 8,
+       "misses": 9,
+       "false_alarms": 8,
+       "hit_rate": 0.4706,
+       "far": 0.5,
+       "csi": 0.32
       },
       "Red": {
-       "events": 0,
+       "events": 3,
        "hits": 0,
-       "misses": 0,
+       "misses": 3,
        "false_alarms": 0,
-       "hit_rate": null,
+       "hit_rate": 0.0,
        "far": null,
-       "csi": null
+       "csi": 0.0
+      }
+     },
+     "2": {
+      "p95": {
+       "events": 13,
+       "hits": 0,
+       "misses": 13,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 13,
+       "hits": 9,
+       "misses": 4,
+       "false_alarms": 26,
+       "hit_rate": 0.6923,
+       "far": 0.7429,
+       "csi": 0.2308
+      },
+      "Yellow": {
+       "events": 54,
+       "hits": 37,
+       "misses": 17,
+       "false_alarms": 15,
+       "hit_rate": 0.6852,
+       "far": 0.2885,
+       "csi": 0.5362
+      },
+      "Orange": {
+       "events": 18,
+       "hits": 2,
+       "misses": 16,
+       "false_alarms": 5,
+       "hit_rate": 0.1111,
+       "far": 0.7143,
+       "csi": 0.087
+      },
+      "Red": {
+       "events": 3,
+       "hits": 0,
+       "misses": 3,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "3": {
+      "p95": {
+       "events": 15,
+       "hits": 0,
+       "misses": 15,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 15,
+       "hits": 12,
+       "misses": 3,
+       "false_alarms": 45,
+       "hit_rate": 0.8,
+       "far": 0.7895,
+       "csi": 0.2
+      },
+      "Yellow": {
+       "events": 56,
+       "hits": 39,
+       "misses": 17,
+       "false_alarms": 13,
+       "hit_rate": 0.6964,
+       "far": 0.25,
+       "csi": 0.5652
+      },
+      "Orange": {
+       "events": 20,
+       "hits": 0,
+       "misses": 20,
+       "false_alarms": 2,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 4,
+       "hits": 0,
+       "misses": 4,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "4": {
+      "p95": {
+       "events": 16,
+       "hits": 0,
+       "misses": 16,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 16,
+       "hits": 12,
+       "misses": 4,
+       "false_alarms": 40,
+       "hit_rate": 0.75,
+       "far": 0.7692,
+       "csi": 0.2143
+      },
+      "Yellow": {
+       "events": 58,
+       "hits": 43,
+       "misses": 15,
+       "false_alarms": 14,
+       "hit_rate": 0.7414,
+       "far": 0.2456,
+       "csi": 0.5972
+      },
+      "Orange": {
+       "events": 21,
+       "hits": 0,
+       "misses": 21,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 5,
+       "hits": 0,
+       "misses": 5,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "5": {
+      "p95": {
+       "events": 16,
+       "hits": 0,
+       "misses": 16,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 16,
+       "hits": 14,
+       "misses": 2,
+       "false_alarms": 53,
+       "hit_rate": 0.875,
+       "far": 0.791,
+       "csi": 0.2029
+      },
+      "Yellow": {
+       "events": 60,
+       "hits": 45,
+       "misses": 15,
+       "false_alarms": 21,
+       "hit_rate": 0.75,
+       "far": 0.3182,
+       "csi": 0.5556
+      },
+      "Orange": {
+       "events": 22,
+       "hits": 0,
+       "misses": 22,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 5,
+       "hits": 0,
+       "misses": 5,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     }
+    },
+    "lstm_cal": {
+     "1": {
+      "p95": {
+       "events": 12,
+       "hits": 3,
+       "misses": 9,
+       "false_alarms": 0,
+       "hit_rate": 0.25,
+       "far": 0.0,
+       "csi": 0.25
+      },
+      "p95_q90_trigger": {
+       "events": 12,
+       "hits": 5,
+       "misses": 7,
+       "false_alarms": 9,
+       "hit_rate": 0.4167,
+       "far": 0.6429,
+       "csi": 0.2381
+      },
+      "Yellow": {
+       "events": 52,
+       "hits": 32,
+       "misses": 20,
+       "false_alarms": 12,
+       "hit_rate": 0.6154,
+       "far": 0.2727,
+       "csi": 0.5
+      },
+      "Orange": {
+       "events": 17,
+       "hits": 4,
+       "misses": 13,
+       "false_alarms": 1,
+       "hit_rate": 0.2353,
+       "far": 0.2,
+       "csi": 0.2222
+      },
+      "Red": {
+       "events": 3,
+       "hits": 1,
+       "misses": 2,
+       "false_alarms": 1,
+       "hit_rate": 0.3333,
+       "far": 0.5,
+       "csi": 0.25
+      }
+     },
+     "2": {
+      "p95": {
+       "events": 13,
+       "hits": 0,
+       "misses": 13,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 13,
+       "hits": 8,
+       "misses": 5,
+       "false_alarms": 22,
+       "hit_rate": 0.6154,
+       "far": 0.7333,
+       "csi": 0.2286
+      },
+      "Yellow": {
+       "events": 54,
+       "hits": 32,
+       "misses": 22,
+       "false_alarms": 13,
+       "hit_rate": 0.5926,
+       "far": 0.2889,
+       "csi": 0.4776
+      },
+      "Orange": {
+       "events": 18,
+       "hits": 2,
+       "misses": 16,
+       "false_alarms": 2,
+       "hit_rate": 0.1111,
+       "far": 0.5,
+       "csi": 0.1
+      },
+      "Red": {
+       "events": 3,
+       "hits": 0,
+       "misses": 3,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "3": {
+      "p95": {
+       "events": 15,
+       "hits": 0,
+       "misses": 15,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 15,
+       "hits": 11,
+       "misses": 4,
+       "false_alarms": 32,
+       "hit_rate": 0.7333,
+       "far": 0.7442,
+       "csi": 0.234
+      },
+      "Yellow": {
+       "events": 56,
+       "hits": 37,
+       "misses": 19,
+       "false_alarms": 17,
+       "hit_rate": 0.6607,
+       "far": 0.3148,
+       "csi": 0.5068
+      },
+      "Orange": {
+       "events": 20,
+       "hits": 1,
+       "misses": 19,
+       "false_alarms": 2,
+       "hit_rate": 0.05,
+       "far": 0.6667,
+       "csi": 0.0455
+      },
+      "Red": {
+       "events": 4,
+       "hits": 0,
+       "misses": 4,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "4": {
+      "p95": {
+       "events": 16,
+       "hits": 0,
+       "misses": 16,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 16,
+       "hits": 11,
+       "misses": 5,
+       "false_alarms": 33,
+       "hit_rate": 0.6875,
+       "far": 0.75,
+       "csi": 0.2245
+      },
+      "Yellow": {
+       "events": 58,
+       "hits": 34,
+       "misses": 24,
+       "false_alarms": 18,
+       "hit_rate": 0.5862,
+       "far": 0.3462,
+       "csi": 0.4474
+      },
+      "Orange": {
+       "events": 21,
+       "hits": 0,
+       "misses": 21,
+       "false_alarms": 2,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 5,
+       "hits": 0,
+       "misses": 5,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "5": {
+      "p95": {
+       "events": 16,
+       "hits": 0,
+       "misses": 16,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 16,
+       "hits": 10,
+       "misses": 6,
+       "false_alarms": 38,
+       "hit_rate": 0.625,
+       "far": 0.7917,
+       "csi": 0.1852
+      },
+      "Yellow": {
+       "events": 60,
+       "hits": 35,
+       "misses": 25,
+       "false_alarms": 15,
+       "hit_rate": 0.5833,
+       "far": 0.3,
+       "csi": 0.4667
+      },
+      "Orange": {
+       "events": 22,
+       "hits": 0,
+       "misses": 22,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "Red": {
+       "events": 5,
+       "hits": 0,
+       "misses": 5,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     }
+    },
+    "nwp_pp_cal": {
+     "1": {
+      "p95": {
+       "events": 12,
+       "hits": 3,
+       "misses": 9,
+       "false_alarms": 3,
+       "hit_rate": 0.25,
+       "far": 0.5,
+       "csi": 0.2
+      },
+      "p95_q90_trigger": {
+       "events": 12,
+       "hits": 10,
+       "misses": 2,
+       "false_alarms": 23,
+       "hit_rate": 0.8333,
+       "far": 0.697,
+       "csi": 0.2857
+      },
+      "Yellow": {
+       "events": 52,
+       "hits": 32,
+       "misses": 20,
+       "false_alarms": 10,
+       "hit_rate": 0.6154,
+       "far": 0.2381,
+       "csi": 0.5161
+      },
+      "Orange": {
+       "events": 17,
+       "hits": 10,
+       "misses": 7,
+       "false_alarms": 2,
+       "hit_rate": 0.5882,
+       "far": 0.1667,
+       "csi": 0.5263
+      },
+      "Red": {
+       "events": 3,
+       "hits": 1,
+       "misses": 2,
+       "false_alarms": 1,
+       "hit_rate": 0.3333,
+       "far": 0.5,
+       "csi": 0.25
+      }
+     },
+     "2": {
+      "p95": {
+       "events": 13,
+       "hits": 0,
+       "misses": 13,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 13,
+       "hits": 11,
+       "misses": 2,
+       "false_alarms": 29,
+       "hit_rate": 0.8462,
+       "far": 0.725,
+       "csi": 0.2619
+      },
+      "Yellow": {
+       "events": 54,
+       "hits": 38,
+       "misses": 16,
+       "false_alarms": 10,
+       "hit_rate": 0.7037,
+       "far": 0.2083,
+       "csi": 0.5938
+      },
+      "Orange": {
+       "events": 18,
+       "hits": 4,
+       "misses": 14,
+       "false_alarms": 2,
+       "hit_rate": 0.2222,
+       "far": 0.3333,
+       "csi": 0.2
+      },
+      "Red": {
+       "events": 3,
+       "hits": 0,
+       "misses": 3,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "3": {
+      "p95": {
+       "events": 15,
+       "hits": 0,
+       "misses": 15,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 15,
+       "hits": 12,
+       "misses": 3,
+       "false_alarms": 32,
+       "hit_rate": 0.8,
+       "far": 0.7273,
+       "csi": 0.2553
+      },
+      "Yellow": {
+       "events": 56,
+       "hits": 37,
+       "misses": 19,
+       "false_alarms": 18,
+       "hit_rate": 0.6607,
+       "far": 0.3273,
+       "csi": 0.5
+      },
+      "Orange": {
+       "events": 20,
+       "hits": 3,
+       "misses": 17,
+       "false_alarms": 1,
+       "hit_rate": 0.15,
+       "far": 0.25,
+       "csi": 0.1429
+      },
+      "Red": {
+       "events": 4,
+       "hits": 0,
+       "misses": 4,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "4": {
+      "p95": {
+       "events": 16,
+       "hits": 0,
+       "misses": 16,
+       "false_alarms": 1,
+       "hit_rate": 0.0,
+       "far": 1.0,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 16,
+       "hits": 12,
+       "misses": 4,
+       "false_alarms": 23,
+       "hit_rate": 0.75,
+       "far": 0.6571,
+       "csi": 0.3077
+      },
+      "Yellow": {
+       "events": 58,
+       "hits": 41,
+       "misses": 17,
+       "false_alarms": 18,
+       "hit_rate": 0.7069,
+       "far": 0.3051,
+       "csi": 0.5395
+      },
+      "Orange": {
+       "events": 21,
+       "hits": 10,
+       "misses": 11,
+       "false_alarms": 2,
+       "hit_rate": 0.4762,
+       "far": 0.1667,
+       "csi": 0.4348
+      },
+      "Red": {
+       "events": 5,
+       "hits": 0,
+       "misses": 5,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      }
+     },
+     "5": {
+      "p95": {
+       "events": 16,
+       "hits": 0,
+       "misses": 16,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
+      },
+      "p95_q90_trigger": {
+       "events": 16,
+       "hits": 9,
+       "misses": 7,
+       "false_alarms": 15,
+       "hit_rate": 0.5625,
+       "far": 0.625,
+       "csi": 0.2903
+      },
+      "Yellow": {
+       "events": 60,
+       "hits": 47,
+       "misses": 13,
+       "false_alarms": 16,
+       "hit_rate": 0.7833,
+       "far": 0.254,
+       "csi": 0.6184
+      },
+      "Orange": {
+       "events": 22,
+       "hits": 1,
+       "misses": 21,
+       "false_alarms": 0,
+       "hit_rate": 0.0455,
+       "far": 0.0,
+       "csi": 0.0455
+      },
+      "Red": {
+       "events": 5,
+       "hits": 0,
+       "misses": 5,
+       "false_alarms": 0,
+       "hit_rate": 0.0,
+       "far": null,
+       "csi": 0.0
       }
      }
     }
    }
   }
+ },
+ "calibration": {
+  "wbgt": {
+   "lgbm": {
+    "1": {
+     "Q": 0.3718,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "2": {
+     "Q": 0.5324,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "3": {
+     "Q": 0.6395,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "4": {
+     "Q": 0.5215,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "5": {
+     "Q": 0.5829,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    }
+   },
+   "lstm": {
+    "1": {
+     "Q": -0.0447,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "2": {
+     "Q": 0.23,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "3": {
+     "Q": 0.1871,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "4": {
+     "Q": 0.2164,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "5": {
+     "Q": 0.0681,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    }
+   },
+   "nwp_pp": {
+    "1": {
+     "Q": 1.1817,
+     "n_cal": 118,
+     "months_held_out": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "method": "CQR on leave-one-month-out predictions within the 2024 training season"
+    },
+    "2": {
+     "Q": 1.3942,
+     "n_cal": 118,
+     "months_held_out": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "method": "CQR on leave-one-month-out predictions within the 2024 training season"
+    },
+    "3": {
+     "Q": 1.2412,
+     "n_cal": 118,
+     "months_held_out": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "method": "CQR on leave-one-month-out predictions within the 2024 training season"
+    },
+    "4": {
+     "Q": 1.066,
+     "n_cal": 118,
+     "months_held_out": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "method": "CQR on leave-one-month-out predictions within the 2024 training season"
+    },
+    "5": {
+     "Q": 0.9484,
+     "n_cal": 118,
+     "months_held_out": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "method": "CQR on leave-one-month-out predictions within the 2024 training season"
+    }
+   }
+  },
+  "utci": {
+   "lgbm": {
+    "1": {
+     "Q": 0.7752,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "2": {
+     "Q": 0.4485,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "3": {
+     "Q": 0.5057,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "4": {
+     "Q": 0.8827,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    },
+    "5": {
+     "Q": 1.0789,
+     "n_cal": 118,
+     "method": "CQR on the 2023 validation season"
+    }
+   },
+   "nwp_pp": {
+    "1": {
+     "Q": 2.0755,
+     "n_cal": 118,
+     "months_held_out": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "method": "CQR on leave-one-month-out predictions within the 2024 training season"
+    },
+    "2": {
+     "Q": 2.1934,
+     "n_cal": 118,
+     "months_held_out": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "method": "CQR on leave-one-month-out predictions within the 2024 training season"
+    },
+    "3": {
+     "Q": 3.0792,
+     "n_cal": 118,
+     "months_held_out": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "method": "CQR on leave-one-month-out predictions within the 2024 training season"
+    },
+    "4": {
+     "Q": 2.3531,
+     "n_cal": 118,
+     "months_held_out": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "method": "CQR on leave-one-month-out predictions within the 2024 training season"
+    },
+    "5": {
+     "Q": 3.1077,
+     "n_cal": 118,
+     "months_held_out": [
+      3,
+      4,
+      5,
+      6
+     ],
+     "method": "CQR on leave-one-month-out predictions within the 2024 training season"
+    }
+   }
+  }
+ },
+ "improvement": {
+  "main": {
+   "lgbm": {
+    "1": {
+     "vs_persistence_pct": 7.3099,
+     "vs_climatology_pct": 39.1277
+    },
+    "2": {
+     "vs_persistence_pct": 15.5366,
+     "vs_climatology_pct": 20.4365
+    },
+    "3": {
+     "vs_persistence_pct": 19.7062,
+     "vs_climatology_pct": 8.8492
+    },
+    "4": {
+     "vs_persistence_pct": 23.8034,
+     "vs_climatology_pct": 3.8638
+    },
+    "5": {
+     "vs_persistence_pct": 28.4513,
+     "vs_climatology_pct": 1.7456
+    }
+   },
+   "lstm": {
+    "1": {
+     "vs_persistence_pct": 2.6827,
+     "vs_climatology_pct": 36.0889
+    },
+    "2": {
+     "vs_persistence_pct": 10.89,
+     "vs_climatology_pct": 16.0594
+    },
+    "3": {
+     "vs_persistence_pct": 14.1658,
+     "vs_climatology_pct": 2.5597
+    },
+    "4": {
+     "vs_persistence_pct": 16.1703,
+     "vs_climatology_pct": -5.7669
+    },
+    "5": {
+     "vs_persistence_pct": 20.5183,
+     "vs_climatology_pct": -9.1484
+    }
+   }
+  },
+  "nwp_subset": {
+   "nwp_pp": {
+    "1": {
+     "vs_persistence_pct": 16.3784,
+     "vs_climatology_pct": 45.7007
+    },
+    "2": {
+     "vs_persistence_pct": 30.1804,
+     "vs_climatology_pct": 35.0046
+    },
+    "3": {
+     "vs_persistence_pct": 38.1938,
+     "vs_climatology_pct": 31.0707
+    },
+    "4": {
+     "vs_persistence_pct": 50.01,
+     "vs_climatology_pct": 38.1623
+    },
+    "5": {
+     "vs_persistence_pct": 50.3922,
+     "vs_climatology_pct": 32.7744
+    }
+   },
+   "nwp_raw": {
+    "1": {
+     "vs_persistence_pct": 14.4189,
+     "vs_climatology_pct": 44.4284
+    },
+    "2": {
+     "vs_persistence_pct": 38.7895,
+     "vs_climatology_pct": 43.0188
+    },
+    "3": {
+     "vs_persistence_pct": 30.6644,
+     "vs_climatology_pct": 22.6735
+    },
+    "4": {
+     "vs_persistence_pct": 37.1149,
+     "vs_climatology_pct": 22.2111
+    },
+    "5": {
+     "vs_persistence_pct": 45.8111,
+     "vs_climatology_pct": 26.5664
+    }
+   }
+  }
+ },
+ "tiers": {
+  "source": "ERA5 via Open-Meteo, New Delhi (28.63, 77.22); daily max WBGT from ml/common/thermal.py",
+  "period": "March–June 2015–2022 (training years only)",
+  "n_days": 976,
+  "percentiles": {
+   "p50": 27.43,
+   "p75": 29.6,
+   "p90": 31.02,
+   "p95": 31.59,
+   "p97": 31.94,
+   "p99": 32.44
+  },
+  "rule": "Yellow ≥ P75, Orange ≥ P90, Red ≥ P97 (rounded to 0.1 °C); alerts trigger at the local P95",
+  "cutoffs": {
+   "yellow": 29.6,
+   "orange": 31.0,
+   "red": 31.9
+  },
+  "alert_threshold": 31.6
  },
  "beats_baselines": {
   "lgbm": {

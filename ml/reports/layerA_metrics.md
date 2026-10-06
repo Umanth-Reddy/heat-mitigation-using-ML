@@ -28,6 +28,16 @@ Local P95 (training years, Mar–Jun daily max): WBGT 31.59 °C, UTCI 45.74 °C.
 | LSTM quantile | 3 | 1.351 | 1.714 | 0.752 | 0.436 | 0.67 |
 | LSTM quantile | 4 | 1.461 | 1.838 | 0.710 | 0.473 | 0.64 |
 | LSTM quantile | 5 | 1.483 | 1.854 | 0.694 | 0.480 | 0.67 |
+| LightGBM quantile (calibrated) | 1 | 0.840 | 1.119 | 0.896 | 0.283 | 0.80 |
+| LightGBM quantile (calibrated) | 2 | 1.100 | 1.446 | 0.825 | 0.359 | 0.79 |
+| LightGBM quantile (calibrated) | 3 | 1.264 | 1.619 | 0.779 | 0.402 | 0.80 |
+| LightGBM quantile (calibrated) | 4 | 1.328 | 1.697 | 0.752 | 0.439 | 0.77 |
+| LightGBM quantile (calibrated) | 5 | 1.335 | 1.694 | 0.745 | 0.438 | 0.81 |
+| LSTM quantile (calibrated) | 1 | 0.882 | 1.133 | 0.894 | 0.287 | 0.70 |
+| LSTM quantile (calibrated) | 2 | 1.160 | 1.509 | 0.810 | 0.370 | 0.75 |
+| LSTM quantile (calibrated) | 3 | 1.351 | 1.714 | 0.752 | 0.430 | 0.73 |
+| LSTM quantile (calibrated) | 4 | 1.461 | 1.838 | 0.710 | 0.464 | 0.70 |
+| LSTM quantile (calibrated) | 5 | 1.483 | 1.854 | 0.694 | 0.477 | 0.68 |
 
 ## WBGT · NWP subset (2025 →)
 
@@ -63,6 +73,21 @@ Local P95 (training years, Mar–Jun daily max): WBGT 31.59 °C, UTCI 45.74 °C.
 | LSTM quantile | 3 | 1.450 | 1.821 | 0.667 | 0.471 | 0.64 |
 | LSTM quantile | 4 | 1.569 | 1.962 | 0.611 | 0.512 | 0.60 |
 | LSTM quantile | 5 | 1.593 | 1.982 | 0.598 | 0.521 | 0.62 |
+| LightGBM quantile (calibrated) | 1 | 0.850 | 1.129 | 0.874 | 0.282 | 0.81 |
+| LightGBM quantile (calibrated) | 2 | 1.117 | 1.461 | 0.788 | 0.364 | 0.80 |
+| LightGBM quantile (calibrated) | 3 | 1.271 | 1.619 | 0.737 | 0.404 | 0.81 |
+| LightGBM quantile (calibrated) | 4 | 1.345 | 1.709 | 0.705 | 0.443 | 0.77 |
+| LightGBM quantile (calibrated) | 5 | 1.355 | 1.728 | 0.695 | 0.444 | 0.80 |
+| LSTM quantile (calibrated) | 1 | 0.926 | 1.170 | 0.865 | 0.299 | 0.67 |
+| LSTM quantile (calibrated) | 2 | 1.236 | 1.584 | 0.751 | 0.392 | 0.71 |
+| LSTM quantile (calibrated) | 3 | 1.450 | 1.821 | 0.667 | 0.462 | 0.71 |
+| LSTM quantile (calibrated) | 4 | 1.569 | 1.962 | 0.611 | 0.500 | 0.67 |
+| LSTM quantile (calibrated) | 5 | 1.593 | 1.982 | 0.598 | 0.518 | 0.64 |
+| LightGBM NWP post-proc. (calibrated) | 1 | 0.774 | 0.987 | 0.904 | 0.267 | 0.97 |
+| LightGBM NWP post-proc. (calibrated) | 2 | 0.923 | 1.174 | 0.863 | 0.323 | 0.96 |
+| LightGBM NWP post-proc. (calibrated) | 3 | 0.979 | 1.249 | 0.843 | 0.319 | 0.88 |
+| LightGBM NWP post-proc. (calibrated) | 4 | 0.877 | 1.140 | 0.869 | 0.303 | 0.87 |
+| LightGBM NWP post-proc. (calibrated) | 5 | 0.944 | 1.228 | 0.846 | 0.312 | 0.86 |
 
 ## UTCI · Test 2024–2026
 
@@ -83,6 +108,11 @@ Local P95 (training years, Mar–Jun daily max): WBGT 31.59 °C, UTCI 45.74 °C.
 | LightGBM quantile | 3 | 2.774 | 3.475 | 0.665 | 0.927 | 0.67 |
 | LightGBM quantile | 4 | 2.975 | 3.670 | 0.617 | 0.986 | 0.66 |
 | LightGBM quantile | 5 | 3.145 | 3.882 | 0.551 | 1.043 | 0.62 |
+| LightGBM quantile (calibrated) | 1 | 1.862 | 2.503 | 0.835 | 0.633 | 0.78 |
+| LightGBM quantile (calibrated) | 2 | 2.457 | 3.167 | 0.732 | 0.820 | 0.74 |
+| LightGBM quantile (calibrated) | 3 | 2.774 | 3.475 | 0.665 | 0.911 | 0.73 |
+| LightGBM quantile (calibrated) | 4 | 2.975 | 3.670 | 0.617 | 0.963 | 0.77 |
+| LightGBM quantile (calibrated) | 5 | 3.145 | 3.882 | 0.551 | 1.008 | 0.77 |
 
 ## UTCI · NWP subset (2025 →)
 
@@ -113,6 +143,16 @@ Local P95 (training years, Mar–Jun daily max): WBGT 31.59 °C, UTCI 45.74 °C.
 | LightGBM NWP post-proc. | 3 | 2.190 | 2.811 | 0.714 | 0.762 | 0.52 |
 | LightGBM NWP post-proc. | 4 | 1.947 | 2.532 | 0.764 | 0.719 | 0.50 |
 | LightGBM NWP post-proc. | 5 | 2.297 | 2.907 | 0.678 | 0.871 | 0.44 |
+| LightGBM quantile (calibrated) | 1 | 1.865 | 2.547 | 0.777 | 0.630 | 0.79 |
+| LightGBM quantile (calibrated) | 2 | 2.502 | 3.235 | 0.632 | 0.817 | 0.75 |
+| LightGBM quantile (calibrated) | 3 | 2.837 | 3.521 | 0.551 | 0.914 | 0.75 |
+| LightGBM quantile (calibrated) | 4 | 3.052 | 3.707 | 0.494 | 0.964 | 0.78 |
+| LightGBM quantile (calibrated) | 5 | 3.229 | 3.886 | 0.425 | 1.014 | 0.78 |
+| LightGBM NWP post-proc. (calibrated) | 1 | 1.906 | 2.355 | 0.809 | 0.623 | 0.87 |
+| LightGBM NWP post-proc. (calibrated) | 2 | 1.883 | 2.440 | 0.790 | 0.628 | 0.87 |
+| LightGBM NWP post-proc. (calibrated) | 3 | 2.190 | 2.811 | 0.714 | 0.730 | 0.93 |
+| LightGBM NWP post-proc. (calibrated) | 4 | 1.947 | 2.532 | 0.764 | 0.654 | 0.88 |
+| LightGBM NWP post-proc. (calibrated) | 5 | 2.297 | 2.907 | 0.678 | 0.773 | 0.90 |
 
 ## Event skill · WBGT ≥ local P95 (31.59 °C) · Test 2024–2026
 
@@ -138,6 +178,16 @@ Local P95 (training years, Mar–Jun daily max): WBGT 31.59 °C, UTCI 45.74 °C.
 | LSTM quantile | 3 | 24 | 0 | 24 | 0 | 0.00 | – | 0.00 |
 | LSTM quantile | 4 | 25 | 0 | 25 | 0 | 0.00 | – | 0.00 |
 | LSTM quantile | 5 | 25 | 0 | 25 | 0 | 0.00 | – | 0.00 |
+| LightGBM quantile (calibrated) | 1 | 21 | 1 | 20 | 1 | 0.05 | 0.50 | 0.05 |
+| LightGBM quantile (calibrated) | 2 | 22 | 0 | 22 | 0 | 0.00 | – | 0.00 |
+| LightGBM quantile (calibrated) | 3 | 24 | 0 | 24 | 0 | 0.00 | – | 0.00 |
+| LightGBM quantile (calibrated) | 4 | 25 | 0 | 25 | 0 | 0.00 | – | 0.00 |
+| LightGBM quantile (calibrated) | 5 | 25 | 0 | 25 | 0 | 0.00 | – | 0.00 |
+| LSTM quantile (calibrated) | 1 | 21 | 4 | 17 | 0 | 0.19 | 0.00 | 0.19 |
+| LSTM quantile (calibrated) | 2 | 22 | 0 | 22 | 0 | 0.00 | – | 0.00 |
+| LSTM quantile (calibrated) | 3 | 24 | 0 | 24 | 0 | 0.00 | – | 0.00 |
+| LSTM quantile (calibrated) | 4 | 25 | 0 | 25 | 0 | 0.00 | – | 0.00 |
+| LSTM quantile (calibrated) | 5 | 25 | 0 | 25 | 0 | 0.00 | – | 0.00 |
 
 ## Event skill · WBGT ≥ local P95 · warning when the 90 % quantile reaches it · Test 2024–2026
 
@@ -165,6 +215,16 @@ Added after the median-trigger results above showed that median forecasts rarely
 | LSTM quantile | 3 | 24 | 13 | 11 | 34 | 0.54 | 0.72 | 0.22 |
 | LSTM quantile | 4 | 25 | 12 | 13 | 37 | 0.48 | 0.76 | 0.19 |
 | LSTM quantile | 5 | 25 | 14 | 11 | 48 | 0.56 | 0.77 | 0.19 |
+| LightGBM quantile (calibrated) | 1 | 21 | 13 | 8 | 25 | 0.62 | 0.66 | 0.28 |
+| LightGBM quantile (calibrated) | 2 | 22 | 14 | 8 | 37 | 0.64 | 0.73 | 0.24 |
+| LightGBM quantile (calibrated) | 3 | 24 | 19 | 5 | 60 | 0.79 | 0.76 | 0.23 |
+| LightGBM quantile (calibrated) | 4 | 25 | 16 | 9 | 51 | 0.64 | 0.76 | 0.21 |
+| LightGBM quantile (calibrated) | 5 | 25 | 19 | 6 | 72 | 0.76 | 0.79 | 0.20 |
+| LSTM quantile (calibrated) | 1 | 21 | 11 | 10 | 17 | 0.52 | 0.61 | 0.29 |
+| LSTM quantile (calibrated) | 2 | 22 | 13 | 9 | 34 | 0.59 | 0.72 | 0.23 |
+| LSTM quantile (calibrated) | 3 | 24 | 17 | 7 | 45 | 0.71 | 0.73 | 0.25 |
+| LSTM quantile (calibrated) | 4 | 25 | 16 | 9 | 46 | 0.64 | 0.74 | 0.23 |
+| LSTM quantile (calibrated) | 5 | 25 | 16 | 9 | 51 | 0.64 | 0.76 | 0.21 |
 
 ## Versus baselines · WBGT · Test 2024–2026 (✓ = better than the baseline, ✗ = worse)
 
@@ -181,10 +241,119 @@ Added after the median-trigger results above showed that median forecasts rarely
 | LSTM quantile | 4 | ✓ 1.461 vs 1.743 | ✗ 1.461 vs 1.381 | ✓ 0.4735 vs 0.5312 | ✗ 0.4735 vs 0.4450 |
 | LSTM quantile | 5 | ✓ 1.483 vs 1.865 | ✗ 1.483 vs 1.358 | ✓ 0.4798 vs 0.5654 | ✗ 0.4798 vs 0.4365 |
 
-## Event skill at the dashboard's IMD-tier WBGT cut-offs
+## Conformal calibration of the 80 % bands (CQR)
 
-Observed test-set days at or above each cut-off (lead 1 rows): Yellow ≥ 31.5 °C: 22, Orange ≥ 33.5 °C: 0, Red ≥ 35.5 °C: 0.
-Cut-offs with no observed events cannot be scored; per-model scores for every cut-off are in ml/outputs/layerA.json.
+Per-lead adjustment Q (°C) added to both band edges: [q10 − Q, q90 + Q]. LightGBM and LSTM: Q from the 2023 validation season only (both models were also early-stopped on 2023, so it is not a fully independent calibration set). NWP post-processing: only the 2024 season exists, so Q comes from leave-one-month-out predictions within 2024. Test years are never used. Raw results above are kept unchanged.
+
+| Model | Subset | Lead | Q (°C) | Cal. n | 80% cov. raw | 80% cov. calibrated | Pinball raw | Pinball calibrated |
+|---|---|---|---|---|---|---|---|---|
+| LightGBM quantile | test 2024 → | 1 | +0.372 | 118 | 0.68 | 0.80 | 0.292 | 0.283 |
+| LightGBM quantile | test 2024 → | 2 | +0.532 | 118 | 0.67 | 0.79 | 0.372 | 0.359 |
+| LightGBM quantile | test 2024 → | 3 | +0.639 | 118 | 0.61 | 0.80 | 0.419 | 0.402 |
+| LightGBM quantile | test 2024 → | 4 | +0.521 | 118 | 0.63 | 0.77 | 0.456 | 0.439 |
+| LightGBM quantile | test 2024 → | 5 | +0.583 | 118 | 0.66 | 0.81 | 0.452 | 0.438 |
+| LSTM quantile | test 2024 → | 1 | -0.045 | 118 | 0.72 | 0.70 | 0.286 | 0.287 |
+| LSTM quantile | test 2024 → | 2 | +0.230 | 118 | 0.69 | 0.75 | 0.376 | 0.370 |
+| LSTM quantile | test 2024 → | 3 | +0.187 | 118 | 0.67 | 0.73 | 0.436 | 0.430 |
+| LSTM quantile | test 2024 → | 4 | +0.216 | 118 | 0.64 | 0.70 | 0.473 | 0.464 |
+| LSTM quantile | test 2024 → | 5 | +0.068 | 118 | 0.67 | 0.68 | 0.480 | 0.477 |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 1 | +1.182 | 118 | 0.49 | 0.97 | 0.269 | 0.267 |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 2 | +1.394 | 118 | 0.50 | 0.96 | 0.328 | 0.323 |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 3 | +1.241 | 118 | 0.46 | 0.88 | 0.356 | 0.319 |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 4 | +1.066 | 118 | 0.54 | 0.87 | 0.326 | 0.303 |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 5 | +0.948 | 118 | 0.52 | 0.86 | 0.340 | 0.312 |
+
+## Event skill · WBGT ≥ local P95 (31.59 °C) · median vs calibrated 90 % quantile trigger
+
+(a) warning when the median reaches the threshold; (b) warning when the CALIBRATED 90 % quantile reaches it. Trigger rule (b) was chosen after inspecting results: the 90 % trigger was first adopted after the median-trigger results were seen on the test set in an earlier run. Its calibration uses the 2023 validation season only (2024 leave-one-month-out for NWP post-processing).
+
+| Model | Subset | Lead | Events | (a) Hit | (a) FAR | (a) CSI | (b) Hit | (b) FAR | (b) CSI |
+|---|---|---|---|---|---|---|---|---|---|
+| LightGBM quantile | test 2024 → | 1 | 21 | 0.05 | 0.50 | 0.05 | 0.62 | 0.66 | 0.28 |
+| LightGBM quantile | test 2024 → | 2 | 22 | 0.00 | – | 0.00 | 0.64 | 0.73 | 0.24 |
+| LightGBM quantile | test 2024 → | 3 | 24 | 0.00 | – | 0.00 | 0.79 | 0.76 | 0.23 |
+| LightGBM quantile | test 2024 → | 4 | 25 | 0.00 | – | 0.00 | 0.64 | 0.76 | 0.21 |
+| LightGBM quantile | test 2024 → | 5 | 25 | 0.00 | – | 0.00 | 0.76 | 0.79 | 0.20 |
+| LSTM quantile | test 2024 → | 1 | 21 | 0.19 | 0.00 | 0.19 | 0.52 | 0.61 | 0.29 |
+| LSTM quantile | test 2024 → | 2 | 22 | 0.00 | – | 0.00 | 0.59 | 0.72 | 0.23 |
+| LSTM quantile | test 2024 → | 3 | 24 | 0.00 | – | 0.00 | 0.71 | 0.73 | 0.25 |
+| LSTM quantile | test 2024 → | 4 | 25 | 0.00 | – | 0.00 | 0.64 | 0.74 | 0.23 |
+| LSTM quantile | test 2024 → | 5 | 25 | 0.00 | – | 0.00 | 0.64 | 0.76 | 0.21 |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 1 | 12 | 0.25 | 0.50 | 0.20 | 0.83 | 0.70 | 0.29 |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 2 | 13 | 0.00 | – | 0.00 | 0.85 | 0.72 | 0.26 |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 3 | 15 | 0.00 | – | 0.00 | 0.80 | 0.73 | 0.26 |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 4 | 16 | 0.00 | 1.00 | 0.00 | 0.75 | 0.66 | 0.31 |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 5 | 16 | 0.00 | – | 0.00 | 0.56 | 0.62 | 0.29 |
+| LightGBM quantile | NWP subset 2025 → | 1 | 12 | 0.08 | 0.00 | 0.08 | 0.67 | 0.65 | 0.30 |
+| LightGBM quantile | NWP subset 2025 → | 2 | 13 | 0.00 | – | 0.00 | 0.69 | 0.74 | 0.23 |
+| LightGBM quantile | NWP subset 2025 → | 3 | 15 | 0.00 | – | 0.00 | 0.80 | 0.79 | 0.20 |
+| LightGBM quantile | NWP subset 2025 → | 4 | 16 | 0.00 | – | 0.00 | 0.75 | 0.77 | 0.21 |
+| LightGBM quantile | NWP subset 2025 → | 5 | 16 | 0.00 | – | 0.00 | 0.88 | 0.79 | 0.20 |
+| LSTM quantile | NWP subset 2025 → | 1 | 12 | 0.25 | 0.00 | 0.25 | 0.42 | 0.64 | 0.24 |
+| LSTM quantile | NWP subset 2025 → | 2 | 13 | 0.00 | – | 0.00 | 0.62 | 0.73 | 0.23 |
+| LSTM quantile | NWP subset 2025 → | 3 | 15 | 0.00 | – | 0.00 | 0.73 | 0.74 | 0.23 |
+| LSTM quantile | NWP subset 2025 → | 4 | 16 | 0.00 | – | 0.00 | 0.69 | 0.75 | 0.22 |
+| LSTM quantile | NWP subset 2025 → | 5 | 16 | 0.00 | – | 0.00 | 0.62 | 0.79 | 0.19 |
+
+## MAE improvement vs baselines (%, positive = better) · WBGT
+
+| Model | Subset | Lead | vs persistence | vs climatology |
+|---|---|---|---|---|
+| LightGBM quantile | test 2024 → | 1 | +7.3% | +39.1% |
+| LightGBM quantile | test 2024 → | 2 | +15.5% | +20.4% |
+| LightGBM quantile | test 2024 → | 3 | +19.7% | +8.8% |
+| LightGBM quantile | test 2024 → | 4 | +23.8% | +3.9% |
+| LightGBM quantile | test 2024 → | 5 | +28.5% | +1.7% |
+| LSTM quantile | test 2024 → | 1 | +2.7% | +36.1% |
+| LSTM quantile | test 2024 → | 2 | +10.9% | +16.1% |
+| LSTM quantile | test 2024 → | 3 | +14.2% | +2.6% |
+| LSTM quantile | test 2024 → | 4 | +16.2% | -5.8% |
+| LSTM quantile | test 2024 → | 5 | +20.5% | -9.1% |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 1 | +16.4% | +45.7% |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 2 | +30.2% | +35.0% |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 3 | +38.2% | +31.1% |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 4 | +50.0% | +38.2% |
+| LightGBM NWP post-proc. | NWP subset 2025 → | 5 | +50.4% | +32.8% |
+| NWP raw (as issued) | NWP subset 2025 → | 1 | +14.4% | +44.4% |
+| NWP raw (as issued) | NWP subset 2025 → | 2 | +38.8% | +43.0% |
+| NWP raw (as issued) | NWP subset 2025 → | 3 | +30.7% | +22.7% |
+| NWP raw (as issued) | NWP subset 2025 → | 4 | +37.1% | +22.2% |
+| NWP raw (as issued) | NWP subset 2025 → | 5 | +45.8% | +26.6% |
+
+## Event skill at the warning-tier cut-offs (calibrated to real WBGT: Yellow ≥ P75, Orange ≥ P90, Red ≥ P97 (rounded to 0.1 °C); alerts trigger at the local P95)
+
+Observed test-set days at or above each cut-off (lead 1 rows): Yellow ≥ 29.6 °C: 83, Orange ≥ 31.0 °C: 30, Red ≥ 31.9 °C: 6.
+Median forecast as the trigger. Per-model scores for every cut-off and lead are in ml/outputs/layerA.json.
+
+| Model | Tier | Lead | Events | Hit rate | FAR | CSI |
+|---|---|---|---|---|---|---|
+| Persistence | Yellow ≥ 29.6 | 1 | 83 | 0.72 | 0.25 | 0.58 |
+| Persistence | Yellow ≥ 29.6 | 3 | 87 | 0.64 | 0.30 | 0.50 |
+| Persistence | Yellow ≥ 29.6 | 5 | 93 | 0.55 | 0.36 | 0.42 |
+| Persistence | Orange ≥ 31.0 | 1 | 30 | 0.53 | 0.45 | 0.37 |
+| Persistence | Orange ≥ 31.0 | 3 | 33 | 0.24 | 0.72 | 0.15 |
+| Persistence | Orange ≥ 31.0 | 5 | 36 | 0.19 | 0.76 | 0.12 |
+| Persistence | Red ≥ 31.9 | 1 | 6 | 0.67 | 0.33 | 0.50 |
+| Persistence | Red ≥ 31.9 | 3 | 7 | 0.00 | 1.00 | 0.00 |
+| Persistence | Red ≥ 31.9 | 5 | 8 | 0.00 | 1.00 | 0.00 |
+| LightGBM quantile | Yellow ≥ 29.6 | 1 | 83 | 0.78 | 0.27 | 0.61 |
+| LightGBM quantile | Yellow ≥ 29.6 | 3 | 87 | 0.67 | 0.24 | 0.55 |
+| LightGBM quantile | Yellow ≥ 29.6 | 5 | 93 | 0.65 | 0.31 | 0.50 |
+| LightGBM quantile | Orange ≥ 31.0 | 1 | 30 | 0.50 | 0.42 | 0.37 |
+| LightGBM quantile | Orange ≥ 31.0 | 3 | 33 | 0.00 | 1.00 | 0.00 |
+| LightGBM quantile | Orange ≥ 31.0 | 5 | 36 | 0.00 | – | 0.00 |
+| LightGBM quantile | Red ≥ 31.9 | 1 | 6 | 0.00 | – | 0.00 |
+| LightGBM quantile | Red ≥ 31.9 | 3 | 7 | 0.00 | – | 0.00 |
+| LightGBM quantile | Red ≥ 31.9 | 5 | 8 | 0.00 | – | 0.00 |
+| LSTM quantile | Yellow ≥ 29.6 | 1 | 83 | 0.65 | 0.22 | 0.55 |
+| LSTM quantile | Yellow ≥ 29.6 | 3 | 87 | 0.67 | 0.31 | 0.51 |
+| LSTM quantile | Yellow ≥ 29.6 | 5 | 93 | 0.58 | 0.29 | 0.47 |
+| LSTM quantile | Orange ≥ 31.0 | 1 | 30 | 0.27 | 0.20 | 0.25 |
+| LSTM quantile | Orange ≥ 31.0 | 3 | 33 | 0.03 | 0.67 | 0.03 |
+| LSTM quantile | Orange ≥ 31.0 | 5 | 36 | 0.00 | – | 0.00 |
+| LSTM quantile | Red ≥ 31.9 | 1 | 6 | 0.17 | 0.50 | 0.14 |
+| LSTM quantile | Red ≥ 31.9 | 3 | 7 | 0.00 | – | 0.00 |
+| LSTM quantile | Red ≥ 31.9 | 5 | 8 | 0.00 | – | 0.00 |
 
 ## Quantile crossing (rows where raw 10/50/90 % predictions crossed, before sorting)
 

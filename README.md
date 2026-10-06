@@ -122,6 +122,7 @@ We want evaluators to see exactly what is real.
 | Building footprints (Urban Planning) | **Real** OpenStreetMap data |
 | Early Warning map, alerts, facilities, Impact tab | **Simulated**: seeded scenario data for the demo |
 | Heat-stress forecaster (Layer A) | **Trained & tested**: ERA5 via Open-Meteo, test 2024 → latest; beats persistence at every lead, close to climatology by day 5, intervals too narrow (see Model Insights) |
+| Warning tiers | **Calibrated to real Delhi WBGT percentiles**: Yellow ≥ P75, Orange ≥ P90, Red ≥ P97 of ERA5 daily max WBGT (March–June 2015–2022); alerts at the local P95 (`ml/outputs/tiers.json`) |
 | Heat → mortality curve (Layer B) | **Published coefficients**: Hajat et al. 2005 (Delhi); not fitted by us |
 | Vulnerability index (Layer C) | **Real**: Census 2011 ward level, New Delhi district |
 | Risk engine on a real heatwave (Layer D) | **Partly real**: real forecast, coefficients and census inputs; ward split and admissions ratio simulated or assumed |
@@ -129,6 +130,8 @@ We want evaluators to see exactly what is real.
 | Live IMD / satellite / census / hospital ingestion | Planned |
 | FastAPI, PostGIS, Airflow backend | Planned |
 | Real SMS / WhatsApp / CAP dispatch | Planned |
+
+The weather data (ERA5 reanalysis) is a ≈25 km grid, which smooths urban extremes, so zone-level values on the map are a downscaled estimate around the city value, not measurements.
 
 ## Run locally
 

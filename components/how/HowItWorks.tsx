@@ -3,7 +3,8 @@
 import { ArrowRight } from "lucide-react";
 import { useRiskData } from "@/lib/data";
 import { forecastModelStatus, otherModelsStatus } from "@/lib/modelText";
-import { TIER_COLORS } from "@/lib/risk";
+import { TIER_COLORS, tierOfWbgt } from "@/lib/risk";
+import { SUN_RADIANT_WBGT, wbgtEstimate } from "@/lib/thermal";
 import type { TierId } from "@/lib/types";
 
 const SECTIONS = [
@@ -175,7 +176,18 @@ export default function HowItWorks() {
             <p>
               Air temperature alone misses what the body feels. <b>WBGT</b> (wet-bulb globe temperature) combines humidity and radiant heat; it is the basis of occupational heat limits (ISO 7243).{" "}
               <b>UTCI</b> (Universal Thermal Climate Index) is the air temperature of a reference environment that would put the same physiological strain on a person as the real one, using temperature, humidity, wind and radiation.
-              A 38 °C day with 20% humidity and a 38 °C day with 60% humidity are very different risks; a thermometer reads them the same.
+              {(() => {
+                // Computed live with the same formula and tier table the dashboard uses, so it stays true if either changes.
+                const dry = wbgtEstimate(38, 20, SUN_RADIANT_WBGT);
+                const humid = wbgtEstimate(38, 60, SUN_RADIANT_WBGT);
+                const tierName = (w: number) => meta.tiers[tierOfWbgt(meta.tiers, w)].imd;
+                return (
+                  <>
+                    At 38 °C in the sun, 20 % humidity gives a WBGT of <span className="font-mono">{dry.toFixed(1)} °C</span> ({tierName(dry)}) but 60 % humidity gives{" "}
+                    <span className="font-mono">{humid.toFixed(1)} °C</span> ({tierName(humid)}); a thermometer reads them the same.
+                  </>
+                );
+              })()}
             </p>
             <div>
               <div className="text-xs text-muted mb-1.5">Formulas used in this prototype</div>
@@ -206,8 +218,22 @@ UTCI (Bröde et al. 2012):
               />
             </div>
             <p>
-              <b>Local 95th-percentile rule.</b> A fixed national cut-off over-triggers in cool places and under-triggers in hot ones, which causes alert fatigue. Alerts are therefore anchored to each place&apos;s own history: the 95th-percentile WBGT of {meta.threshold.method.replace("Local 95th-percentile WBGT baseline ", "")} is{" "}
-              <span className="font-mono">{meta.threshold.wbgt_p95} °C</span>, and an alert needs at least <span className="font-mono">{meta.threshold.min_consecutive_days}</span> consecutive days at or above it. In the prototype the tier bands are fixed and the P95 value is illustrative.
+              <b>Tiers calibrated to real Delhi WBGT percentiles.</b>{" "}
+              {meta.tier_calibration ? (
+                <>
+                  The cut-offs come from {meta.tier_calibration.n_days.toLocaleString("en-IN")} days of real daily-max WBGT ({meta.tier_calibration.source.split(";")[0]}, {meta.tier_calibration.period}):{" "}
+                  {meta.tier_calibration.rule.replace("; alerts trigger at the local P95", "")}, i.e. Yellow ≥{" "}
+                  <span className="font-mono">{meta.tiers[1].wbgt_min} °C</span>, Orange ≥ <span className="font-mono">{meta.tiers[2].wbgt_min} °C</span> and Red ≥{" "}
+                  <span className="font-mono">{meta.tiers[3].wbgt_min} °C</span>.{" "}
+                </>
+              ) : null}
+              <b>Local 95th-percentile rule.</b> A fixed national cut-off over-triggers in cool places and under-triggers in hot ones, which causes alert fatigue, so alerts are anchored to the local
+              history: an alert is drafted for any ward-day at or above the 95th percentile (<span className="font-mono">{meta.threshold.wbgt_p95} °C</span>), and the alert states how many consecutive days it has held.
+              <br />
+              <span className="text-muted">
+                The weather data (ERA5 reanalysis) is a ≈25 km grid, which smooths urban extremes: real street-level heat peaks are higher than the grid shows. Zone-level values on the map are
+                therefore a downscaled estimate around the city value, not measurements.
+              </span>
             </p>
           </Section>
 
@@ -297,6 +323,7 @@ UTCI (Bröde et al. 2012):
                 ...(trained
                   ? [
                       ["Heat-stress forecaster (Layer A: LightGBM, LSTM, NWP post-processing)", <StatusChip key="9" s="Trained & tested" />, "ERA5 via Open-Meteo 2015 →; tested on 2024 → by time; metrics in Model Insights and ml/reports/layerA_metrics.md."],
+                      ["Warning tiers", <StatusChip key="9t" s="Real data" />, "Calibrated to real Delhi WBGT percentiles (P75 / P90 / P97 of ERA5 daily max, March–June 2015–2022); alerts at the local P95."],
                       ["Heat → mortality curve (Layer B)", <StatusChip key="9b" s="Published coefficients" />, "Hajat et al. 2005 (Delhi), quoted from the abstract; not fitted by us."],
                       ["Vulnerability index (Layer C)", <StatusChip key="9c" s="Real data" />, "Census 2011 ward level (New Delhi district); spread across the 6 pilot wards is simulated."],
                       ["Risk engine for a real heatwave (Layer D)", <StatusChip key="9d" s="Partly real" />, "Real forecast, coefficients, baseline deaths and census population; ward offsets, ward split and the admissions ratio are simulated or assumed."],

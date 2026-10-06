@@ -16,7 +16,8 @@ import pandas as pd
 
 sys.path.insert(0, os.path.dirname(__file__))
 from common import thermal as th  # noqa: E402
-from common.paths import DATA, RAW  # noqa: E402
+from common.paths import DATA, OUT, RAW  # noqa: E402
+import json  # noqa: E402
 
 DAILY_VARS = ["wbgt_max", "utci_max", "tmax", "tmin", "rh_mean", "sw_max", "wind_mean"]
 LEADS = [1, 2, 3, 4, 5]
@@ -81,12 +82,32 @@ def nwp_daily() -> pd.DataFrame:
     return pd.concat(out).reset_index().rename(columns={"date": "valid_date"})
 
 
+def write_tiers(daily: pd.DataFrame) -> dict:
+    """Warning tiers calibrated to real Delhi WBGT: percentiles of daily max WBGT, March–June, TRAINING years only."""
+    s = daily[daily.index.year.isin(TRAIN_YEARS) & daily.index.month.isin(SEASON)]["wbgt_max"]
+    pct = {f"p{p}": round(float(s.quantile(p / 100)), 2) for p in (50, 75, 90, 95, 97, 99)}
+    tiers = {
+        "source": "ERA5 via Open-Meteo, New Delhi (28.63, 77.22); daily max WBGT from ml/common/thermal.py",
+        "period": f"March–June {min(TRAIN_YEARS)}–{max(TRAIN_YEARS)} (training years only)",
+        "n_days": int(s.size),
+        "percentiles": pct,
+        "rule": "Yellow ≥ P75, Orange ≥ P90, Red ≥ P97 (rounded to 0.1 °C); alerts trigger at the local P95",
+        "cutoffs": {"yellow": round(pct["p75"], 1), "orange": round(pct["p90"], 1), "red": round(pct["p97"], 1)},
+        "alert_threshold": round(pct["p95"], 1),
+    }
+    with open(os.path.join(OUT, "tiers.json"), "w", encoding="utf-8") as f:
+        json.dump(tiers, f, ensure_ascii=False, indent=1)
+    return tiers
+
+
 def main():
     h = pd.read_csv(os.path.join(RAW, "obs_hourly.csv"), parse_dates=["time"])
     daily = to_daily(h)
     daily.round(3).to_csv(os.path.join(DATA, "daily_obs.csv"), index_label="date")
     nwp = nwp_daily()
     nwp.round({c: 3 for c in nwp.columns if c.startswith("nwp_")}).to_csv(os.path.join(DATA, "daily_nwp.csv"), index=False)
+    tiers = write_tiers(daily)
+    print(f"tiers.json: cut-offs {tiers['cutoffs']}, alert threshold (P95) {tiers['alert_threshold']} °C, from {tiers['n_days']} days")
     feats = build_features(daily)
     feats.to_csv(os.path.join(RAW, "features.csv"))
     print(f"daily_obs.csv: {len(daily)} days ({daily.index.min():%Y-%m-%d} → {daily.index.max():%Y-%m-%d})")

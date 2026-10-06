@@ -22,6 +22,8 @@ STAGES = [
     ("4  Layer C census vulnerability index", "04_layer_c.py"),
     ("5  Layer D risk engine", "05_risk_engine.py"),
     ("5b export model_results.json", "06_export.py"),
+    ("6a app scenario data on the real WBGT scale", "../scripts/generate_risk_data.py"),
+    ("6b app facilities and impact data", "../scripts/generate_ops_data.py"),
 ]
 
 

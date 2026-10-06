@@ -47,7 +47,12 @@ export default function WardDetail() {
     deaths: d.deaths.mean,
   }));
   const shapMax = Math.max(...ward.why_flagged.map((s) => Math.abs(s.contribution)), 1);
-  const bands = meta.tiers.map((t) => ({ y1: t.wbgt_min ?? 26, y2: t.wbgt_max ?? 40, color: t.color }));
+  // Axis spans the ward's values and every tier cut-off, so the tier bands always show (cut-offs come from meta.tiers).
+  const cuts = meta.tiers.flatMap((t) => (t.wbgt_min === null ? [] : [t.wbgt_min]));
+  const vals = ward.days.map((d) => d.wbgt);
+  const yMin = Math.floor(Math.min(...vals, ...cuts) - 1);
+  const yMax = Math.ceil(Math.max(...vals, ...cuts) + 1);
+  const bands = meta.tiers.map((t) => ({ y1: t.wbgt_min ?? yMin, y2: t.wbgt_max ?? yMax, color: t.color }));
   const risk = [
     { label: "Elderly", n: ward.groups_people.elderly, pct: ward.groups.elderly_pct },
     { label: "Outdoor workers", n: ward.groups_people.outdoor_workers, pct: ward.groups.outdoor_worker_pct },
@@ -88,7 +93,7 @@ export default function WardDetail() {
                 <ReferenceArea key={i} yAxisId="w" y1={b.y1} y2={b.y2} fill={b.color} fillOpacity={0.13} ifOverflow="hidden" />
               ))}
               <XAxis dataKey="day" interval={0} {...axisProps} />
-              <YAxis yAxisId="w" domain={[26, 40]} ticks={[28, 31.5, 33.5, 35.5, 38]} {...axisProps} />
+              <YAxis yAxisId="w" domain={[yMin, yMax]} ticks={[yMin, ...cuts, yMax]} {...axisProps} />
               <YAxis yAxisId="u" orientation="right" domain={[36, 54]} {...axisProps} />
               <Tooltip {...tooltipProps} formatter={(v: any, n: any) => [`${Number(v).toFixed(1)} °C`, n]} />
               <ReferenceLine yAxisId="w" x={selectedTitle} stroke={CHART.brand} strokeWidth={2} />

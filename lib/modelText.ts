@@ -176,12 +176,21 @@ export function skillByLeadNote(r: ModelResults): string {
 }
 
 export function coverageNote(r: ModelResults): string {
-  const lg = r.layerA.metrics.lgbm;
-  const covs = LEADS.map((l) => lg[l].cov80 ?? NaN);
-  const avg = covs.reduce((a, b) => a + b, 0) / covs.length;
-  const pers = LEADS.map((l) => r.layerA.metrics.persistence[l].cov80 ?? NaN);
-  const pavg = pers.reduce((a, b) => a + b, 0) / pers.length;
-  return `The 10–90 % band should contain the outcome 80 % of the time. The LightGBM bands contain it ${pctOf(avg)} of the time on average (range ${pctOf(Math.min(...covs))}–${pctOf(Math.max(...covs))}), so they are too narrow; persistence with error quantiles from the training years reaches ${pctOf(pavg)}. Recalibrating the intervals on the validation year is the next step.`;
+  const m = r.layerA.metrics;
+  const avg = (k: string) => LEADS.reduce((a, l) => a + (m[k]?.[l]?.cov80 ?? 0), 0) / LEADS.length;
+  const rng = (k: string) => {
+    const v = LEADS.map((l) => m[k][l].cov80 ?? NaN);
+    return `${pctOf(Math.min(...v))}–${pctOf(Math.max(...v))}`;
+  };
+  const lstmGain = avg("lstm_cal") - avg("lstm");
+  return (
+    `The 10–90 % band should contain the outcome 80 % of the time. Raw LightGBM bands managed ${pctOf(avg("lgbm"))} on the test years; ` +
+    `after a per-lead conformal adjustment learned on the 2023 validation season only, they reach ${pctOf(avg("lgbm_cal"))} (${rng("lgbm_cal")} by lead). ` +
+    (Math.abs(lstmGain) < 0.03
+      ? `The same adjustment barely moves the LSTM (${pctOf(avg("lstm"))} → ${pctOf(avg("lstm_cal"))}): 2023 was not representative of its errors. `
+      : `The LSTM moves from ${pctOf(avg("lstm"))} to ${pctOf(avg("lstm_cal"))}. `) +
+    `Both models were also early-stopped on 2023, so that season is not a fully independent calibration set.`
+  );
 }
 
 export function backtestTrainedNote(r: ModelResults, lead: string): string {
@@ -209,18 +218,40 @@ export function nwpNote(r: ModelResults): string {
 export function eventsTrainedNote(r: ModelResults): string {
   const e = r.layerA.events;
   const p95 = r.data.p95.wbgt;
-  const lg1 = e.lgbm["1"];
-  const lg3 = e.lgbm["3"];
-  const ps1 = e.persistence["1"];
-  const lstm3 = e.lstm?.["3"];
-  const c = (x: number | null) => (x === null ? "–" : r2(x));
+  const c = (x: number | null | undefined) => (x === null || x === undefined ? "–" : r2(x));
+  const med1 = e.lgbm_cal?.["1"]?.p95;
+  const cal1 = e.lgbm_cal?.["1"]?.p95_q90_trigger;
+  const cal3 = e.lgbm_cal?.["3"]?.p95_q90_trigger;
+  const pp = r.layerA.events_nwp_subset.nwp_pp_cal?.["3"]?.p95_q90_trigger;
   return (
-    `Heat days are days at or above the local 95th percentile (${r2(p95)} °C WBGT). Median forecasts rarely reach it (LightGBM CSI ${c(lg1.p95.csi)} at 1 day), so warnings use the 90 % quantile. ` +
-    `With that trigger LightGBM scores CSI ${c(lg1.p95_q90_trigger?.csi ?? null)} at 1 day but only ${c(lg3.p95_q90_trigger?.csi ?? null)} at 3 days; ` +
-    `persistence scores ${c(ps1.p95_q90_trigger?.csi ?? null)} at 1 day with many false alarms (FAR ${c(ps1.p95_q90_trigger?.far ?? null)})` +
-    (lstm3?.p95_q90_trigger ? `, and the LSTM holds up better at longer leads (CSI ${c(lstm3.p95_q90_trigger.csi)} at 3 days).` : ".") +
-    ` The dashboard's Orange (33.5 °C) and Red (35.5 °C) WBGT cut-offs were never reached in the test years, so they cannot be scored and need recalibrating to this WBGT estimate.`
+    `Heat days are days at or above the local 95th percentile (${r2(p95)} °C WBGT). Median forecasts almost never reach it (LightGBM CSI ${c(med1?.csi)} at 1 day), because they smooth the extremes. ` +
+    `Warning on the calibrated 90 % quantile instead gives CSI ${c(cal1?.csi)} at 1 day and ${c(cal3?.csi)} at 3 days, catching ${pctOf(cal3?.hit_rate ?? 0)} of 3-day-ahead heat days at the cost of many false alarms (FAR ${c(cal3?.far)})` +
+    (pp ? `; with weather-model inputs (2025 →) CSI is ${c(pp.csi)} at 3 days. ` : ". ") +
+    `This trigger rule was chosen after inspecting results (it was first adopted after the median results were seen on the test set); its calibration uses the 2023 validation season only.`
   );
+}
+
+export function improvementNote(r: ModelResults): string {
+  const im = r.layerA.improvement.main.lgbm;
+  const lstm = r.layerA.improvement.main.lstm;
+  const pp = r.layerA.improvement.nwp_subset?.nwp_pp;
+  const p = (x: number) => `${x >= 0 ? "+" : ""}${x.toFixed(0)}%`;
+  const lstmLose = LEADS.filter((l) => lstm[l].vs_climatology_pct < 0);
+  return (
+    `Against persistence, LightGBM's error improvement grows with lead time, from ${p(im["1"].vs_persistence_pct)} at 1 day to ${p(im["5"].vs_persistence_pct)} at 5 days, because tomorrow's weather rarely equals today's. ` +
+    `Against climatology the gain shrinks from ${p(im["1"].vs_climatology_pct)} to ${p(im["5"].vs_climatology_pct)}: five days out, the season explains most of what the model knows.` +
+    (lstmLose.length ? ` The LSTM is worse than climatology at lead${lstmLose.length > 1 ? "s" : ""} ${list(lstmLose)}.` : "") +
+    (pp ? ` With archived weather-model forecasts (2025 →), post-processing improves on climatology by ${p(pp["3"].vs_climatology_pct)} at 3 days.` : "")
+  );
+}
+
+/** Lowest test-set MAE at a lead among the main-test models (raw and calibrated share the same median). */
+export function bestModelAt(r: ModelResults, lead: string): { key: string; mae: number } {
+  const m = r.layerA.metrics;
+  return Object.entries(m)
+    .filter(([k]) => !k.endsWith("_cal"))
+    .map(([key, v]) => ({ key, mae: v[lead].mae }))
+    .reduce((a, b) => (b.mae < a.mae ? b : a));
 }
 
 export function shapTrainedNote(r: ModelResults): string {

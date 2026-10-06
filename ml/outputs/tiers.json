@@ -1,0 +1,20 @@
+{
+ "source": "ERA5 via Open-Meteo, New Delhi (28.63, 77.22); daily max WBGT from ml/common/thermal.py",
+ "period": "March–June 2015–2022 (training years only)",
+ "n_days": 976,
+ "percentiles": {
+  "p50": 27.43,
+  "p75": 29.6,
+  "p90": 31.02,
+  "p95": 31.59,
+  "p97": 31.94,
+  "p99": 32.44
+ },
+ "rule": "Yellow ≥ P75, Orange ≥ P90, Red ≥ P97 (rounded to 0.1 °C); alerts trigger at the local P95",
+ "cutoffs": {
+  "yellow": 29.6,
+  "orange": 31.0,
+  "red": 31.9
+ },
+ "alert_threshold": 31.6
+}

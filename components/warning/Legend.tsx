@@ -35,7 +35,10 @@ export default function Legend() {
               </li>
             ))}
           </ul>
-          <div className="text-xs text-muted mt-3">Thresholds: local 95th percentile</div>
+          <div className="text-xs text-muted mt-3">
+            {meta.tier_calibration ? "Cut-offs: P75 / P90 / P97 of real Delhi daily max WBGT (2015–2022)" : "Thresholds: local 95th percentile"} · alerts at P95 ={" "}
+            <span className="font-mono">{meta.threshold.wbgt_p95} °C</span>
+          </div>
         </>
       )}
       {layer === "utci" && (

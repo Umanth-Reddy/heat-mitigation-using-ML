@@ -91,7 +91,7 @@ export default function CityOutlook() {
               <CartesianGrid {...gridProps} />
               <XAxis dataKey="day" interval={0} {...axisProps} />
               <YAxis yAxisId="a" {...axisProps} />
-              <YAxis yAxisId="w" orientation="right" domain={[28, 40]} {...axisProps} />
+              <YAxis yAxisId="w" orientation="right" domain={[(min: number) => Math.floor(min - 1), (max: number) => Math.ceil(max + 0.5)]} {...axisProps} />
               <Tooltip
                 {...tooltipProps}
                 cursor={{ fill: "rgba(255,255,255,0.05)" }}

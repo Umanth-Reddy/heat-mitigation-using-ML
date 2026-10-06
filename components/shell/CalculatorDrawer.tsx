@@ -42,7 +42,7 @@ export default function CalculatorDrawer() {
   const open = useStore((s) => s.calculatorOpen);
   const setOpen = useStore((s) => s.setCalculatorOpen);
   const setTab = useStore((s) => s.setTab);
-  const { meta, cells } = useRiskData();
+  const { meta, cells, wards } = useRiskData();
   const [v, setV] = useState<Inputs>(DEFAULT);
 
   if (!open || !meta || !cells) return null;
@@ -56,15 +56,12 @@ export default function CalculatorDrawer() {
   const warnings = utciWarnings(v.ta, tmrt, v.wind, v.rh);
 
   const usePreset = () => {
-    // Thu 21 May (day 3), Barakhamba Road (W01): cell-average air temperature and humidity, city wind speed, in sun.
-    const w01 = Object.values(cells).filter((c) => c.ward_id === "W01");
-    const mean = (f: (c: (typeof w01)[number]) => number) => w01.reduce((a, c) => a + f(c), 0) / w01.length;
-    setV({
-      ta: Math.round(mean((c) => c.days[3].ta) * 2) / 2,
-      rh: Math.round(mean((c) => c.days[3].rh)),
-      wind: Math.max(0.5, Math.round(meta.days[3].wind * 10) / 10),
-      sun: true,
-    });
+    // Thu 21 May (day 3), Barakhamba Road (W01): the zone whose WBGT is closest to the ward's, so the calculator (Sun)
+    // reproduces what the map shows for that ward. Zone humidity is generated to be consistent with this formula.
+    const target = wards?.find((w) => w.ward_id === "W01")?.days[3].wbgt;
+    const zones = Object.values(cells).filter((c) => c.ward_id === "W01");
+    const zone = target === undefined ? zones[0] : zones.reduce((a, c) => (Math.abs(c.days[3].wbgt - target) < Math.abs(a.days[3].wbgt - target) ? c : a));
+    setV({ ta: zone.days[3].ta, rh: zone.days[3].rh, wind: Math.max(0.5, Math.round(meta.days[3].wind * 10) / 10), sun: true });
   };
 
   return (
@@ -146,7 +143,7 @@ export default function CalculatorDrawer() {
           <button onClick={() => { setOpen(false); setTab("how"); }} className="underline underline-offset-2 hover:text-text">
             formulas in How it works
           </button>
-          . The map&apos;s ward WBGT also includes a local radiant offset and a canopy correction, so it differs slightly from this estimate.
+          . Zone values on the map use this same formula in full sun.
         </p>
       </div>
     </aside>

@@ -8,7 +8,7 @@ import {
 } from "recharts";
 import { axisProps, CHART, gridProps, tooltipProps } from "@/components/charts/theme";
 import {
-  backtestTrainedNote, coverageNote, eventsTrainedNote, layerBNote, layerCNote, localShapNote, nwpNote, riskEngineNote,
+  backtestTrainedNote, bestModelAt, coverageNote, eventsTrainedNote, improvementNote, layerBNote, layerCNote, localShapNote, nwpNote, riskEngineNote,
   shapTrainedNote, skillByLeadNote, trainedBadge, trainedIntro, trainedSubtitle,
 } from "@/lib/modelText";
 import type { ModelResults } from "@/lib/types";
@@ -69,14 +69,16 @@ export default function TrainedInsights({ r }: { r: ModelResults }) {
 
   const lg = m.lgbm;
   const pers = m.persistence;
-  const gain3 = 1 - lg["3"].mae / pers["3"].mae;
   const cov = LEADS.reduce((a, l) => a + (lg[l].cov80 ?? 0), 0) / LEADS.length;
-  const ev1 = A.events.lgbm["1"].p95_q90_trigger;
+  const imp = A.improvement.main.lgbm;
+  const covCal = LEADS.map((l) => m.lgbm_cal[l].cov80 ?? 0);
+  const best3 = bestModelAt(r, "3");
+  const ppSub = A.metrics_nwp_subset_all.nwp_pp?.["3"]?.mae;
   const kpis = [
-    { label: "Test-set MAE, 1 / 3 / 5 days", value: `${lg["1"].mae.toFixed(2)} / ${lg["3"].mae.toFixed(2)} / ${lg["5"].mae.toFixed(2)}`, sub: "°C, LightGBM median, daily max WBGT" },
-    { label: "Test-set error vs persistence (3 days)", value: `−${Math.round(gain3 * 100)}%`, sub: `${lg["3"].mae.toFixed(2)} vs ${pers["3"].mae.toFixed(2)} °C MAE` },
-    { label: "Test-set 80 % band coverage", value: `${Math.round(cov * 100)}%`, sub: "target 80 %: bands are too narrow" },
-    { label: "Test-set heat-day CSI (1 day)", value: fmt(ev1?.csi), sub: `≥ ${r.data.p95.wbgt.toFixed(1)} °C, 90 % quantile trigger · hit ${fmt(ev1?.hit_rate)}, FAR ${fmt(ev1?.far)}` },
+    { label: "Test-set error vs persistence, 3 days", value: `${imp["3"].vs_persistence_pct >= 0 ? "−" : "+"}${Math.abs(imp["3"].vs_persistence_pct).toFixed(0)}%`, sub: `LightGBM MAE ${lg["3"].mae.toFixed(2)} vs ${pers["3"].mae.toFixed(2)} °C · vs climatology ${imp["3"].vs_climatology_pct >= 0 ? "−" : "+"}${Math.abs(imp["3"].vs_climatology_pct).toFixed(0)}%` },
+    { label: "Test-set error vs persistence, 5 days", value: `${imp["5"].vs_persistence_pct >= 0 ? "−" : "+"}${Math.abs(imp["5"].vs_persistence_pct).toFixed(0)}%`, sub: `LightGBM MAE ${lg["5"].mae.toFixed(2)} °C · vs climatology only ${imp["5"].vs_climatology_pct >= 0 ? "−" : "+"}${Math.abs(imp["5"].vs_climatology_pct).toFixed(0)}%` },
+    { label: "Calibrated 80 % band coverage (test)", value: `${Math.round((covCal.reduce((x, y) => x + y, 0) / covCal.length) * 100)}%`, sub: `LightGBM, range ${Math.round(Math.min(...covCal) * 100)}–${Math.round(Math.max(...covCal) * 100)}% by lead · raw ${Math.round(cov * 100)}%` },
+    { label: "Best model at 3 days (test 2024 →)", value: names[best3.key] ?? best3.key, sub: `MAE ${best3.mae.toFixed(2)} °C${ppSub ? ` · on the 2025 → NWP subset, NWP post-processing: ${ppSub.toFixed(2)} °C` : ""}` },
   ];
 
   const errByLead = LEADS.map((l) => ({
@@ -96,7 +98,6 @@ export default function TrainedInsights({ r }: { r: ModelResults }) {
   const units = [...C.units].sort((a, b) => b.hvi - a.hvi);
   const R = r.risk_engine;
   const risk = R.city_totals.map((d) => ({ ...d, band: [d.deaths_q10, d.deaths_q90] as [number, number], label: d.lead === 0 ? `${shortDate(d.date)} (obs)` : shortDate(d.date) }));
-  const beats = A.beats_baselines;
 
   return (
     <div className="absolute inset-0 overflow-y-auto p-6 anim-fade">
@@ -110,7 +111,7 @@ export default function TrainedInsights({ r }: { r: ModelResults }) {
           {kpis.map((k) => (
             <div key={k.label} className="card p-5">
               <div className="text-xs text-muted">{k.label}</div>
-              <div className="text-3xl font-mono tabular-nums font-medium mt-1.5">{k.value}</div>
+              <div className="text-3xl font-mono tabular-nums font-medium mt-1.5 truncate" title={k.value}>{k.value}</div>
               <div className="text-xs text-muted mt-1">{k.sub}</div>
             </div>
           ))}
@@ -158,18 +159,20 @@ export default function TrainedInsights({ r }: { r: ModelResults }) {
             </div>
           </Card>
 
-          <Card title="80 % interval coverage" subtitle={sub} badge={badge} note={coverageNote(r)}>
+          <Card title="80 % band coverage: raw vs calibrated" subtitle={sub} badge={badge} note={coverageNote(r)}>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={LEADS.map((l) => ({ lead: `${l}d`, ...Object.fromEntries(["persistence", "climatology", "lstm", "lgbm"].filter((k) => m[k]).map((k) => [k, m[k][l].cov80 ?? null])) }))} margin={{ top: 8, right: 8, left: -10, bottom: 0 }}>
+                <BarChart data={LEADS.map((l) => ({ lead: `${l}d`, ...Object.fromEntries(["lgbm", "lgbm_cal", "lstm", "lstm_cal"].filter((k) => m[k]).map((k) => [k, m[k][l].cov80 ?? null])) }))} margin={{ top: 8, right: 8, left: -10, bottom: 0 }}>
                   <CartesianGrid {...gridProps} />
                   <XAxis dataKey="lead" {...axisProps} />
                   <YAxis domain={[0.4, 1]} tickFormatter={(v) => `${Math.round(v * 100)}%`} {...axisProps} />
                   <Tooltip {...tooltipProps} cursor={{ fill: "rgba(255,255,255,0.05)" }} formatter={(v: any, n: any) => [`${Math.round(Number(v) * 100)}%`, names[n] ?? n]} />
+                  <RLegend formatter={(v: string) => names[v] ?? v} wrapperStyle={{ fontSize: 12, color: CHART.axis }} />
                   <ReferenceLine y={0.8} stroke={CHART.text} strokeDasharray="4 4" label={{ value: "target 80 %", position: "insideTopRight", fill: CHART.axis, fontSize: 12 }} />
-                  {Object.keys(SERIES).filter((k) => m[k]).map((k) => (
-                    <Bar key={k} dataKey={k} fill={SERIES[k]} isAnimationActive={false} />
-                  ))}
+                  <Bar dataKey="lgbm" fill="#7c4a1d" isAnimationActive={false} />
+                  <Bar dataKey="lgbm_cal" fill={CHART.brand} isAnimationActive={false} />
+                  <Bar dataKey="lstm" fill="#1e3a5f" isAnimationActive={false} />
+                  <Bar dataKey="lstm_cal" fill="#60a5fa" isAnimationActive={false} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -177,25 +180,29 @@ export default function TrainedInsights({ r }: { r: ModelResults }) {
         </div>
 
         <div className="grid grid-cols-3 gap-4">
-          <Card title="Versus baselines" subtitle={sub} badge={badge} caption="✓ better than the baseline, ✗ worse. Lower MAE and pinball loss are better.">
+          <Card title="MAE improvement vs baselines" subtitle={sub} badge={badge} caption="Positive = lower error than the baseline. NWP rows use the 2025 → subset with archived weather-model forecasts." note={improvementNote(r)}>
             <table className="w-full text-xs">
               <thead>
                 <tr className="text-muted text-left">
-                  <th className="font-normal pb-2">Model</th><th className="font-normal pb-2">Lead</th>
-                  <th className="font-normal pb-2">MAE vs pers.</th><th className="font-normal pb-2">MAE vs clim.</th>
-                  <th className="font-normal pb-2">Pinball vs pers.</th><th className="font-normal pb-2">Pinball vs clim.</th>
+                  <th className="font-normal pb-2">Model</th>
+                  {LEADS.map((l) => <th key={l} className="font-normal pb-2 text-right">{l}d</th>)}
                 </tr>
               </thead>
               <tbody>
-                {Object.entries(beats).flatMap(([model, perLead]) => LEADS.map((l) => (
-                  <tr key={model + l} className="border-t border-border">
-                    <td className="py-1.5">{names[model] ?? model}</td>
-                    <td className="py-1.5 font-mono">{l}</td>
-                    {["mae_vs_persistence", "mae_vs_climatology", "pinball_vs_persistence", "pinball_vs_climatology"].map((k) => (
-                      <td key={k} className={`py-1.5 font-mono ${perLead[l][k] ? "text-text" : "text-[#f87171]"}`}>{perLead[l][k] ? "✓" : "✗"}</td>
-                    ))}
-                  </tr>
-                )))}
+                {([["main", "lgbm"], ["main", "lstm"], ["nwp_subset", "nwp_raw"], ["nwp_subset", "nwp_pp"]] as const).flatMap(([subset, k]) =>
+                  (["vs_persistence_pct", "vs_climatology_pct"] as const).map((v) => {
+                    const row = A.improvement[subset]?.[k];
+                    if (!row) return null;
+                    return (
+                      <tr key={k + v} className="border-t border-border">
+                        <td className="py-1.5">{names[k] ?? k} <span className="text-muted">vs {v === "vs_persistence_pct" ? "persistence" : "climatology"}</span></td>
+                        {LEADS.map((l) => {
+                          const x = row[l][v];
+                          return <td key={l} className={`py-1.5 text-right font-mono tabular-nums ${x < 0 ? "text-[#f87171]" : "text-text"}`}>{x >= 0 ? "+" : ""}{x.toFixed(0)}%</td>;
+                        })}
+                      </tr>
+                    );
+                  }))}
               </tbody>
             </table>
           </Card>
@@ -222,25 +229,31 @@ export default function TrainedInsights({ r }: { r: ModelResults }) {
             <table className="w-full text-xs">
               <thead>
                 <tr className="text-muted text-left">
-                  <th className="font-normal pb-2">Model · trigger</th><th className="font-normal pb-2">Lead</th>
-                  <th className="font-normal pb-2 text-right">Hit rate</th><th className="font-normal pb-2 text-right">FAR</th><th className="font-normal pb-2 text-right">CSI</th>
+                  <th className="font-normal pb-2">Model</th><th className="font-normal pb-2">Lead</th>
+                  <th className="font-normal pb-2 text-right">Median CSI</th>
+                  <th className="font-normal pb-2 text-right">Cal. 90 % hit</th><th className="font-normal pb-2 text-right">FAR</th><th className="font-normal pb-2 text-right">CSI</th>
                 </tr>
               </thead>
               <tbody>
-                {["persistence", "lgbm", "lstm"].filter((k) => A.events[k]).flatMap((k) => ["1", "3", "5"].map((l) => {
-                  const e = A.events[k][l].p95_q90_trigger ?? A.events[k][l].p95;
-                  return (
-                    <tr key={k + l} className="border-t border-border">
-                      <td className="py-1.5">{names[k] ?? k} · 90 %</td>
-                      <td className="py-1.5 font-mono">{l}</td>
-                      <td className="py-1.5 font-mono text-right">{fmt(e.hit_rate)}</td>
-                      <td className="py-1.5 font-mono text-right">{fmt(e.far)}</td>
-                      <td className="py-1.5 font-mono text-right">{fmt(e.csi)}</td>
-                    </tr>
-                  );
-                }))}
+                {([["main", "lgbm_cal", A.events], ["main", "lstm_cal", A.events], ["nwp_subset", "nwp_pp_cal", A.events_nwp_subset]] as const).flatMap(([subset, k, evs]) =>
+                  ["1", "3", "5"].map((l) => {
+                    const e = evs[k]?.[l];
+                    if (!e) return null;
+                    const b = e.p95_q90_trigger;
+                    return (
+                      <tr key={k + l} className="border-t border-border">
+                        <td className="py-1.5">{names[k.replace("_cal", "")] ?? k}{subset === "nwp_subset" ? " (2025 →)" : ""}</td>
+                        <td className="py-1.5 font-mono">{l}</td>
+                        <td className="py-1.5 font-mono text-right">{fmt(e.p95.csi)}</td>
+                        <td className="py-1.5 font-mono text-right">{fmt(b?.hit_rate)}</td>
+                        <td className="py-1.5 font-mono text-right">{fmt(b?.far)}</td>
+                        <td className="py-1.5 font-mono text-right">{fmt(b?.csi)}</td>
+                      </tr>
+                    );
+                  }))}
               </tbody>
             </table>
+            <p className="text-xs text-muted mt-2">Calibrated 90 % trigger: rule chosen after inspecting results (first adopted after the median results were seen on the test set); calibration uses the 2023 validation season only.</p>
           </Card>
         </div>
 

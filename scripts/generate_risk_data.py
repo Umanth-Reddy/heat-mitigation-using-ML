@@ -43,16 +43,28 @@ CITY_RH = [24, 26, 29, 33, 31, 27]                    # afternoon relative humid
 CITY_TMIN = [29.8, 30.9, 32.1, 33.0, 32.2, 30.4]      # night-time minimum, °C
 CITY_WIND = [3.2, 2.8, 2.1, 1.7, 2.2, 3.0]            # m/s
 
-# IMD-style 4-tier colour code applied to WBGT (°C).
-# Cut-offs are presented as calibrated to Delhi's local 95th-percentile baseline.
+# IMD-style 4-tier colour code applied to WBGT (°C). The cut-offs come from ml/outputs/tiers.json (the single source of
+# truth, written by ml/02_features.py): percentiles P75 / P90 / P97 of real daily max WBGT, New Delhi, March–June
+# 2015–2022 (ERA5 via Open-Meteo). Alerts trigger at the local 95th percentile from the same file.
+with open(os.path.join(ROOT, "ml", "outputs", "tiers.json"), encoding="utf-8") as _f:
+    REAL_TIERS = json.load(_f)
+CUT = REAL_TIERS["cutoffs"]
+ALERT_P95 = REAL_TIERS["alert_threshold"]
+
+# The heatwave story is designed on an internal "story scale" (cut-offs 31.5 / 33.5 / 35.5 °C). Tiers are assigned on that
+# scale, then every displayed WBGT value is mapped to the real scale with a monotone piecewise-linear map that sends the
+# story cut-offs exactly onto the real ones (to_real below), so every ward and zone keeps its tier.
+STORY_CUTS = [31.5, 33.5, 35.5]
+REAL_CUTS = [CUT["yellow"], CUT["orange"], CUT["red"]]
+
 TIERS = [
-    {"id": 0, "key": "green",  "label": "No action",  "imd": "Green",  "color": "#22c55e", "wbgt_min": None, "wbgt_max": 31.5,
+    {"id": 0, "key": "green",  "label": "No action",  "imd": "Green",  "color": "#22c55e", "wbgt_min": None, "wbgt_max": CUT["yellow"],
      "meaning": "Normal summer conditions. Routine advisories only."},
-    {"id": 1, "key": "yellow", "label": "Be aware",   "imd": "Yellow", "color": "#facc15", "wbgt_min": 31.5, "wbgt_max": 33.5,
+    {"id": 1, "key": "yellow", "label": "Be aware",   "imd": "Yellow", "color": "#facc15", "wbgt_min": CUT["yellow"], "wbgt_max": CUT["orange"],
      "meaning": "Heat stress likely for vulnerable groups. Public advisories, hydration points."},
-    {"id": 2, "key": "orange", "label": "Be prepared", "imd": "Orange", "color": "#f97316", "wbgt_min": 33.5, "wbgt_max": 35.5,
+    {"id": 2, "key": "orange", "label": "Be prepared", "imd": "Orange", "color": "#f97316", "wbgt_min": CUT["orange"], "wbgt_max": CUT["red"],
      "meaning": "High heat stress. Open cooling centres, shift outdoor work, hospitals on alert."},
-    {"id": 3, "key": "red",    "label": "Take action", "imd": "Red",    "color": "#dc2626", "wbgt_min": 35.5, "wbgt_max": None,
+    {"id": 3, "key": "red",    "label": "Take action", "imd": "Red",    "color": "#dc2626", "wbgt_min": CUT["red"], "wbgt_max": None,
      "meaning": "Extreme heat stress. Full Heat Action Plan activation and targeted alerts."},
 ]
 
@@ -118,10 +130,34 @@ def wbgt_estimate(ta, rh, radiant=0.0):
 
 
 def tier_of(wbgt):
-    for t in reversed(TIERS):
-        if t["wbgt_min"] is not None and wbgt >= t["wbgt_min"]:
-            return t["id"]
-    return 0
+    """Tier on the internal story scale."""
+    return sum(1 for c in STORY_CUTS if wbgt >= c)
+
+
+def to_real(v):
+    """Monotone piecewise-linear map from the story scale to the real WBGT scale (knots at the tier cut-offs).
+    Below the first and above the last knot the slope of the adjacent segment is kept."""
+    xs, ys = STORY_CUTS, REAL_CUTS
+    if v <= xs[1]:
+        i = 0
+    elif v <= xs[2]:
+        i = 1
+    else:
+        i = 1  # extend the Orange–Red segment's slope above the Red cut-off
+        return ys[2] + (v - xs[2]) * (ys[2] - ys[1]) / (xs[2] - xs[1])
+    return ys[i] + (v - xs[i]) * (ys[i + 1] - ys[i]) / (xs[i + 1] - xs[i])
+
+
+def real_display(v_story, tier):
+    """Real-scale value rounded to 0.1 °C, nudged so the rounding never pushes it across its tier's cut-offs."""
+    r = round(to_real(v_story), 1)
+    lo = REAL_CUTS[tier - 1] if tier > 0 else -99
+    hi = REAL_CUTS[tier] if tier < 3 else 99
+    if r < lo:
+        r = lo
+    if r >= hi:
+        r = round(hi - 0.1, 1)
+    return r
 
 
 def utci_category(utci):
@@ -280,6 +316,62 @@ for wname, wm in WARD_META.items():
         "days": days,
     })
 
+# ---- move every displayed WBGT value onto the real scale (tiers were assigned on the story scale and are kept)
+UHI_HALF_RANGE = 1.5  # °C: deviations from the city value beyond this are softened (30 % of the excess kept)
+
+
+def soften(v, mu, tier):
+    """Keep the urban-heat-island spread around the city value plausible (≈ ±1.5 °C) without changing the tier."""
+    dev = v - mu
+    if abs(dev) > UHI_HALF_RANGE:
+        dev = math.copysign(UHI_HALF_RANGE + 0.3 * (abs(dev) - UHI_HALF_RANGE), dev)
+    r = round(mu + dev, 1)
+    lo = REAL_CUTS[tier - 1] if tier > 0 else -99
+    hi = REAL_CUTS[tier] if tier < 3 else 99
+    return min(max(r, lo), round(hi - 0.1, 1))
+
+
+for c in cells_out.values():
+    for dd in c["days"]:
+        dd["wbgt"] = real_display(dd["wbgt"], dd["tier"])
+city_mu = [sum(c["days"][d]["wbgt"] for c in cells_out.values()) / len(cells_out) for d in range(N_DAYS)]
+for c in cells_out.values():
+    for d, dd in enumerate(c["days"]):
+        dd["wbgt"] = soften(dd["wbgt"], city_mu[d], dd["tier"])
+# Make each zone's displayed humidity consistent with its displayed WBGT: solve RH so that the dashboard calculator's own
+# formula in full sun (0.7·Tw + 0.3·Ta + 1.5 °C, lib/thermal.ts) reproduces the zone's WBGT at its air temperature.
+SUN_RADIANT = 1.5
+
+
+def solve_rh(ta, wbgt):
+    lo, hi = 2.0, 98.0
+    for _ in range(60):
+        mid = (lo + hi) / 2
+        if wbgt_estimate(ta, mid, SUN_RADIANT) < wbgt:
+            lo = mid
+        else:
+            hi = mid
+    return (lo + hi) / 2
+
+
+for c in cells_out.values():
+    for dd in c["days"]:
+        dd["rh"] = round(solve_rh(dd["ta"], dd["wbgt"]))
+city_rh = [round(sum(c["days"][d]["rh"] for c in cells_out.values()) / len(cells_out)) for d in range(N_DAYS)]
+
+for w_ in wards_out:
+    for d, dd in enumerate(w_["days"]):
+        t_ = dd["tier"]
+        dd["wbgt"] = soften(real_display(dd["wbgt"], t_), city_mu[d], t_)
+        dd["wbgt_mean"] = round(to_real(dd["wbgt_mean"]), 1)
+        dd["wbgt_p90"] = round(to_real(dd["wbgt_p90"]), 1)
+    pk = w_["days"][w_["peak_day"]]
+    for item in w_["why_flagged"]:
+        if item["feature"] == FEATURE_LABELS["wbgt"]:
+            item["value"] = f"{pk['wbgt']} °C"
+        if item["feature"] == FEATURE_LABELS["humidity"]:
+            item["value"] = f"{city_rh[w_['peak_day']]}%"
+
 wards_out.sort(key=lambda w: w["ward_id"])
 ward_by_id = {w["ward_id"]: w for w in wards_out}
 
@@ -312,7 +404,7 @@ for d in range(N_DAYS):
     de = sum(w["days"][d]["deaths"]["mean"] for w in wards_out)
     city_days.append({
         **day_label(d),
-        "ta_max": CITY_TA_MAX[d], "rh": CITY_RH[d], "tmin": CITY_TMIN[d], "wind": CITY_WIND[d],
+        "ta_max": CITY_TA_MAX[d], "rh": city_rh[d], "tmin": CITY_TMIN[d], "wind": CITY_WIND[d],
         "wbgt_max": max(c["days"][d]["wbgt"] for c in cells_out.values()),
         "utci_max": max(c["days"][d]["utci"] for c in cells_out.values()),
         "wards_by_tier": [sum(1 for w in wards_out if w["days"][d]["tier"] == t) for t in range(4)],
@@ -354,7 +446,9 @@ meta = {
     "days": city_days,
     "tiers": TIERS,
     "utci_categories": UTCI_CATEGORIES,
-    "threshold": {"method": "Local 95th-percentile WBGT baseline (2015–2025)", "wbgt_p95": 33.5, "min_consecutive_days": 2},
+    "threshold": {"method": "Local 95th-percentile WBGT (ERA5, New Delhi, March–June 2015–2022)", "wbgt_p95": ALERT_P95, "min_consecutive_days": 2},
+    "tier_calibration": {"source": REAL_TIERS["source"], "period": REAL_TIERS["period"], "rule": REAL_TIERS["rule"],
+                         "percentiles": REAL_TIERS["percentiles"], "n_days": REAL_TIERS["n_days"]},
     "actions_by_tier": ACTIONS,
     "grid_capacity_mw": 365,
     "sources": ["IMD NWP forecast (Ta, RH, wind)", "Landsat 8/9 + MODIS LST (downscaled to ~120 m)", "Census 2011 / SECC demographics",
@@ -437,8 +531,13 @@ n = 1
 for w in wards_out:
     for d_i in range(N_DAYS):
         d = w["days"][d_i]
-        if d["tier"] < 2:
+        if d["wbgt"] < ALERT_P95:
             continue
+        streak_n = 0
+        for k in range(d_i, -1, -1):
+            if w["days"][k]["wbgt"] < ALERT_P95:
+                break
+            streak_n += 1
         day = city_days[d_i]
         aid = f"UR-DEL-{day['date'].replace('-', '')}-{w['ward_id']}"
         reach = {"sms": round(w["population"] * 0.58), "whatsapp": round(w["population"] * 0.36),
@@ -450,7 +549,7 @@ for w in wards_out:
             "confidence": round(clamp(0.93 - 0.06 * d_i + random.uniform(-0.02, 0.02), 0.55, 0.97), 2),
             "channels": ["sms", "whatsapp", "cap"] + (["chw_relay"] if d["tier"] == 3 else []),
             "reach": reach,
-            "triggered_by": f"Ward WBGT {d['wbgt']} °C ≥ local P95 threshold for {'2+ days' if d_i else 'today'}",
+            "triggered_by": f"Ward WBGT {d['wbgt']} °C ≥ local P95 ({ALERT_P95} °C), {streak_n} day{'s' if streak_n > 1 else ''} in a row",
             "messages": {"sms_en": msg_sms_en(w, d, day), "sms_hi": msg_sms_hi(w, d, day),
                          "whatsapp_en": msg_wa_en(w, d, day), "whatsapp_hi": msg_wa_hi(w, d, day)},
             "cap_xml": cap_xml(aid, w, d, day),
@@ -472,7 +571,7 @@ for i, hd in enumerate(hist_days):
         })
 
 alerts_out = {"generated_at": ISSUE_TIME, "pending": alerts, "history": history,
-              "settings": {"threshold_method": "Local 95th percentile", "wbgt_p95": 33.5, "min_consecutive_days": 2,
+              "settings": {"threshold_method": "Local 95th percentile", "wbgt_p95": ALERT_P95, "min_consecutive_days": 2,
                            "require_human_approval": True, "languages": ["en", "hi"], "quiet_hours": "22:00–06:00",
                            "channels": {"sms": True, "whatsapp": True, "cap": True, "chw_relay": True}}}
 

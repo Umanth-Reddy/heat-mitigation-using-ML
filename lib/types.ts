@@ -16,6 +16,8 @@ export interface RiskMeta { product: string; tagline: string; simulated: boolean
   issued_at: string; next_update: string; days: CityDay[]; tiers: Tier[];
   utci_categories: { min: number; max: number; label: string }[];
   threshold: { method: string; wbgt_p95: number; min_consecutive_days: number };
+  /** How the tier cut-offs were set from real data (ml/outputs/tiers.json); absent in older data. */
+  tier_calibration?: { source: string; period: string; rule: string; percentiles: Record<string, number>; n_days: number };
   actions_by_tier: Record<string, string[]>; grid_capacity_mw: number; sources: string[]; }
 
 export interface CellDay { ta: number; rh: number; tmin: number; wbgt: number; utci: number; tier: TierId; }
@@ -107,6 +109,8 @@ export interface RiskEngineDay { date: string; lead: number; deaths_q10: number;
   deaths_coef_lo: number; deaths_coef_hi: number; deaths_observed: number; admissions_q50: number; }
 export interface ModelResults {
   results_status: ResultsStatus; dataset: string; evaluated_on: string;
+  tiers: { source: string; period: string; n_days: number; rule: string; percentiles: Record<string, number>;
+    cutoffs: { yellow: number; orange: number; red: number }; alert_threshold: number };
   data: { source: string; location: string; split: { train: string; validation: string; test: string; n_train: number; n_val: number;
     n_test: number; n_nwp_subset: number }; p95: { wbgt: number; utci: number };
     tier_cutoffs: { tier: string; wbgt_min: number }[]; test_tier_events: Record<string, number> };
@@ -115,6 +119,10 @@ export interface ModelResults {
     metrics: Record<string, PerLead<LeadMetrics>>; nwp_subset: Record<string, PerLead<LeadMetrics>>;
     events: Record<string, PerLead<{ p95: EventScore; p95_q90_trigger?: EventScore }>>;
     beats_baselines: Record<string, PerLead<Record<string, boolean>>>;
+    calibration: Record<string, PerLead<{ Q: number; n_cal: number; method: string }>>;
+    improvement: Record<string, Record<string, PerLead<{ vs_persistence_pct: number; vs_climatology_pct: number }>>>;
+    metrics_nwp_subset_all: Record<string, PerLead<LeadMetrics>>;
+    events_nwp_subset: Record<string, PerLead<{ p95: EventScore; p95_q90_trigger?: EventScore }>>;
     backtest: { window: string; model: string; leads: Record<string, BacktestPoint[]> };
     shap: { model: string; global: { feature: string; mean_abs_shap: number }[];
       local: { issue_date: string; target_date: string; actual: number; predicted: number; base_value: number;

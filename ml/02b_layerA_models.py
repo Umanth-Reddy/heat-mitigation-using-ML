@@ -22,7 +22,7 @@ import torch
 
 sys.path.insert(0, os.path.dirname(__file__))
 from common.metrics import QUANTILES, coverage, event_scores, pinball, point_metrics  # noqa: E402
-from common.paths import APP_RISK, DATA, OUT, RAW, REPORTS, SEED  # noqa: E402
+from common.paths import DATA, OUT, RAW, REPORTS, SEED  # noqa: E402
 
 LEADS = [1, 2, 3, 4, 5]
 TARGETS = ["wbgt", "utci"]
@@ -80,6 +80,26 @@ def fit_lgbm(Xtr, ytr, Xva, yva, alpha):
     m.fit(Xtr, ytr, eval_set=[(Xva, yva)], eval_metric="quantile",
           callbacks=[lgb.early_stopping(100, verbose=False)])
     return m
+
+
+def fit_pp(Xpp, y, mask, has_nwp):
+    """NWP post-processing quantile models trained on `mask` rows; returns sorted quantile predictions (NaN where no NWP)."""
+    q = {}
+    for a in QUANTILES:
+        m = lgb.LGBMRegressor(objective="quantile", alpha=a, n_estimators=300, learning_rate=0.03, num_leaves=7,
+                              min_child_samples=10, random_state=SEED, verbose=-1, n_jobs=4)
+        m.fit(Xpp[mask], y[mask])
+        q[a] = np.where(has_nwp, m.predict(Xpp.fillna(0)), np.nan)
+    return sort_quantiles(q)
+
+
+def cqr_adjustment(y, lo, hi, level=0.8):
+    """Split-conformal (CQR) adjustment Q: the ⌈(n+1)·level⌉-th smallest score max(lo − y, y − hi). Band = [lo − Q, hi + Q]."""
+    e = np.maximum(lo - y, y - hi)
+    e = np.sort(e[~np.isnan(e)])
+    n = len(e)
+    k = int(np.ceil((n + 1) * level))
+    return float(e[min(k, n) - 1]), n
 
 
 # ---------------------------------------------------------------- LSTM
@@ -181,8 +201,8 @@ def main():
     train_years = list(range(2015, 2023))
     season_train = daily[daily.index.year.isin(train_years) & daily.index.month.isin([3, 4, 5, 6])]
     p95 = {t: float(season_train[f"{t}_max"].quantile(0.95)) for t in TARGETS}
-    meta = json.load(open(os.path.join(APP_RISK, "meta.json"), encoding="utf-8"))
-    tier_cuts = [{"tier": t["imd"], "wbgt_min": t["wbgt_min"]} for t in meta["tiers"] if t["wbgt_min"] is not None]
+    tiers = json.load(open(os.path.join(OUT, "tiers.json"), encoding="utf-8"))  # single source of truth (02_features.py)
+    tier_cuts = [{"tier": k.capitalize(), "wbgt_min": v} for k, v in tiers["cutoffs"].items()]
 
     # NWP per lead, aligned to issue date
     nwp_by_lead = {}
@@ -199,6 +219,7 @@ def main():
     crossings = {}
     models = {}
     best_iters = {}
+    Xpp_by = {}
     for t in TARGETS:
         for h in LEADS:
             y = f[f"y_{t}_{h}"].to_numpy()
@@ -217,19 +238,48 @@ def main():
             # NWP post-processing: NWP forecast for this lead + latest observations, trained on 2024 only
             pp_cols = [f"nwp_{c}" for c in ["wbgt_max", "utci_max", "tmax", "tmin", "rh_mean", "sw_max", "wind_mean"]]
             Xpp = pd.concat([nwp_by_lead[h][pp_cols], f[[f"{t}_max_lag0", f"{t}_max_lag1", "tmin_lag0", "doy_sin", "doy_cos"]]], axis=1)
-            qpp = {}
-            for a in QUANTILES:
-                m = lgb.LGBMRegressor(objective="quantile", alpha=a, n_estimators=300, learning_rate=0.03, num_leaves=7,
-                                      min_child_samples=10, random_state=SEED, verbose=-1, n_jobs=4)
-                m.fit(Xpp[nwp_train], y[nwp_train])
-                qpp[a] = np.where(has_nwp, m.predict(Xpp.fillna(0)), np.nan)
-            preds[t][h]["nwp_pp"], crossings[f"nwp_pp_{t}_lead{h}"] = sort_quantiles(qpp)
+            Xpp_by[(t, h)] = Xpp
+            preds[t][h]["nwp_pp"], crossings[f"nwp_pp_{t}_lead{h}"] = fit_pp(Xpp, y, nwp_train, has_nwp)
             points[t][h]["nwp_pp"] = preds[t][h]["nwp_pp"][0.5]
 
     lstm_q, lstm_info = run_lstm(f, daily, tr, va)
     for h in LEADS:
         preds["wbgt"][h]["lstm"], crossings[f"lstm_wbgt_lead{h}"] = sort_quantiles(lstm_q[h])
         points["wbgt"][h]["lstm"] = preds["wbgt"][h]["lstm"][0.5]
+
+    # ------------------------------------------------ conformal calibration (CQR)
+    # LightGBM and LSTM: per-lead adjustment from the 2023 validation season ONLY (test years never touched).
+    # Caveat: both models were also early-stopped on 2023, so the calibration set is not independent of model selection.
+    # NWP post-processing: only the 2024 season exists, so out-of-fold predictions from leave-one-month-out within 2024.
+    calibration = {}
+    for t in TARGETS:
+        for h in LEADS:
+            y = f[f"y_{t}_{h}"].to_numpy()
+            target_month = (f.index + pd.Timedelta(days=h)).month.to_numpy()
+            for name in ("lgbm", "lstm"):
+                if name not in preds[t][h]:
+                    continue
+                q = preds[t][h][name]
+                Q, n = cqr_adjustment(y[va.to_numpy()], q[0.1][va.to_numpy()], q[0.9][va.to_numpy()])
+                calibration.setdefault(t, {}).setdefault(name, {})[h] = {"Q": Q, "n_cal": n, "method": "CQR on the 2023 validation season"}
+                preds[t][h][f"{name}_cal"] = {0.1: q[0.1] - Q, 0.5: q[0.5], 0.9: q[0.9] + Q}
+                points[t][h][f"{name}_cal"] = q[0.5]
+            oof = {a: np.full(len(f), np.nan) for a in QUANTILES}
+            months = sorted(set(target_month[nwp_train.to_numpy()]))
+            for mth in months:
+                fit_mask = nwp_train & (target_month != mth)
+                hold = (nwp_train & (target_month == mth)).to_numpy()
+                qq, _ = fit_pp(Xpp_by[(t, h)], y, fit_mask, has_nwp)
+                for a in QUANTILES:
+                    oof[a][hold] = qq[a][hold]
+            ntr = nwp_train.to_numpy()
+            Q, n = cqr_adjustment(y[ntr], oof[0.1][ntr], oof[0.9][ntr])
+            calibration.setdefault(t, {}).setdefault("nwp_pp", {})[h] = {
+                "Q": Q, "n_cal": n, "months_held_out": [int(m) for m in months],
+                "method": "CQR on leave-one-month-out predictions within the 2024 training season"}
+            qp = preds[t][h]["nwp_pp"]
+            preds[t][h]["nwp_pp_cal"] = {0.1: qp[0.1] - Q, 0.5: qp[0.5], 0.9: qp[0.9] + Q}
+            points[t][h]["nwp_pp_cal"] = qp[0.5]
 
     # ------------------------------------------------ metrics
     results = {"main": {}, "nwp_subset": {}, "events": {}}
@@ -238,7 +288,7 @@ def main():
             y = f[f"y_{t}_{h}"].to_numpy()
             for name in points[t][h]:
                 for subset, mask in (("main", te.to_numpy()), ("nwp_subset", nwp_test.to_numpy())):
-                    if name in ("nwp_raw", "nwp_pp") and subset == "main":
+                    if name.startswith("nwp") and subset == "main":
                         continue
                     pm = points[t][h][name][mask]
                     if np.isnan(pm).any():
@@ -294,7 +344,9 @@ def main():
 
     # ------------------------------------------------ report
     names = {"persistence": "Persistence", "climatology": "Climatology", "nwp_raw": "NWP raw (as issued)",
-             "lgbm": "LightGBM quantile", "nwp_pp": "LightGBM NWP post-proc.", "lstm": "LSTM quantile"}
+             "lgbm": "LightGBM quantile", "nwp_pp": "LightGBM NWP post-proc.", "lstm": "LSTM quantile",
+             "lgbm_cal": "LightGBM quantile (calibrated)", "lstm_cal": "LSTM quantile (calibrated)",
+             "nwp_pp_cal": "LightGBM NWP post-proc. (calibrated)"}
     lines = []
     n_main = int(te.sum())
     n_nwp = int(nwp_test.sum())
@@ -374,11 +426,64 @@ def main():
                               "wbgt_q90": round(float(q[0.9][i]), 3),
                               "utci_actual": round(float(f[f"y_utci_{h}"].iloc[i]), 3), "utci_q50": round(float(qu[0.5][i]), 3)})
     pd.DataFrame(pred_rows).to_csv(os.path.join(OUT, "layerA_test_predictions.csv"), index=False)
+    # ---- calibration report
+    lines.append("## Conformal calibration of the 80 % bands (CQR)\n")
+    lines.append("Per-lead adjustment Q (°C) added to both band edges: [q10 − Q, q90 + Q]. LightGBM and LSTM: Q from the 2023 "
+                 "validation season only (both models were also early-stopped on 2023, so it is not a fully independent calibration set). "
+                 "NWP post-processing: only the 2024 season exists, so Q comes from leave-one-month-out predictions within 2024. "
+                 "Test years are never used. Raw results above are kept unchanged.\n")
+    lines.append("| Model | Subset | Lead | Q (°C) | Cal. n | 80% cov. raw | 80% cov. calibrated | Pinball raw | Pinball calibrated |")
+    lines.append("|---|---|---|---|---|---|---|---|---|")
+    for name, subset in (("lgbm", "main"), ("lstm", "main"), ("nwp_pp", "nwp_subset")):
+        raw_m, cal_m = results[subset]["wbgt"][name], results[subset]["wbgt"][f"{name}_cal"]
+        for h in LEADS:
+            c = calibration["wbgt"][name][h]
+            lines.append(f"| {names[name]} | {'test 2024 →' if subset == 'main' else 'NWP subset 2025 →'} | {h} | {c['Q']:+.3f} | {c['n_cal']} | "
+                         f"{raw_m[h]['cov80']:.2f} | {cal_m[h]['cov80']:.2f} | {raw_m[h]['pinball']:.3f} | {cal_m[h]['pinball']:.3f} |")
+    lines.append("")
+    # ---- event skill with calibrated triggers
+    lines.append(f"## Event skill · WBGT ≥ local P95 ({p95['wbgt']:.2f} °C) · median vs calibrated 90 % quantile trigger\n")
+    lines.append("(a) warning when the median reaches the threshold; (b) warning when the CALIBRATED 90 % quantile reaches it. "
+                 "Trigger rule (b) was chosen after inspecting results: the 90 % trigger was first adopted after the median-trigger "
+                 "results were seen on the test set in an earlier run. Its calibration uses the 2023 validation season only "
+                 "(2024 leave-one-month-out for NWP post-processing).\n")
+    lines.append("| Model | Subset | Lead | Events | (a) Hit | (a) FAR | (a) CSI | (b) Hit | (b) FAR | (b) CSI |")
+    lines.append("|---|---|---|---|---|---|---|---|---|---|")
+    fmt2 = lambda x: "–" if x != x else f"{x:.2f}"  # noqa: E731
+    for name, subset in (("lgbm_cal", "main"), ("lstm_cal", "main"), ("nwp_pp_cal", "nwp_subset"), ("lgbm_cal", "nwp_subset"), ("lstm_cal", "nwp_subset")):
+        for h in LEADS:
+            ev = results["events"][subset][name][h]
+            a_, b_ = ev["p95"], ev["p95_q90_trigger"]
+            lines.append(f"| {names[name.replace('_cal', '')]} | {'test 2024 →' if subset == 'main' else 'NWP subset 2025 →'} | {h} | {a_['events']} | "
+                         f"{fmt2(a_['hit_rate'])} | {fmt2(a_['far'])} | {fmt2(a_['csi'])} | {fmt2(b_['hit_rate'])} | {fmt2(b_['far'])} | {fmt2(b_['csi'])} |")
+    lines.append("")
+    # ---- improvement vs baselines in %
+    lines.append(f"## MAE improvement vs baselines (%, positive = better) · WBGT\n")
+    lines.append("| Model | Subset | Lead | vs persistence | vs climatology |")
+    lines.append("|---|---|---|---|---|")
+    improvement = {}
+    for name, subset in (("lgbm", "main"), ("lstm", "main"), ("nwp_pp", "nwp_subset"), ("nwp_raw", "nwp_subset")):
+        blk = results[subset]["wbgt"]
+        for h in LEADS:
+            ip = 100 * (1 - blk[name][h]["mae"] / blk["persistence"][h]["mae"])
+            ic = 100 * (1 - blk[name][h]["mae"] / blk["climatology"][h]["mae"])
+            improvement.setdefault(subset, {}).setdefault(name, {})[h] = {"vs_persistence_pct": ip, "vs_climatology_pct": ic}
+            lines.append(f"| {names[name]} | {'test 2024 →' if subset == 'main' else 'NWP subset 2025 →'} | {h} | {ip:+.1f}% | {ic:+.1f}% |")
+    lines.append("")
     tier_events = {c["tier"]: int(results["events"]["main"]["persistence"][1][c["tier"]]["events"]) for c in tier_cuts}
-    lines.append("## Event skill at the dashboard's IMD-tier WBGT cut-offs\n")
+    lines.append(f"## Event skill at the warning-tier cut-offs (calibrated to real WBGT: {tiers['rule']})\n")
     lines.append("Observed test-set days at or above each cut-off (lead 1 rows): " +
                  ", ".join(f"{k} ≥ {c['wbgt_min']} °C: {tier_events[k]}" for k, c in zip(tier_events, tier_cuts)) + ".")
-    lines.append("Cut-offs with no observed events cannot be scored; per-model scores for every cut-off are in ml/outputs/layerA.json.\n")
+    lines.append("Median forecast as the trigger. Per-model scores for every cut-off and lead are in ml/outputs/layerA.json.\n")
+    lines.append("| Model | Tier | Lead | Events | Hit rate | FAR | CSI |")
+    lines.append("|---|---|---|---|---|---|---|")
+    for name in ("persistence", "lgbm", "lstm"):
+        for c in tier_cuts:
+            for h in (1, 3, 5):
+                e = results["events"]["main"][name][h][c["tier"]]
+                fmtt = lambda x: "–" if x != x else f"{x:.2f}"  # noqa: E731
+                lines.append(f"| {names[name]} | {c['tier']} ≥ {c['wbgt_min']} | {h} | {e['events']} | {fmtt(e['hit_rate'])} | {fmtt(e['far'])} | {fmtt(e['csi'])} |")
+    lines.append("")
     lines.append("## Quantile crossing (rows where raw 10/50/90 % predictions crossed, before sorting)\n")
     lines.append(", ".join(f"{k}: {v}" for k, v in crossings.items()) + "\n")
     lines.append(f"LSTM: {lstm_info}\n")
@@ -409,7 +514,7 @@ def main():
                  "split": {"train": "2015–2022", "validation": "2023", "test": f"2024–{f.index.max().year}",
                            "n_train": int(tr.sum()), "n_val": int(va.sum()), "n_test": n_main, "n_nwp_subset": n_nwp},
                  "p95": p95, "tier_cutoffs": tier_cuts, "test_tier_events": tier_events},
-        "metrics": results, "beats_baselines": beats, "quantile_crossings": crossings, "lstm": lstm_info, "lgbm_params": LGB_PARAMS,
+        "metrics": results, "calibration": calibration, "improvement": improvement, "tiers": tiers, "beats_baselines": beats, "quantile_crossings": crossings, "lstm": lstm_info, "lgbm_params": LGB_PARAMS,
         "lgbm_best_iterations": best_iters, "shap": shap_out, "backtest": backtest,
     }
     with open(os.path.join(OUT, "layerA.json"), "w", encoding="utf-8") as fh:
