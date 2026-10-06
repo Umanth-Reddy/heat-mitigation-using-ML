@@ -58,9 +58,9 @@ function Table({ head, rows }: { head: string[]; rows: React.ReactNode[][] }) {
 
 function StatusChip({ s }: { s: string }) {
   const tone =
-    s === "Working in browser" || s === "Trained & tested"
+    s === "Working in browser" || s === "Trained & tested" || s === "Real data" || s === "Published coefficients"
       ? "border-white/40 text-text"
-      : s === "Planned backend"
+      : s === "Planned backend" || s === "Not built"
         ? "border-border text-muted border-dashed"
         : "border-brand/60 text-brand";
   return <span className={`inline-block px-2 py-0.5 rounded-full border text-xs whitespace-nowrap ${tone}`}>{s}</span>;
@@ -96,6 +96,34 @@ const MODEL_CARDS = [
   },
 ];
 
+/** Cards for what actually ran (ml/), shown once real results exist. */
+const TRAINED_CARDS = [
+  {
+    name: "LightGBM quantile forecaster (Layer A)",
+    purpose: "Forecast daily maximum WBGT (and UTCI) for New Delhi 1–5 days ahead, with a 10–90 % band.",
+    inputs: "ERA5 hourly temperature, humidity, wind and radiation (Open-Meteo) aggregated to daily values; 7-day lags, 3- and 7-day trends, season.",
+    outputs: "10/50/90 % quantiles per lead day; SHAP attributions for the median model.",
+    validation: "Time-ordered split: train 2015–2022, early stopping on 2023, test 2024 → latest. Compared with persistence, climatology, an LSTM and the archived weather-model forecast.",
+    limits: "One grid point; no weather-model inputs before 2024; bands too narrow (≈65 % coverage vs 80 % target); under-forecasts the hottest days.",
+  },
+  {
+    name: "Heat → mortality curve (Layer B)",
+    purpose: "Turn forecast heat into relative mortality risk for Delhi.",
+    inputs: "Published Delhi estimate: +2.4 % (95 % CI 0.1–4.7 %) all-cause mortality per °C above 20 °C, summed over 28 days (Hajat et al. 2005).",
+    outputs: "Relative risk by WBGT, via a reported WBGT → mean air temperature mapping.",
+    validation: "Not fitted by us. Mapping quality reported (R² 0.83, error SD ≈2.2 °C on test).",
+    limits: "Air-temperature exposure, early-1990s data, wide interval. No local DLNM was fitted: no Delhi daily mortality series was available.",
+  },
+  {
+    name: "Census vulnerability index (Layer C)",
+    purpose: "Rank where heat hurts most, for targeting.",
+    inputs: "Census 2011 Primary Census Abstract for the 11 ward-parts of New Delhi district: illiteracy, children 0–6, SC/ST, marginal workers, household size.",
+    outputs: "PCA-based index 0–1 per ward-part and population-weighted per sub-district.",
+    validation: "Descriptive index (no outcome labels); components kept by eigenvalue > 1.",
+    limits: "No elderly or slum data at ward level; 2011 data; pilot wards are not census wards, so their spread stays simulated.",
+  },
+];
+
 const FLOW = [
   { t: "Ingest", d: "IMD forecast, satellite LST, census, hospital admissions" },
   { t: "Compute", d: "WBGT and UTCI per ~120 m zone; vulnerability index" },
@@ -125,6 +153,7 @@ const REFS: [string, string][] = [
 export default function HowItWorks() {
   const { meta, models } = useRiskData();
   if (!meta || !models) return null;
+  const trained = models.results_status === "trained";
   const range = (min: number | null, max: number | null) => (min === null ? `< ${max}` : max === null ? `≥ ${min}` : `${min}–${max}`);
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 
@@ -186,9 +215,15 @@ UTCI (Bröde et al. 2012):
             <Table
               head={["Source", "What we use", "Update frequency", "Prototype status"]}
               rows={[
-                ["IMD NWP forecast", "Air temperature, humidity and wind for the next 5 days", "Daily forecast cycle", <StatusChip key="a" s="Simulated data" />],
+                ...(trained
+                  ? [
+                      ["ERA5 reanalysis (Open-Meteo)", "Hourly temperature, humidity, wind and radiation for New Delhi, 2015 → latest: the forecaster's training and test data", "Daily, ~5-day delay", <StatusChip key="r1" s="Real data" />],
+                      ["Archived NWP forecasts (Open-Meteo Previous Runs)", "Weather-model forecasts as issued 1–5 days ahead, 2024 → (stands in for IMD NWP)", "Daily forecast cycle", <StatusChip key="r2" s="Real data" />],
+                    ]
+                  : []),
+                ["IMD NWP forecast", "Air temperature, humidity and wind for the next 5 days", "Daily forecast cycle", <StatusChip key="a" s={trained ? "Planned backend" : "Simulated data"} />],
                 ["Landsat 8/9 + MODIS LST", "Land surface temperature, downscaled to ~120 m, as the radiant-load term", "MODIS daily; Landsat every ~8–16 days", <StatusChip key="b" s="Simulated data" />],
-                ["Census 2011 / SECC", "Population, elderly share, outdoor workers, informal settlements", "Decennial, with periodic updates", <StatusChip key="c" s="Simulated data" />],
+                ["Census 2011 / SECC", trained ? "Ward-level Primary Census Abstract for New Delhi district (Layer C) and the NCT population; elderly share and slums not available at ward level" : "Population, elderly share, outdoor workers, informal settlements", "Decennial, with periodic updates", <StatusChip key="c" s={trained ? "Real data" : "Simulated data"} />],
                 ["IDSP + hospital admissions", "Heat-illness counts to calibrate and validate the models", "Daily to weekly", <StatusChip key="d" s="Planned backend" />],
                 ["OpenStreetMap", "Building footprints for the Urban Planning view; context basemap", "Continuous", <StatusChip key="e" s="Partly real" />],
               ]}
@@ -200,7 +235,7 @@ UTCI (Bröde et al. 2012):
 
           <Section id="models" letter="c" title="Model cards">
             <div className="grid grid-cols-3 gap-4">
-              {MODEL_CARDS.map((m) => (
+              {(trained ? TRAINED_CARDS : MODEL_CARDS).map((m) => (
                 <article key={m.name} className="rounded-xl border border-border bg-white/[0.02] p-4 flex flex-col gap-3">
                   <h3 className="font-semibold">{m.name}</h3>
                   {([["Purpose", m.purpose], ["Inputs", m.inputs], ["Outputs", m.outputs], ["Validation", m.validation], ["Known limitations", m.limits]] as const).map(([k, v]) => (
@@ -209,8 +244,8 @@ UTCI (Bröde et al. 2012):
                       <div>{v}</div>
                     </div>
                   ))}
-                  {models.results_status === "illustrative" && (
-                    <div className="text-xs rounded-md border border-brand/40 bg-brand/10 px-2.5 py-2">In this prototype: {m.prototype}</div>
+                  {"prototype" in m && !trained && (
+                    <div className="text-xs rounded-md border border-brand/40 bg-brand/10 px-2.5 py-2">In this prototype: {String(m.prototype)}</div>
                   )}
                 </article>
               ))}
@@ -237,7 +272,16 @@ UTCI (Bröde et al. 2012):
 
           <Section id="real" letter="e" title="What is real in this prototype">
             <p>
-              Short version: the <b>heat-stress calculator is real</b>. Forecasts, health numbers, model metrics and impact estimates are <b>simulated</b> by seeded scripts so the demo tells a consistent story.
+              {trained ? (
+                <>
+                  Short version: the <b>heat-stress calculator</b> and the <b>heat-stress forecaster</b> are real (trained and tested on ERA5 data), and the mortality curve and vulnerability index come from <b>published and census data</b>.
+                  The map, alerts, facilities and Impact tab still run on <b>simulated</b> scenario data so the demo tells a consistent story.
+                </>
+              ) : (
+                <>
+                  Short version: the <b>heat-stress calculator is real</b>. Forecasts, health numbers, model metrics and impact estimates are <b>simulated</b> by seeded scripts so the demo tells a consistent story.
+                </>
+              )}
             </p>
             <Table
               head={["Feature", "Status", "Notes"]}
@@ -250,20 +294,24 @@ UTCI (Bröde et al. 2012):
                 ["Sending SMS / WhatsApp / CAP", <StatusChip key="6" s="Planned backend" />, "Needs gateway integrations and an approvals database."],
                 ["Cooling centres and hospitals", <StatusChip key="7" s="Simulated data" />, "Placeholder names and simulated loads."],
                 ["Impact tab (lives saved)", <StatusChip key="8" s="Simulated data" />, "Scenario estimates from assumed action effectiveness."],
-                [
-                  "Forecast model (TFT)",
-                  <StatusChip key="9" s={forecastModelStatus(models)} />,
-                  models.results_status === "illustrative"
-                    ? "The evaluation design (backtest, skill by lead day, intervals) is ready; the values shown are illustrative until training finishes."
-                    : "Test-set results; see Model Insights.",
-                ],
-                [
-                  "DLNM, vulnerability model, baselines",
-                  <StatusChip key="9b" s={otherModelsStatus(models)} />,
-                  models.results_status === "illustrative" ? "Illustrative values; no model has been trained yet." : "Test-set results; see Model Insights.",
-                ],
+                ...(trained
+                  ? [
+                      ["Heat-stress forecaster (Layer A: LightGBM, LSTM, NWP post-processing)", <StatusChip key="9" s="Trained & tested" />, "ERA5 via Open-Meteo 2015 →; tested on 2024 → by time; metrics in Model Insights and ml/reports/layerA_metrics.md."],
+                      ["Heat → mortality curve (Layer B)", <StatusChip key="9b" s="Published coefficients" />, "Hajat et al. 2005 (Delhi), quoted from the abstract; not fitted by us."],
+                      ["Vulnerability index (Layer C)", <StatusChip key="9c" s="Real data" />, "Census 2011 ward level (New Delhi district); spread across the 6 pilot wards is simulated."],
+                      ["Risk engine for a real heatwave (Layer D)", <StatusChip key="9d" s="Partly real" />, "Real forecast, coefficients, baseline deaths and census population; ward offsets, ward split and the admissions ratio are simulated or assumed."],
+                      ["Local DLNM mortality model, admissions forecast (TFT), vulnerability ML model", <StatusChip key="9e" s="Not built" />, "No Delhi daily mortality or hospital-admission series was available to train on."],
+                    ]
+                  : [
+                      [
+                        "Forecast model (TFT)",
+                        <StatusChip key="9" s={forecastModelStatus(models)} />,
+                        "The evaluation design (backtest, skill by lead day, intervals) is ready; the values shown are illustrative until training finishes.",
+                      ],
+                      ["DLNM, vulnerability model, baselines", <StatusChip key="9b" s={otherModelsStatus(models)} />, "Illustrative values; no model has been trained yet."],
+                    ]),
                 ["Urban Planning 3D tool", <StatusChip key="10" s="Partly real" />, "Real OSM footprints; simulated heat attribution."],
-                ["Live forecast ingestion, model training, PostGIS, scheduling", <StatusChip key="11" s="Planned backend" />, "FastAPI, PostGIS, Airflow and the ML stack in the proposal."],
+                [trained ? "Live daily ingestion, scheduled retraining, PostGIS, serving API" : "Live forecast ingestion, model training, PostGIS, scheduling", <StatusChip key="11" s="Planned backend" />, trained ? "The models are trained offline with ml/run_all.py; FastAPI, PostGIS and Airflow are still planned." : "FastAPI, PostGIS, Airflow and the ML stack in the proposal."],
               ]}
             />
           </Section>

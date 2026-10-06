@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { AlertsData, FacilitiesData, ImpactData, ModelsData, RiskCells, RiskMeta, Ward } from "./types";
+import type { AlertsData, FacilitiesData, ImpactData, ModelResults, ModelsData, RiskCells, RiskMeta, Ward } from "./types";
 
 export interface RiskData {
   meta: RiskMeta;
@@ -10,6 +10,8 @@ export interface RiskData {
   models: ModelsData;
   facilities: FacilitiesData;
   impact: ImpactData;
+  /** Real ML pipeline results (ml/); null when the pipeline has not been run. */
+  modelResults: ModelResults | null;
 }
 
 type NoData = { [K in keyof RiskData]: null };
@@ -21,6 +23,14 @@ export type RiskDataState =
 const BASE = "/data/risk";
 let cache: RiskData | null = null;
 let inflight: Promise<RiskData> | null = null;
+
+/** Like getJson, but a missing file (404) is not an error. */
+async function getOptionalJson<T>(file: string): Promise<T | null> {
+  const res = await fetch(`${BASE}/${file}`);
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`${file}: HTTP ${res.status}`);
+  return (await res.json()) as T;
+}
 
 async function getJson<T>(file: string): Promise<T> {
   const res = await fetch(`${BASE}/${file}`);
@@ -39,8 +49,10 @@ function loadRiskData(): Promise<RiskData> {
     getJson<ModelsData>("models.json"),
     getJson<FacilitiesData>("facilities.json"),
     getJson<ImpactData>("impact.json"),
+    getOptionalJson<ModelResults>("model_results.json"),
   ])
-    .then(([meta, cells, wards, outlines, alerts, models, facilities, impact]) => (cache = { meta, cells, wards, outlines, alerts, models, facilities, impact }))
+    .then(([meta, cells, wards, outlines, alerts, models, facilities, impact, modelResults]) =>
+      (cache = { meta, cells, wards, outlines, alerts, models, facilities, impact, modelResults }))
     .catch((err) => {
       inflight = null; // allow a retry on the next mount
       throw err;
@@ -53,7 +65,7 @@ export function getRiskDataSync(): RiskData | null {
   return cache;
 }
 
-const NO_DATA: NoData = { meta: null, cells: null, wards: null, outlines: null, alerts: null, models: null, facilities: null, impact: null };
+const NO_DATA: NoData = { meta: null, cells: null, wards: null, outlines: null, alerts: null, models: null, facilities: null, impact: null, modelResults: null };
 const LOADING: RiskDataState = { loading: true, error: null, ...NO_DATA };
 
 export function useRiskData(): RiskDataState {

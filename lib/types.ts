@@ -95,3 +95,47 @@ export interface ImpactData { simulated: boolean; window: string; note: string;
   lead_curve: { lead_days: number; deaths_averted: number; pct_reduction: number }[];
   wards: { ward_id: string; short_name: string; deaths_no_action: number; deaths_with_ushnaraksha: number; deaths_averted: number }[];
   annualised: { heatwave_episodes_per_year: number; deaths_averted_per_year_pilot: number; admissions_averted_per_year_pilot: number }; }
+
+// ---- Real ML pipeline results (ml/06_export.py → public/data/risk/model_results.json) ----
+
+export interface LeadMetrics { mae: number; rmse: number; r2: number; bias: number; pinball?: number; cov80?: number; }
+export type PerLead<T> = Record<string, T>; // keyed by lead "1"…"5"
+export interface EventScore { events: number; hits: number; misses: number; false_alarms: number;
+  hit_rate: number | null; far: number | null; csi: number | null; }
+export interface BacktestPoint { date: string; actual: number; median: number; lo: number; hi: number; }
+export interface RiskEngineDay { date: string; lead: number; deaths_q10: number; deaths_q50: number; deaths_q90: number;
+  deaths_coef_lo: number; deaths_coef_hi: number; deaths_observed: number; admissions_q50: number; }
+export interface ModelResults {
+  results_status: ResultsStatus; dataset: string; evaluated_on: string;
+  data: { source: string; location: string; split: { train: string; validation: string; test: string; n_train: number; n_val: number;
+    n_test: number; n_nwp_subset: number }; p95: { wbgt: number; utci: number };
+    tier_cutoffs: { tier: string; wbgt_min: number }[]; test_tier_events: Record<string, number> };
+  layerA: {
+    target: string; models: Record<string, string>;
+    metrics: Record<string, PerLead<LeadMetrics>>; nwp_subset: Record<string, PerLead<LeadMetrics>>;
+    events: Record<string, PerLead<{ p95: EventScore; p95_q90_trigger?: EventScore }>>;
+    beats_baselines: Record<string, PerLead<Record<string, boolean>>>;
+    backtest: { window: string; model: string; leads: Record<string, BacktestPoint[]> };
+    shap: { model: string; global: { feature: string; mean_abs_shap: number }[];
+      local: { issue_date: string; target_date: string; actual: number; predicted: number; base_value: number;
+        contributions: { feature: string; shap: number; value: number }[] } };
+    lstm: { epochs_trained: number; params: number; window_days: number };
+  };
+  layerB: { label: string; citation: string; doi: string; pmid: string;
+    values: { threshold_c: number; pct_increase_per_c: number; ci95_pct: [number, number]; lag_window_days: number; exposure_metric_as_stated: string };
+    mapping: { a: number; b: number; r2_train: number; resid_sd_train_c: number; resid_sd_test_c: number; description: string };
+    curve_by_wbgt: { wbgt: number; tmean: number; rr: number; lo: number; hi: number }[]; note: string;
+    secondary: { citation: string; doi: string; values: Record<string, unknown> } };
+  layerC: { level_achieved: string; source: { table: string; publisher: string; url: string }; indicators: Record<string, string>;
+    not_available: string[]; pca: { kept_components: number[]; explained_variance_ratio: number[]; weights: number[] };
+    units: { unit: string; subdistrict: string; population: number; hvi: number }[];
+    subdistrict_hvi_pop_weighted: Record<string, number>; pilot_anchor: { subdistrict: string; hvi: number; population_2011: number };
+    pilot_wards: string };
+  risk_engine: { window: { start: string; end: string; issue_date: string; mean_observed_wbgt: number };
+    city_wbgt: { date: string; lead: number; observed: number; q10: number; q50: number; q90: number }[];
+    city_totals: RiskEngineDay[];
+    inputs: { baseline_deaths_per_person_day: number; baseline_source: string; population_total: number; population_source: string;
+      vulnerability_anchor: number; vulnerability_anchor_source: string; admissions_per_death: number };
+    labels: { real: string[]; simulated: string[]; assumption: string[] }; interpretation: string };
+  not_done: Record<string, string>;
+}

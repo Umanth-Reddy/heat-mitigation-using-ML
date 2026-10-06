@@ -5,6 +5,7 @@ import {
   Area, Bar, BarChart, CartesianGrid, Cell, ComposedChart, ErrorBar, LabelList, Line, ReferenceLine, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis, ZAxis,
 } from "recharts";
 import { useRiskData } from "@/lib/data";
+import TrainedInsights from "./TrainedInsights";
 import { axisProps, CHART, gridProps, tooltipProps } from "@/components/charts/theme";
 import {
   backtestNote, badgeText, baselinesNote, dlnmNote, historyNote, introText, kpiPrefix, lagNote, shapNote, skillNote, subtitleText,
@@ -96,8 +97,9 @@ function Baselines({ rows }: { rows: ModelsData["baseline_comparison"] }) {
 }
 
 export default function ModelInsights() {
-  const { models } = useRiskData();
+  const { models, modelResults } = useRiskData();
   if (!models) return null;
+  if (models.results_status === "trained" && modelResults) return <TrainedInsights r={modelResults} />;
 
   const ours = models.baseline_comparison.find((b) => b.system.startsWith("UshnaRaksha"))!;
   const tempOnly = models.baseline_comparison[0];

@@ -5,7 +5,7 @@
  * Notes are templates over the JSON numbers, so they stay true when the numbers change.
  * Illustrative wording: "we expect … because …". Trained wording: "the model achieves …" / "the fitted curve shows … because …".
  */
-import type { ModelSectionId, ModelsData } from "./types";
+import type { ModelResults, ModelSectionId, ModelsData } from "./types";
 
 const isTrained = (m: ModelsData) => m.results_status === "trained";
 const sum = (a: number[]) => a.reduce((x, y) => x + y, 0);
@@ -138,4 +138,125 @@ export function historyNote(m: ModelsData): string {
     (hotDays.length ? ` but ${Math.round(hot)} at 35 °C and above` : "") +
     (knee !== null ? `, with the climb starting around ${knee} °C. This is why the alert thresholds sit near there.` : ".")
   );
+}
+
+// ==== Trained results (public/data/risk/model_results.json) ====================================================
+// Every sentence below is computed from the real pipeline output and states plainly where a model loses.
+
+
+const LEADS = ["1", "2", "3", "4", "5"];
+const r1 = (x: number) => x.toFixed(1);
+const r2 = (x: number) => x.toFixed(2);
+const pctOf = (x: number) => `${Math.round(x * 100)}%`;
+const list = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+
+export const trainedBadge = (r: ModelResults) => `Trained & tested · ${r.dataset}`;
+export const trainedSubtitle = (r: ModelResults) => `Test-set results (${r.evaluated_on})`;
+
+export function trainedIntro(r: ModelResults): string {
+  const s = r.data.split;
+  return `Forecasts of daily maximum WBGT for New Delhi, trained on ${s.train} (${s.n_train} days), early-stopped on ${s.validation} and tested on ${s.test} (${s.n_test} days), March–June. Split by time, never shuffled.`;
+}
+
+export function skillByLeadNote(r: ModelResults): string {
+  const m = r.layerA.metrics;
+  const lg = m.lgbm;
+  const pers = m.persistence;
+  const clim = m.climatology;
+  const losesClim = LEADS.filter((l) => lg[l].pinball! >= clim[l].pinball!);
+  const beatsPersAll = LEADS.every((l) => lg[l].mae < pers[l].mae);
+  const lstmLoses = LEADS.filter((l) => m.lstm && m.lstm[l].mae >= clim[l].mae);
+  return (
+    `The LightGBM model's error grows from ${r2(lg["1"].mae)} °C at 1 day to ${r2(lg["5"].mae)} °C at 5 days, as weather uncertainty compounds. ` +
+    (beatsPersAll ? `It beats persistence at every lead (${r2(pers["5"].mae)} °C at 5 days). ` : "") +
+    `By day 5 it is barely better than climatology on MAE (${r2(lg["5"].mae)} vs ${r2(clim["5"].mae)} °C)` +
+    (losesClim.length ? `, and it loses to climatology on pinball loss at lead${losesClim.length > 1 ? "s" : ""} ${list(losesClim)}.` : ".") +
+    (lstmLoses.length ? ` The LSTM is worse than climatology on MAE at lead${lstmLoses.length > 1 ? "s" : ""} ${list(lstmLoses)}.` : "")
+  );
+}
+
+export function coverageNote(r: ModelResults): string {
+  const lg = r.layerA.metrics.lgbm;
+  const covs = LEADS.map((l) => lg[l].cov80 ?? NaN);
+  const avg = covs.reduce((a, b) => a + b, 0) / covs.length;
+  const pers = LEADS.map((l) => r.layerA.metrics.persistence[l].cov80 ?? NaN);
+  const pavg = pers.reduce((a, b) => a + b, 0) / pers.length;
+  return `The 10–90 % band should contain the outcome 80 % of the time. The LightGBM bands contain it ${pctOf(avg)} of the time on average (range ${pctOf(Math.min(...covs))}–${pctOf(Math.max(...covs))}), so they are too narrow; persistence with error quantiles from the training years reaches ${pctOf(pavg)}. Recalibrating the intervals on the validation year is the next step.`;
+}
+
+export function backtestTrainedNote(r: ModelResults, lead: string): string {
+  const s = r.layerA.backtest.leads[lead] ?? [];
+  if (!s.length) return "";
+  const inside = s.filter((p) => p.actual >= p.lo && p.actual <= p.hi).length / s.length;
+  const peak = s.reduce((a, b) => (b.actual > a.actual ? b : a));
+  const maxMed = Math.max(...s.map((p) => p.median));
+  return `Over ${r.layerA.backtest.window}, the lead-${lead} band contains ${pctOf(inside)} of observed days. The forecast follows the seasonal build-up but smooths the extremes: the hottest observed day (${peak.date}, ${r1(peak.actual)} °C) was forecast at ${r1(peak.median)} °C, and no median forecast in the window exceeded ${r1(maxMed)} °C.`;
+}
+
+export function nwpNote(r: ModelResults): string {
+  const n = r.layerA.nwp_subset;
+  if (!n.nwp_raw || !n.lgbm) return "";
+  const rawWins = LEADS.filter((l) => n.nwp_raw[l].mae < n.lgbm[l].mae);
+  const pp = n.nwp_pp;
+  const ppCov = pp ? LEADS.map((l) => pp[l].cov80 ?? NaN) : [];
+  return (
+    `On the ${r.data.split.n_nwp_subset} test days from 2025 that have archived weather-model forecasts, the raw forecast converted to WBGT beats the observation-only LightGBM at lead${rawWins.length > 1 ? "s" : ""} ${list(rawWins)} ` +
+    `(e.g. ${r2(n.nwp_raw["3"].mae)} vs ${r2(n.lgbm["3"].mae)} °C at 3 days): the weather model knows what is coming, observations do not. ` +
+    (pp ? `Post-processing the NWP forecast gives the lowest error (${r2(pp["3"].mae)} °C at 3 days) but was trained on a single season (2024), and its 80 % bands cover only ${pctOf(Math.min(...ppCov))}–${pctOf(Math.max(...ppCov))}. This is the most promising route, and it needs more seasons of archived forecasts.` : "")
+  );
+}
+
+export function eventsTrainedNote(r: ModelResults): string {
+  const e = r.layerA.events;
+  const p95 = r.data.p95.wbgt;
+  const lg1 = e.lgbm["1"];
+  const lg3 = e.lgbm["3"];
+  const ps1 = e.persistence["1"];
+  const lstm3 = e.lstm?.["3"];
+  const c = (x: number | null) => (x === null ? "–" : r2(x));
+  return (
+    `Heat days are days at or above the local 95th percentile (${r2(p95)} °C WBGT). Median forecasts rarely reach it (LightGBM CSI ${c(lg1.p95.csi)} at 1 day), so warnings use the 90 % quantile. ` +
+    `With that trigger LightGBM scores CSI ${c(lg1.p95_q90_trigger?.csi ?? null)} at 1 day but only ${c(lg3.p95_q90_trigger?.csi ?? null)} at 3 days; ` +
+    `persistence scores ${c(ps1.p95_q90_trigger?.csi ?? null)} at 1 day with many false alarms (FAR ${c(ps1.p95_q90_trigger?.far ?? null)})` +
+    (lstm3?.p95_q90_trigger ? `, and the LSTM holds up better at longer leads (CSI ${c(lstm3.p95_q90_trigger.csi)} at 3 days).` : ".") +
+    ` The dashboard's Orange (33.5 °C) and Red (35.5 °C) WBGT cut-offs were never reached in the test years, so they cannot be scored and need recalibrating to this WBGT estimate.`
+  );
+}
+
+export function shapTrainedNote(r: ModelResults): string {
+  const g = r.layerA.shap.global;
+  const total = g.reduce((a, b) => a + b.mean_abs_shap, 0);
+  const season = g.filter((x) => x.feature.startsWith("doy_")).reduce((a, b) => a + b.mean_abs_shap, 0);
+  const firstWeather = g.find((x) => !x.feature.startsWith("doy_"));
+  return `At 3 days ahead the model leans mostly on the time of year (${pctOf(season / total)} of the attribution among the top features), then on ${firstWeather?.feature ?? "recent WBGT"}. Humidity and radiation add little on their own. With observations only, the seasonal cycle is the strongest signal three days out, which is why adding weather-model forecasts helps.`;
+}
+
+export function localShapNote(r: ModelResults): string {
+  const l = r.layerA.shap.local;
+  const top = l.contributions.slice(0, 3).map((c) => `${c.feature} (${c.shap >= 0 ? "+" : ""}${r2(c.shap)} °C)`);
+  return `For the hottest test day, ${l.target_date}, the model predicted ${r1(l.predicted)} °C against an observed ${r1(l.actual)} °C, under-forecasting by ${r1(l.actual - l.predicted)} °C. Starting from the average of ${r1(l.base_value)} °C, the largest pushes came from ${list(top)}.`;
+}
+
+export function layerBNote(r: ModelResults): string {
+  const b = r.layerB;
+  const v = b.values;
+  const at30 = b.curve_by_wbgt.find((p) => p.wbgt === 30);
+  return `Mortality rises ${r1(v.pct_increase_per_c)} % (95 % CI ${r1(v.ci95_pct[0])}–${r1(v.ci95_pct[1])} %) for each °C of ${v.exposure_metric_as_stated.split(" (")[0]} above ${v.threshold_c} °C, summed over ${v.lag_window_days} days, as published for Delhi. It is applied on its own air-temperature scale: forecast WBGT is mapped to daily mean temperature (R² ${r2(b.mapping.r2_train)}, error SD ${r1(b.mapping.resid_sd_test_c)} °C on test). ` +
+    (at30 ? `At a WBGT of 30 °C this gives a relative risk of ${r2(at30.rr)} (${r2(at30.lo)}–${r2(at30.hi)}). ` : "") +
+    "The wide interval and the early-1990s data are real limitations; this curve was not fitted by us.";
+}
+
+export function layerCNote(r: ModelResults): string {
+  const c = r.layerC;
+  const kept = c.pca.kept_components.length;
+  const expl = c.pca.kept_components.reduce((a, k) => a + c.pca.explained_variance_ratio[k - 1], 0);
+  const sub = Object.entries(c.subdistrict_hvi_pop_weighted).map(([k, v]) => `${k} ${r2(v)}`);
+  return `A vulnerability index from Census 2011 at ${c.level_achieved.split(" (")[0]} level: ${Object.keys(c.indicators).length} indicators, ${kept} principal component${kept > 1 ? "s" : ""} explaining ${pctOf(expl)} of the variance. Population-weighted by sub-district: ${list(sub)}. The table has no elderly share or slum counts, and the dashboard's 6 pilot wards are not census wards, so the ward-to-ward spread on the map stays simulated.`;
+}
+
+export function riskEngineNote(r: ModelResults): string {
+  const e = r.risk_engine;
+  const fc = e.city_totals.slice(1);
+  const sum = (k: "deaths_q50" | "deaths_q10" | "deaths_q90" | "deaths_observed") => fc.reduce((a, d) => a + d[k], 0);
+  return `For the hottest real 6-day window in the test years (${e.window.start} to ${e.window.end}), the forecasts imply ${r1(sum("deaths_q50"))} excess resident deaths over days 1–5 (10–90 %: ${r1(sum("deaths_q10"))}–${r1(sum("deaths_q90"))}). Using the observed heat instead gives ${r1(sum("deaths_observed"))}, higher than even the upper forecast, because the forecasts under-predicted this heatwave's peak. Population ${e.inputs.population_total.toLocaleString("en-IN")} residents (Census 2011); the daytime commuter population is not counted.`;
 }

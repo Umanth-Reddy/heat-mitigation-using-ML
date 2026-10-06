@@ -20,6 +20,7 @@ const eslintConfig = defineConfig([
     "node_modules/**",
     "public/maplibre-*.mjs",
     "public/data/**",
+    "ml/.venv/**",
   ]),
 ]);
 

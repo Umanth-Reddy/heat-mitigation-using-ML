@@ -24,3 +24,12 @@ Tested with Python 3.14 on CPU. Raw downloads are cached in `ml/data/raw/` (not 
 | 2b | `02b_layerA_models.py` | Persistence, climatology, raw NWP, LightGBM quantile, NWP post-processing, LSTM; metrics, events, SHAP, backtest → `outputs/layerA.json`, `reports/layerA_metrics.md` |
 | 3 | `03_layer_b.py`, `data/literature_coefficients.json` | Published Delhi heat–mortality slope (Hajat et al. 2005, quoted from the abstract), applied on its native air-temperature metric via a reported WBGT→Tmean mapping → `outputs/layerB.json`. DLNM benchmark skipped (no R) |
 | 4 | `04_layer_c.py` | PCA heat-vulnerability index from real Census 2011 ward-level data (District New Delhi, 11 ward-parts) → `outputs/layerC.json`, `data/census_ward_indicators.csv` |
+| 5 | `05_risk_engine.py` | Excess deaths for the hottest real 6-day test window from Layers A–C → `outputs/risk_engine.json` |
+| 5b | `06_export.py` | Everything the app shows → `public/data/risk/model_results.json`; marks `models.json` as trained |
+| all | `run_all.py` | Reproduces every stage (`--refresh` re-downloads) |
+
+## What is real and what is not
+
+- **Real:** ERA5 observations and archived NWP forecasts (Open-Meteo), every Layer A metric, SHAP value and backtest point, the Census 2011 index, and the published coefficients and baseline deaths (quoted with sources in `data/literature_coefficients.json`).
+- **Simulated or assumed (labelled in the app):** the 6 dashboard wards' heat offsets, population split and vulnerability spread; the admissions-per-death ratio; WBGT → daily mean temperature mapping error is not propagated.
+- **Not built:** a local DLNM (no Delhi daily mortality series available), an admissions forecaster, and the optional DLNM benchmark on `dlnm::chicagoNMMAPS` (R is not installed here).

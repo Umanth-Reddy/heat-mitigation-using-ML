@@ -39,7 +39,32 @@ INDICATORS = {
 }
 
 
+FILES = {
+    "DDW_PCA0705_2011_MDDS_with_UI.xlsx": "https://censusindia.gov.in/nada/index.php/catalog/6285/download/9362",
+    "PCA_2011_Distt-Sub_Dist_NCT_of_Delhi.xls": "https://censusindia.gov.in/nada/index.php/catalog/11310/download/14422",
+}
+
+
+def fetch_census():
+    """Download the two Census tables if they are not cached. The portal's certificate chain does not verify, so TLS
+    verification is disabled for these two official URLs only (documented in SOURCES.md)."""
+    import requests
+    import urllib3
+
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    for name, url in FILES.items():
+        path = os.path.join(RAW, name)
+        if os.path.exists(path):
+            continue
+        r = requests.get(url, timeout=120, verify=False)
+        r.raise_for_status()
+        with open(path, "wb") as f:
+            f.write(r.content)
+        print(f"downloaded {name} ({len(r.content):,} bytes)")
+
+
 def main():
+    fetch_census()
     d = pd.read_excel(os.path.join(RAW, "DDW_PCA0705_2011_MDDS_with_UI.xlsx"))
     sub_names = d[(d.Level == "SUB-DISTRICT") & (d.TRU == "Total")].set_index("Subdistt")["Name"].to_dict()
     w = d[d.Level == "WARD"].copy()

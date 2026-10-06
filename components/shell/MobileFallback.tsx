@@ -9,12 +9,11 @@ export default function MobileFallback() {
   const { meta, impact, models } = useRiskData();
   if (!meta || !impact || !models) return null;
 
-  const ours = models.baseline_comparison.find((b) => b.system.startsWith("UshnaRaksha"));
   const saved = impact.scenarios.find((s) => s.id === "ushnaraksha")?.deaths_averted ?? 0;
   const stats = [
     { value: String(Math.max(...meta.days.map((d) => d.wards_by_tier[3]))), label: "wards at RED on the peak day" },
     { value: saved.toFixed(1), label: "lives saved in the simulated heatwave" },
-    { value: `${(ours?.lead_days ?? 0).toFixed(1)} d`, label: "forecast lead time" },
+    { value: "1–5 d", label: "heat-stress forecast horizon" },
     { value: String(meta.city.n_zones), label: "zones covered (~120 m)" },
   ];
 

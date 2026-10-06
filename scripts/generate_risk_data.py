@@ -585,6 +585,18 @@ models = {
 # --------------------------------------------------------------------------
 # Write
 # --------------------------------------------------------------------------
+# If the ML pipeline has produced real results (ml/06_export.py), keep Model Insights in "trained" mode.
+_results_path = os.path.join(OUT_DIR, "model_results.json")
+if os.path.exists(_results_path):
+    with open(_results_path, encoding="utf-8") as _f:
+        _res = json.load(_f)
+    models["results_status"] = _res["results_status"]
+    models["dataset"] = _res["dataset"]
+    models["evaluated_on"] = _res["evaluated_on"]
+    for _sec in models["sections"].values():
+        _sec["dataset"], _sec["evaluated_on"] = _res["dataset"], _res["evaluated_on"]
+
+
 def dump(name, obj):
     path = os.path.join(OUT_DIR, name)
     with open(path, "w", encoding="utf-8") as f:

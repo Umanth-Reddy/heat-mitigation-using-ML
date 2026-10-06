@@ -38,7 +38,7 @@ The prototype covers a pilot area in central New Delhi: 6 wards, 256 zones of ~1
 | Early Warning | `1` | Ward risk map (WBGT tiers, UTCI, vulnerability, satellite LST), 2D/3D, playable 5-day forecast, cooling centres and hospitals with daily load, city outlook, and a ward panel with forecast, predicted admissions and deaths, SHAP "why flagged", at-risk groups and actions |
 | Alerts | `2` | Alert queue, SMS / WhatsApp (English and Hindi) / CAP 1.2 XML previews, human Approve & dispatch with delivery tracking, history and threshold settings |
 | Impact | `3` | Deaths and admissions averted with a 3-day warning vs a 1-day warning or none, lead-time slider, per-ward breakdown, Ahmedabad Heat Action Plan benchmark |
-| Model Insights | `4` | Pipeline, DLNM exposure- and lag-response, forecast backtest, skill by lead day, comparison with temperature-only alerts, with a plain-language note under every chart |
+| Model Insights | `4` | Real results from `ml/`: heat-stress forecast error by lead day, backtest, interval coverage, comparison with persistence, climatology and weather-model forecasts, heat-day warning skill, SHAP, the published heat–mortality curve, the census vulnerability index and a risk-engine run on a real heatwave, each with a plain-language note that says where the model loses |
 | Urban Planning | `5` | 3D heat attribution on real OpenStreetMap buildings, plus cool-roof and green-cover interventions ranked by cost per °C of cooling |
 | How it works | `6` | Formulas, IMD tiers, data sources, model cards, decision flow, and what is real vs simulated |
 
@@ -72,12 +72,23 @@ Wards are classified with IMD's 4-tier colour code (Green, Yellow, Orange, Red).
 
 ### Models
 
+**Planned design** (from the proposal):
+
 | Model | Role | Output |
 |---|---|---|
 | DLNM, Distributed Lag Non-Linear Model | Epidemiological exposure-lag-response between heat stress and mortality | Relative risk by WBGT, over 0–5 day lags |
 | LightGBM / XGBoost | How local vulnerability (elderly, outdoor workers, informal housing, tree cover) changes risk | Ward vulnerability and interaction effects |
 | LSTM / Temporal Fusion Transformer | Forecasts health impact | Admissions and deaths at days 1–5, with uncertainty bands |
 | SHAP | Explainability | Per-ward "why flagged" drivers |
+
+**What is built and tested today** (`ml/`, reproducible with `python ml/run_all.py`):
+
+| Layer | What ran | Data | Result |
+|---|---|---|---|
+| A · heat-stress forecaster | LightGBM quantile models (one per lead day), an LSTM and an NWP post-processing model, against persistence, climatology and raw weather-model forecasts | ERA5 via Open-Meteo, New Delhi, 2015 → latest; archived NWP forecasts 2024 → | Test 2024 → latest, split by time: see [`ml/reports/layerA_metrics.md`](ml/reports/layerA_metrics.md) |
+| B · heat → mortality | Published Delhi exposure–response, applied on its native air-temperature scale | Hajat et al. 2005 (*Epidemiology* 16:613–620) | Not fitted by us; no local mortality series was available |
+| C · vulnerability | PCA index from 5 census indicators | Census 2011 ward-level PCA, New Delhi district | Ward level achieved; no elderly or slum data at that level |
+| D · risk engine | Excess deaths for a real heatwave window from A + B + C | Baseline deaths: de Bont et al. 2024; population: Census 2011 | Ward split, ward heat offsets and the admissions ratio are simulated or assumed and labelled |
 
 ## Architecture
 
@@ -109,8 +120,12 @@ We want evaluators to see exactly what is real.
 | Dashboard: map, forecast timeline, ward panel, alerts flow, impact, model insights | **Built** |
 | WBGT + UTCI calculator | **Built**: real formulas, unit-tested (`npm run test:thermal`) |
 | Building footprints (Urban Planning) | **Real** OpenStreetMap data |
-| Ward forecasts, health impact, facilities, impact scenarios | **Simulated**: seeded scenario data for the demo |
-| Forecast model results (Model Insights) | **Evaluation design**, training in progress on historical Delhi weather (ERA5 / Open-Meteo); real results swap in through `results_status` in `models.json` |
+| Early Warning map, alerts, facilities, Impact tab | **Simulated**: seeded scenario data for the demo |
+| Heat-stress forecaster (Layer A) | **Trained & tested**: ERA5 via Open-Meteo, test 2024 → latest; beats persistence at every lead, close to climatology by day 5, intervals too narrow (see Model Insights) |
+| Heat → mortality curve (Layer B) | **Published coefficients**: Hajat et al. 2005 (Delhi); not fitted by us |
+| Vulnerability index (Layer C) | **Real**: Census 2011 ward level, New Delhi district |
+| Risk engine on a real heatwave (Layer D) | **Partly real**: real forecast, coefficients and census inputs; ward split and admissions ratio simulated or assumed |
+| Local DLNM, admissions forecast (TFT), vulnerability ML model | **Not built**: no Delhi daily mortality or admissions series was available |
 | Live IMD / satellite / census / hospital ingestion | Planned |
 | FastAPI, PostGIS, Airflow backend | Planned |
 | Real SMS / WhatsApp / CAP dispatch | Planned |
