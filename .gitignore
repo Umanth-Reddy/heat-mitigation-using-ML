@@ -11,3 +11,8 @@ CLAUDE.md
 
 # editor lock files
 .~lock.*
+
+# ML pipeline: raw downloads and the local virtualenv
+ml/data/raw/
+ml/.venv/
+__pycache__/

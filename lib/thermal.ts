@@ -27,6 +27,27 @@ export function wbgtEstimate(ta: number, rh: number, radiant = 0): number {
   return 0.7 * wetBulbStull(ta, rh) + 0.3 * ta + radiant;
 }
 
+/**
+ * Radiant load from global horizontal shortwave radiation (W/m²). A deliberately simple, documented heuristic
+ * (not a globe-temperature model): it scales linearly from 0 at night to the "full sun" values at 1000 W/m².
+ * The same constants drive the calculator's Sun setting, and ml/common/thermal.py mirrors these functions exactly.
+ */
+export const FULL_SUN_SW = 1000; // W/m²
+export const SUN_RADIANT_WBGT = 1.5; // °C added to the WBGT estimate in full sun
+export const SUN_TMRT_OFFSET = 18; // °C added to Ta for mean radiant temperature in full sun
+
+const sunFraction = (sw: number) => Math.min(1, Math.max(0, sw / FULL_SUN_SW));
+
+/** WBGT radiant term (°C) for a given shortwave radiation (W/m²). */
+export function radiantTermFromShortwave(sw: number): number {
+  return SUN_RADIANT_WBGT * sunFraction(sw);
+}
+
+/** Mean radiant temperature (°C) estimate for a given air temperature and shortwave radiation. */
+export function tmrtFromShortwave(ta: number, sw: number): number {
+  return ta + SUN_TMRT_OFFSET * sunFraction(sw);
+}
+
 export const UTCI_WIND_MIN = 0.5;
 export const UTCI_WIND_MAX = 17;
 

@@ -5,7 +5,7 @@ import { Sun, Cloud, X } from "lucide-react";
 import { useRiskData } from "@/lib/data";
 import { TIER_COLORS, tierOfWbgt } from "@/lib/risk";
 import { useStore } from "@/lib/store";
-import { utci, utciCategory, utciWarnings, wbgtEstimate, wetBulbStull } from "@/lib/thermal";
+import { SUN_RADIANT_WBGT, SUN_TMRT_OFFSET, utci, utciCategory, utciWarnings, wbgtEstimate, wetBulbStull } from "@/lib/thermal";
 
 interface Inputs {
   ta: number;
@@ -14,8 +14,6 @@ interface Inputs {
   sun: boolean;
 }
 
-const SUN_TMRT_OFFSET = 18; // °C added to Ta for Tmrt in direct sun
-const SUN_RADIANT_WBGT = 1.5; // °C added to the WBGT estimate in direct sun
 const DEFAULT: Inputs = { ta: 40, rh: 30, wind: 2, sun: true };
 
 function Slider({ label, unit, value, min, max, step, onChange }: {
