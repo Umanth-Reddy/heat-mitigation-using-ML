@@ -18,3 +18,5 @@ Tested with Python 3.14 on CPU. Raw downloads are cached in `ml/data/raw/` (not 
 | Stage | Script | Output |
 |---|---|---|
 | 0 | `common/thermal.py`, `tests/test_thermal_parity.py` | WBGT/UTCI shared with `lib/thermal.ts` (parity-tested) |
+| 1 | `01_fetch_obs.py` | Hourly ERA5 (Open-Meteo archive), New Delhi, 2015 → latest; `data/SOURCES.md` |
+| 1b | `01b_fetch_forecasts.py` | Archived NWP forecasts as issued 1–5 days ahead (Open-Meteo Previous Runs API). Full WBGT inputs only from March 2024 |
